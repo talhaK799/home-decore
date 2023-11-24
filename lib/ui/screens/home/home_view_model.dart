@@ -26,9 +26,9 @@ class HomeViewModel extends BaseViewModel {
     getOffers();
     getCategories();
     getAllProducts();
-    getLatestProducts();
-    getTopRatedProducts();
-    getHelpLine();
+    // getLatestProducts();
+    // getTopRatedProducts();
+    // getHelpLine();
   }
 
   getHelpLine() async {
@@ -56,6 +56,7 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
     authService.allProducts = await _dbService.getProducts();
     print('allProductsLength => ${authService.allProducts.length}');
+    print(authService.allProducts[0].toJson());
 
     isShimmer = false;
     setState(ViewState.idle);

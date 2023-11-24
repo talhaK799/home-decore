@@ -22,12 +22,8 @@ class _ProductsContainerState extends State<HomeProdContainer> {
   Widget build(BuildContext context) {
     return Material(
       elevation: 4.0,
-      borderRadius: widget.product!.isDiscountAvailable!
-          ? BorderRadius.circular(10)
-          : BorderRadius.circular(10),
-      shadowColor: widget.product!.isDiscountAvailable!
-          ? lightGreyColor
-          : lightGreyColor,
+      borderRadius: BorderRadius.circular(10),
+      shadowColor: lightGreyColor,
       child: Stack(
         children: [
           Padding(
@@ -104,7 +100,7 @@ class _ProductsContainerState extends State<HomeProdContainer> {
                       Flexible(
                         child: Row(
                           children: [
-                            widget.product!.isDiscountAvailable!
+                            widget.product!.isDiscountAvailable == true
                                 ? Text(
                                     'BDT ${widget.product!.price ?? 00.toStringAsFixed(2)}',
                                     overflow: TextOverflow.ellipsis,
@@ -148,7 +144,7 @@ class _ProductsContainerState extends State<HomeProdContainer> {
           ///
           /// Percent off banner
           ///
-          widget.product!.isDiscountAvailable!
+          widget.product!.isDiscountAvailable == true
               ? Positioned(
                   left: 100.w,
                   top: 20.h,

@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
 // import 'package:pinput/pinput.dart';
 
@@ -178,27 +179,30 @@ class EnterOtpScreen extends StatelessWidget {
 
     return Row(
       children: [
-        // Expanded(
-        //   child: Padding(
-        //     padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        //     child: Pinput(
-        //       length: 6,
-        //       showCursor: true,
-        //       //  fieldsCount: 6,
-        //       // withCursor: true,
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Pinput(
+              length: 6,
+              showCursor: true,
 
-        //       // textStyle: headingTextStyleLato.copyWith(color: Colors.white),
-        //       // eachFieldWidth: 40.0,
-        //       // eachFieldHeight: 40.0,
-        //       focusNode: model.pinPutFocusNode,
-        //       controller: model.pinPutController,
-        //       // submittedFieldDecoration: pinPutDecoration,
-        //       // selectedFieldDecoration: pinPutDecoration,
-        //       // followingFieldDecoration: pinPutDecoration,
-        //       pinAnimationType: PinAnimationType.fade,
-        //     ),
-        //   ),
-        // ),
+              errorTextStyle:
+                  headingTextStyleLato.copyWith(color: Colors.white),
+              //  fieldsCount: 6,
+              // withCursor: true,
+
+              // textStyle: headingTextStyleLato.copyWith(color: Colors.white),
+              // eachFieldWidth: 40.0,
+              // eachFieldHeight: 40.0,
+              focusNode: model.pinPutFocusNode,
+              controller: model.pinPutController,
+              // submittedFieldDecoration: pinPutDecoration,
+              // selectedFieldDecoration: pinPutDecoration,
+              // followingFieldDecoration: pinPutDecoration,
+              pinAnimationType: PinAnimationType.fade,
+            ),
+          ),
+        ),
       ],
     );
   }

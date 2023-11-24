@@ -268,7 +268,7 @@ class DatabaseService {
     final List<Product> categories = [];
     try {
       final snapshot = await _db.collection("products").get();
-      // debugPrint('products => ${snapshot.docs.length}');
+      debugPrint('products => ${snapshot.docs.length}');
       if (snapshot.docs.isNotEmpty) {
         for (var doc in snapshot.docs) {
           categories.add(Product.fromJson(doc, doc.id));

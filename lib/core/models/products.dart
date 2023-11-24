@@ -48,89 +48,94 @@ class Product {
     required this.productSizes,
   });
   Product.fromJson(json, this.id) {
-    sku = json['sku'];
-    name = json['name'];
-    category = json['category'];
-    stock = int.parse(json['stock']);
-    discountPercentage = json['discountPercentage'] != null
-        ? int.parse(json['discountPercentage'])
-        : 0;
+    try {
+      sku = json['sku'];
+      name = json['name'];
+      category = json['category'];
+      stock = int.parse(json['stock']);
+      discountPercentage = json['discountPercentage'] != null
+          ? int.parse(json['discountPercentage'])
+          : 0;
 
-    ///
-    /// price
-    if (json['price'] == null || json['price'] == "") {
-      price = json['prodSizes'] != null
-          ? json['prodSizes'][0]['price'] != null
-              ? json['prodSizes'][0]['price'].contains('.')
-                  ? double.parse(json['prodSizes'][0]['price'])
-                  : int.parse(json['prodSizes'][0]['price']).toDouble()
-              : 0.0
-          : 0.0;
-    } else {
-      price = json['price'] != null
-          ? json['price'].contains('.')
-              ? double.parse(json['price'])
-              : int.parse(json['price']).toDouble()
-          : 0.0;
-    }
-
-    ///
-    /// sale price
-    if (json['salePrice'] == null || json['salePrice'] == "") {
-      salePrice = json['prodSizes'] != null
-          ? json['prodSizes'][0]['salePrice'] != null
-              ? json['prodSizes'][0]['salePrice'].contains('.')
-                  ? double.parse(json['prodSizes'][0]['salePrice'])
-                  : int.parse(json['prodSizes'][0]['salePrice']).toDouble()
-              : 0.0
-          : 0.0;
-      cartSalePrice = salePrice;
-    } else {
-      salePrice = json['salePrice'] != null
-          ? json['salePrice'].contains('.')
-              ? double.parse(json['salePrice'])
-              : int.parse(json['salePrice']).toDouble()
-          : 0.0;
-      cartSalePrice = salePrice;
-    }
-
-    ///
-    /// other work
-    description = json['description'];
-    productSizes = [];
-    if (json['prodSizes'] != null) {
-      json['prodSizes'].forEach((e) {
-        productSizes.add(ProductSizes.formJson(e));
-      });
-    }
-    if (json['discountPercentage'] == null ||
-        json['discountPercentage'] == '0') {
-      isDiscountAvailable = false;
-    } else {
-      isDiscountAvailable = true;
-    }
-    if (json['images'] != null) {
-      images = [];
-      json['images'].forEach((e) {
-        images!.add(e);
-      });
-    }
-    likedUserIds = [];
-    if (json['likedUsersIds'] != null) {
-      json['likedUsersIds'].forEach((e) {
-        likedUserIds!.add(e);
-      });
-      for (var i in likedUserIds!) {
-        if (i == locator<AuthService>().appUser.id) {
-          isLiked = true;
-        } else {
-          isLiked = false;
-        }
+      ///
+      /// price
+      if (json['price'] == null || json['price'] == "") {
+        price = json['prodSizes'] != null
+            ? json['prodSizes'][0]['price'] != null
+                ? json['prodSizes'][0]['price'].contains('.')
+                    ? double.parse(json['prodSizes'][0]['price'])
+                    : int.parse(json['prodSizes'][0]['price']).toDouble()
+                : 0.0
+            : 0.0;
+      } else {
+        price = json['price'] != null
+            ? json['price'].contains('.')
+                ? double.parse(json['price'])
+                : int.parse(json['price']).toDouble()
+            : 0.0;
       }
-    } else {
-      isLiked = false;
+
+      ///
+      /// sale price
+      if (json['salePrice'] == null || json['salePrice'] == "") {
+        salePrice = json['prodSizes'] != null
+            ? json['prodSizes'][0]['salePrice'] != null
+                ? json['prodSizes'][0]['salePrice'].contains('.')
+                    ? double.parse(json['prodSizes'][0]['salePrice'])
+                    : int.parse(json['prodSizes'][0]['salePrice']).toDouble()
+                : 0.0
+            : 0.0;
+        cartSalePrice = salePrice;
+      } else {
+        salePrice = json['salePrice'] != null
+            ? json['salePrice'].contains('.')
+                ? double.parse(json['salePrice'])
+                : int.parse(json['salePrice']).toDouble()
+            : 0.0;
+        cartSalePrice = salePrice;
+      }
+
+      ///
+      /// other work
+      description = json['description'];
+      productSizes = [];
+      if (json['prodSizes'] != null) {
+        json['prodSizes'].forEach((e) {
+          productSizes.add(ProductSizes.formJson(e));
+        });
+      }
+      if (json['discountPercentage'] == null ||
+          json['discountPercentage'] == '0') {
+        isDiscountAvailable = false;
+      } else {
+        isDiscountAvailable = true;
+      }
+      if (json['images'] != null) {
+        images = [];
+        json['images'].forEach((e) {
+          images!.add(e);
+        });
+      }
+      likedUserIds = [];
+      if (json['likedUsersIds'] != null) {
+        json['likedUsersIds'].forEach((e) {
+          likedUserIds!.add(e);
+        });
+        for (var i in likedUserIds!) {
+          if (i == locator<AuthService>().appUser.id) {
+            isLiked = true;
+          } else {
+            isLiked = false;
+          }
+        }
+      } else {
+        isLiked = false;
+      }
+      createdAt = json['createdAt'].toDate();
+    } catch (e, s) {
+      print("@produts.fromJson: $e");
+      print(s);
     }
-    createdAt = json['createdAt'].toDate();
   }
 
   Product.fromOrdersJson(json, this.id) {
@@ -171,6 +176,7 @@ class Product {
     /// other work
     description = json['description'];
     productSizes = [];
+    print("prodSizes: ${json['prodSizes']}");
     if (json['prodSizes'] != null) {
       json['prodSizes'].forEach((e) {
         productSizes.add(ProductSizes.formJson(e));
@@ -267,10 +273,14 @@ class ProductSizes {
   });
 
   ProductSizes.formJson(json) {
-    size = json['size'];
-    price = json['price'];
-    salePrice = json['salePrice'];
-    percentage = json['percentage'];
+    try {
+      size = json['size'];
+      price = json['price'];
+      salePrice = json['salePrice'];
+      percentage = json['percentage'];
+    } catch (e) {
+      print("@prodSizeFromJson ${e}");
+    }
   }
 
   toJson() {
