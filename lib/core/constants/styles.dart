@@ -46,7 +46,7 @@ final TextStyle subBodyTextStyle = TextStyle(
 );
 
 final TextStyle buttonTextStyle = TextStyle(
-    color: Colors.white,
+    color: primaryColor,
     fontSize: 19.sp,
     fontWeight: FontWeight.bold,
     fontFamily: hacenFontHd);

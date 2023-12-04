@@ -8,6 +8,7 @@ import 'package:f2_base_project/ui/custom_widgets/circular_progress_indicator.da
 import 'package:f2_base_project/ui/custom_widgets/custom_text_field.dart';
 import 'package:f2_base_project/ui/custom_widgets/image-container.dart';
 import 'package:f2_base_project/ui/custom_widgets/rectangle_button.dart';
+import 'package:f2_base_project/ui/screens/auth_signup/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -34,7 +35,7 @@ class LoginScreen extends StatelessWidget {
                 ///
                 /// =============== This Section Contain Login Form ==============
                 ///
-                textFieldsLowerHalfScreen(context, model)
+                textFieldsLowerHalfScreen(context, model),
               ],
             ),
           ),
@@ -68,13 +69,20 @@ class LoginScreen extends StatelessWidget {
             padding: EdgeInsets.only(top: 15.h),
             child: Center(
                 child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                ImageContainer(
-                  assetImage: "$staticAssets/login-logo.png",
-                  height: 150.h,
-                  // width: 150.w,
-                ),
-                // SizedBox(height: 10.h),
+                // ImageContainer(
+                //   assetImage: "$staticAssets/login-logo.png",
+                //   height: 150.h,
+                //   // width: 150.w,
+                // ),
+                Text("Logo",
+                    style: headingTextStyleLato.copyWith(color: primaryColor)),
+
+                SizedBox(height: 10.h),
+                Text("Inna Home",
+                    style: headingTextStyleLato.copyWith(color: primaryColor)),
               ],
             )),
           ),
@@ -85,169 +93,243 @@ class LoginScreen extends StatelessWidget {
 
   textFieldsLowerHalfScreen(context, LoginViewModel model) {
     return Container(
-      height: 0.6.sh,
-      padding: EdgeInsets.symmetric(vertical: 35.h, horizontal: 31.w),
+      height: MediaQuery.sizeOf(context).height * 0.66,
+      padding: EdgeInsets.only(top: 35, left: 31, right: 31),
       decoration: topRoundedDecoration.copyWith(color: primaryColor),
       child: Form(
         key: model.formKey,
         child: Column(
-          children: [
-            SizedBox(height: 20.h),
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              /// user name field
+              // CustomTextField(
+              //   errorColor: Colors.white,
+              //   prefixIcon: ImageContainer(
+              //     height: 22.h,
+              //     width: 22.w,
+              //     assetImage: "$assets/email.png",
+              //   ),
+              //   validator: (value) {
+              //     if (value.isEmpty) {
+              //       return "Email is required".tr;
+              //     } else {
+              //       return null;
+              //     }
+              //   },
+              //   hintText: "email",
+              //   onChange: (value) {
+              //     model.appUser.email = value;
+              //   },
+              // ),
 
-            /// user name field
-            // CustomTextField(
-            //   errorColor: Colors.white,
-            //   prefixIcon: ImageContainer(
-            //     height: 22.h,
-            //     width: 22.w,
-            //     assetImage: "$assets/email.png",
-            //   ),
-            //   validator: (value) {
-            //     if (value.isEmpty) {
-            //       return "Email is required".tr;
-            //     } else {
-            //       return null;
-            //     }
-            //   },
-            //   hintText: "email",
-            //   onChange: (value) {
-            //     model.appUser.email = value;
-            //   },
-            // ),
+              // SizedBox(height: 20.h),
+              // CustomTextField(
+              //   obscure: true,
+              //   errorColor: Colors.white,
+              //   prefixIcon: ImageContainer(
+              //     height: 22.h,
+              //     width: 22.w,
+              //     assetImage: "$assets/password_icon.png",
+              //   ),
+              //   validator: (value) {
+              //     if (value.isEmpty) {
+              //       return "Password is required".tr;
+              //     } else {
+              //       return null;
+              //     }
+              //   },
+              //   hintText: "password",
+              //   onChange: (value) {
+              //     model.appUser.password = value;
+              //   },
+              // ),
+              // SizedBox(height: 10,),
 
-            // SizedBox(height: 20.h),
-            // CustomTextField(
-            //   obscure: true,
-            //   errorColor: Colors.white,
-            //   prefixIcon: ImageContainer(
-            //     height: 22.h,
-            //     width: 22.w,
-            //     assetImage: "$assets/password_icon.png",
-            //   ),
-            //   validator: (value) {
-            //     if (value.isEmpty) {
-            //       return "Password is required".tr;
-            //     } else {
-            //       return null;
-            //     }
-            //   },
-            //   hintText: "password",
-            //   onChange: (value) {
-            //     model.appUser.password = value;
-            //   },
-            // ),
+              Column(
+                children: [
+                  ////
+                  /// Email
+                  ///
+                  Padding(
+                    padding: const EdgeInsets.only(top: 40, bottom: 20),
+                    child: CustomTextField(
+                      errorColor: Colors.white,
+                      prefixIcon: Image.asset(
+                        "$assets/IconEmail.png",
+                        color: greyColor,
+                        height: 26.h,
+                        width: 26.w,
+                      ),
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return "phone_required".tr;
+                        } else {
+                          return null;
+                        }
+                      },
+                      hintText: "Enter the Email".tr,
+                      onChange: (value) {
+                        model.appUser.mobileNo = value;
+                      },
+                    ),
+                  ),
 
-            CustomTextField(
-              errorColor: Colors.white,
-              prefixIcon: ImageContainer(
-                height: 22.h,
-                width: 22.w,
-                assetImage: "$assets/phone_no.png",
+                  ///
+                  /// Password
+                  ///
+                  CustomTextField(
+                    errorColor: Colors.white,
+                    prefixIcon: Image.asset(
+                      "$assets/pass.png",
+                      color: greyColor,
+                      height: 20.h,
+                      width: 20.w,
+                    ),
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return "phone_required".tr;
+                      } else {
+                        return null;
+                      }
+                    },
+                    hintText: "Enter the Password".tr,
+                    onChange: (value) {
+                      model.appUser.mobileNo = value;
+                    },
+                  ),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "Forgot Password",
+                          style: boldTextStyleLato.copyWith(
+                              color: whiteColor,
+                              decoration: TextDecoration.underline,
+                              decorationColor: whiteColor,
+                              decorationThickness: 2),
+                        )),
+                  )
+                ],
               ),
-              validator: (value) {
-                if (value.isEmpty) {
-                  return "phone_required".tr;
-                } else {
-                  return null;
-                }
-              },
-              hintText: "017XXXXXXXX".tr,
-              onChange: (value) {
-                model.appUser.mobileNo = value;
-              },
-            ),
 
-            SizedBox(height: 20.h),
-
-            ///
-            /// Login Button
-            ///
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: model.isLoading
+              ///
+              /// Donot Have an account ?
+              ///
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  ///
+                  /// Login Button
+                  ///
+                  model.isLoading
                       ? Center(
                           child: CircularProgressIndicator(
                               backgroundColor: primaryColor))
-                      : Container(
-                          // width: 147.w,
-                          child: RectangularButton(
-                              radius: 15,
-                              buttonColor: Colors.white,
-                              textStyle: TextStyle(
-                                  fontSize: 18.sp, color: Color(0xFFF55858)),
-                              title: 'login'.tr,
-                              onTap: () {
-                                if (model.appUser.mobileNo != null) {
-                                  model.loginWithPhoneNo();
-                                }
-                                // model.loginWithEmailAndPassword();
-                                // model.appUser.email = model.appUser.email!.trim();
-                                // if (model.formKey.currentState!.validate()) {
-                                //   model.formKey.currentState!.save();
-                                //   model.loginWithEmailAndPassword();
-                                // }
-                              })),
-                ),
-              ],
-            ),
+                      : Padding(
+                          padding: const EdgeInsets.only(bottom: 20.0),
+                          child: GestureDetector(
+                            onTap: () {
+                              if (model.appUser.mobileNo != null) {
+                                model.loginWithPhoneNo();
+                              }
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              padding: EdgeInsets.symmetric(
+                                vertical: 10,
+                              ),
+                              decoration: BoxDecoration(
+                                  color: const Color(0xFFFFFFFF),
+                                  borderRadius: BorderRadius.circular(16.r)),
+                              child: Text("Login", style: buttonTextStyle),
+                            ),
+                          ),
+                        ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0, bottom: 60),
+                    child: Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Don't Have an Account?",
+                            style: bodyTextStyleLato.copyWith(color: greyColor),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SignUpScreen()));
+                            },
+                            child: Text("Sign Up ",
+                                style: bodyTextStyleLato.copyWith(
+                                    color: whiteColor)),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ]),
 
-            SizedBox(height: 30.h),
+        // SizedBox(height: 30.h),
 
-            Text('OR',
-                style: headingTextStyleLato.copyWith(
-                    fontSize: 30.sp, color: Colors.white)),
-            SizedBox(height: 30.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Container(
-                      // width: 147.w,
-                      child: RectangularButton(
-                          radius: 15,
-                          buttonColor: Colors.white,
-                          textStyle: TextStyle(
-                              fontSize: 18.sp, color: Color(0xFFF55858)),
-                          title: 'Login with Facebook'.tr,
-                          onTap: () {
-                            model.signUpWithFacebook();
-                            // model.appUser.email = model.appUser.email!.trim();
-                            // if (model.formKey.currentState!.validate()) {
-                            //   model.formKey.currentState!.save();
-                            //   model.loginWithEmailAndPassword();
-                            // }
-                          })),
-                ),
-              ],
-            ),
-            SizedBox(height: 30.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Container(
-                      // width: 147.w,
-                      child: RectangularButton(
-                          radius: 15,
-                          buttonColor: Colors.white,
-                          textStyle: TextStyle(
-                              fontSize: 18.sp, color: Color(0xFFF55858)),
-                          title: 'Login with Google'.tr,
-                          onTap: () {
-                            model.signUpWithGoogle();
-                            // model.appUser.email = model.appUser.email!.trim();
-                            // if (model.formKey.currentState!.validate()) {
-                            //   model.formKey.currentState!.save();
-                            //   model.loginWithEmailAndPassword();
-                            // }
-                          })),
-                ),
-              ],
-            )
-          ],
-        ),
+        // Text('OR',
+        //     style: headingTextStyleLato.copyWith(
+        //         fontSize: 30.sp, color: Colors.white)),
+        // SizedBox(height: 30.h),
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: [
+        //     Expanded(
+        //       child: Container(
+        //           // width: 147.w,
+        //           child: RectangularButton(
+        //               radius: 15,
+        //               buttonColor: Colors.white,
+        //               textStyle: TextStyle(
+        //                   fontSize: 18.sp, color: Color(0xFFF55858)),
+        //               title: 'Login with Facebook'.tr,
+        //               onTap: () {
+        //                 model.signUpWithFacebook();
+        //                 // model.appUser.email = model.appUser.email!.trim();
+        //                 // if (model.formKey.currentState!.validate()) {
+        //                 //   model.formKey.currentState!.save();
+        //                 //   model.loginWithEmailAndPassword();
+        //                 // }
+        //               })),
+        //     ),
+        //   ],
+        // ),
+        // SizedBox(height: 30.h),
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: [
+        //     Expanded(
+        //       child: Container(
+        //           // width: 147.w,
+        //           child: RectangularButton(
+        //               radius: 15,
+        //               buttonColor: Colors.white,
+        //               textStyle: TextStyle(
+        //                   fontSize: 18.sp, color: Color(0xFFF55858)),
+        //               title: 'Login with Google'.tr,
+        //               onTap: () {
+        //                 model.signUpWithGoogle();
+        //                 // model.appUser.email = model.appUser.email!.trim();
+        //                 // if (model.formKey.currentState!.validate()) {
+        //                 //   model.formKey.currentState!.save();
+        //                 //   model.loginWithEmailAndPassword();
+        //                 // }
+        //               })),
+        //     ),
+        //   ],
+        // )
       ),
     );
   }
