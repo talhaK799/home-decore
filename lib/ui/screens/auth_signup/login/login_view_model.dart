@@ -23,6 +23,7 @@ class LoginViewModel extends BaseViewModel {
   bool isLoading = false;
   final pinPutController = TextEditingController();
   final pinPutFocusNode = FocusNode();
+  bool rememberMe = false;
 
   showPassword() {
     isShowPassword = !isShowPassword;

@@ -1,3 +1,4 @@
+import 'package:f2_base_project/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 /// ImageContainer creates container with specific height and width
