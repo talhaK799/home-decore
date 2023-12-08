@@ -76,28 +76,28 @@ class _ProductsContainerState extends State<ProductsContainer> {
                     ),
                   ),
                   SizedBox(height: 2.7.h),
-                  Flexible(
-                    child: Row(
-                      children: [
-                        Text(
-                          'By: ',
-                          style: boldTextStyleLato.copyWith(
-                              fontSize: 13.sp, color: Color(0xFF58595B)),
-                        ),
-                        Expanded(
-                          child: Text(
-                            '${widget.product!.category ?? " "}',
-                            overflow: TextOverflow.ellipsis,
-                            // "Nike",
-                            style: boldTextStyleLato.copyWith(
-                                decoration: TextDecoration.underline,
-                                fontSize: 13.sp,
-                                color: Color(0xFF58595B)),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  // Flexible(
+                  //   child: Row(
+                  //     children: [
+                  //       Text(
+                  //         'By: ',
+                  //         style: boldTextStyleLato.copyWith(
+                  //             fontSize: 13.sp, color: Color(0xFF58595B)),
+                  //       ),
+                  //       Expanded(
+                  //         child: Text(
+                  //           '${widget.product!.category ?? " "}',
+                  //           overflow: TextOverflow.ellipsis,
+                  //           // "Nike",
+                  //           style: boldTextStyleLato.copyWith(
+                  //               decoration: TextDecoration.underline,
+                  //               fontSize: 13.sp,
+                  //               color: Color(0xFF58595B)),
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
                   SizedBox(height: 9.8.h),
                   Flexible(
                     child: Row(
@@ -108,7 +108,7 @@ class _ProductsContainerState extends State<ProductsContainer> {
                             children: [
                               widget.product!.isDiscountAvailable!
                                   ? Text(
-                                      'BDT ${widget.product!.price ?? 00.toStringAsFixed(2)}',
+                                      '€ ${widget.product!.price ?? 00.toStringAsFixed(2)}',
                                       overflow: TextOverflow.ellipsis,
                                       style: boldTextStyleHacen.copyWith(
                                           fontSize: 7.sp,
@@ -121,8 +121,8 @@ class _ProductsContainerState extends State<ProductsContainer> {
                               Flexible(
                                 child: Text(
                                   widget.salePrice != null
-                                      ? 'BDT ${widget.salePrice ?? 00.toStringAsFixed(2)}'
-                                      : 'BDT ${widget.product!.salePrice ?? 00.toStringAsFixed(2)}',
+                                      ? '€ ${widget.salePrice ?? 00.toStringAsFixed(2)}'
+                                      : '€ ${widget.product!.salePrice ?? 00.toStringAsFixed(2)}',
                                   overflow: TextOverflow.ellipsis,
                                   style: boldTextStyleHacen.copyWith(
                                       fontSize: 12.sp,

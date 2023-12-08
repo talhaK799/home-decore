@@ -1,6 +1,22 @@
 import 'package:f2_base_project/core/services/auth_service.dart';
 import 'package:f2_base_project/locator.dart';
 
+class SubCategory {
+  String? id;
+   String? categoryId;
+  String? createdAt;
+  String? imageUrl;
+  String? title;
+
+  SubCategory({this.id, this.createdAt, this.imageUrl, this.title, this.categoryId});
+  SubCategory.fromJson(json, this.id) {
+    categoryId =json['categoryId'];
+    createdAt = json['createdAt'];
+    imageUrl = json['imageUrl'];
+    title = json['title'];
+  }
+}
+
 class Product {
   String? id;
   String? sku;

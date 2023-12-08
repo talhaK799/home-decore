@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:f2_base_project/core/constants/colors.dart';
 import 'package:f2_base_project/core/constants/strings.dart';
 import 'package:f2_base_project/core/constants/styles.dart';
@@ -57,7 +59,7 @@ class LoginScreen extends StatelessWidget {
           ///
           AuthenticationAppBar(
             leadingIcon: '$staticAssets/back.png',
-            color: primaryColor,
+            color: blackColor,
             onBack: () => Get.back(),
             heading: "login".tr,
           ),
@@ -72,17 +74,11 @@ class LoginScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // ImageContainer(
-                //   assetImage: "$staticAssets/login-logo.png",
-                //   height: 150.h,
-                //   // width: 150.w,
-                // ),
-                Text("Logo",
-                    style: headingTextStyleLato.copyWith(color: primaryColor)),
-
-                SizedBox(height: 10.h),
-                Text("Inna Home",
-                    style: headingTextStyleLato.copyWith(color: primaryColor)),
+                ImageContainer(
+                  assetImage: "$staticAssets/logoo.png",
+                  height: 150.h,
+                  // width: 150.w,
+                ),
               ],
             )),
           ),
@@ -99,7 +95,7 @@ class LoginScreen extends StatelessWidget {
       child: Form(
         key: model.formKey,
         child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               /// user name field
               // CustomTextField(
@@ -162,14 +158,14 @@ class LoginScreen extends StatelessWidget {
                       ),
                       validator: (value) {
                         if (value.isEmpty) {
-                          return "phone_required".tr;
+                          return "Please enter the email".tr;
                         } else {
                           return null;
                         }
                       },
                       hintText: "Enter the Email".tr,
                       onChange: (value) {
-                        model.appUser.mobileNo = value;
+                        model.appUser.email = value;
                       },
                     ),
                   ),
@@ -178,6 +174,18 @@ class LoginScreen extends StatelessWidget {
                   /// Password
                   ///
                   CustomTextField(
+                    obscure: model.isShowPassword,
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        model.showPassword();
+                      },
+                      icon: Icon(
+                        model.isShowPassword
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                        color: Colors.grey,
+                      ),
+                    ),
                     errorColor: Colors.white,
                     prefixIcon: Image.asset(
                       "$assets/pass.png",
@@ -187,29 +195,33 @@ class LoginScreen extends StatelessWidget {
                     ),
                     validator: (value) {
                       if (value.isEmpty) {
-                        return "phone_required".tr;
+                        return "Please enter the passoword".tr;
                       } else {
                         return null;
                       }
                     },
                     hintText: "Enter the Password".tr,
                     onChange: (value) {
-                      model.appUser.mobileNo = value;
+                      model.appUser.password = value;
                     },
                   ),
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          "Forgot Password",
-                          style: boldTextStyleLato.copyWith(
-                              color: whiteColor,
-                              decoration: TextDecoration.underline,
-                              decorationColor: whiteColor,
-                              decorationThickness: 2),
-                        )),
+
+                  SizedBox(
+                    height: 60.h,
                   )
+                  // Align(
+                  //   alignment: Alignment.topRight,
+                  //   child: TextButton(
+                  //       onPressed: () {},
+                  //       child: Text(
+                  //         "Forgot Password",
+                  //         style: boldTextStyleLato.copyWith(
+                  //             color: whiteColor,
+                  //             decoration: TextDecoration.underline,
+                  //             decorationColor: whiteColor,
+                  //             decorationThickness: 2),
+                  //       )),
+                  // )
                 ],
               ),
 
@@ -217,8 +229,8 @@ class LoginScreen extends StatelessWidget {
               /// Donot Have an account ?
               ///
               Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                // mainAxisAlignment: MainAxisAlignment.center,
+                // crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   ///
                   /// Login Button
@@ -227,50 +239,49 @@ class LoginScreen extends StatelessWidget {
                       ? Center(
                           child: CircularProgressIndicator(
                               backgroundColor: primaryColor))
-                      : Padding(
-                          padding: const EdgeInsets.only(bottom: 20.0),
-                          child: GestureDetector(
-                            onTap: () {
-                              if (model.appUser.mobileNo != null) {
-                                model.loginWithPhoneNo();
-                              }
-                            },
-                            child: Container(
-                              alignment: Alignment.center,
-                              padding: EdgeInsets.symmetric(
-                                vertical: 10,
-                              ),
-                              decoration: BoxDecoration(
-                                  color: const Color(0xFFFFFFFF),
-                                  borderRadius: BorderRadius.circular(16.r)),
-                              child: Text("Login", style: buttonTextStyle),
-                            ),
+                      : GestureDetector(
+                          onTap: () {
+                            if (model.formKey.currentState!.validate()) {
+                              print('object');
+                              model.loginWithEmailAndPassword();
+                            }
+                          },
+                          child: Container(
+                            // alignment: Alignment.center,
+                            padding: EdgeInsets.symmetric(
+                                vertical: 9.h, horizontal: 50.w),
+                            decoration: BoxDecoration(
+                                color: const Color(0xFFFFFFFF),
+                                borderRadius: BorderRadius.circular(16.r)),
+                            child: Text("Login", style: buttonTextStyle),
                           ),
                         ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0, bottom: 60),
-                    child: Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Don't Have an Account?",
-                            style: bodyTextStyleLato.copyWith(color: greyColor),
+                  SizedBox(
+                    height: 3,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(SignUpScreen());
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Don't Have an Account? ",
+                          style: bodyTextStyleHacen.copyWith(
+                            color: whiteColor,
+                            fontSize: 11.sp,
                           ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => SignUpScreen()));
-                            },
-                            child: Text("Sign Up ",
-                                style: bodyTextStyleLato.copyWith(
-                                    color: whiteColor)),
-                          )
-                        ],
-                      ),
+                        ),
+                        Text(" Register ",
+                            style: bodyTextStyleHacen.copyWith(
+                                fontSize: 13.sp,
+                                decorationColor: whiteColor,
+                                decorationThickness: 2,
+                                decoration: TextDecoration.underline,
+                                color: whiteColor)),
+                      ],
                     ),
                   ),
                 ],

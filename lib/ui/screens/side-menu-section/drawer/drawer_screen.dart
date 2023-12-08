@@ -55,9 +55,13 @@ class DrawerScreen extends StatelessWidget {
                               model.authService.appUser.imageUrl == null
                                   ? CircleAvatar(
                                       radius: 35.r,
-                                      backgroundColor: Colors.transparent,
-                                      backgroundImage:
-                                          AssetImage('$profilePlaceHolder'))
+                                      backgroundColor: primaryColor,
+                                      child: Icon(
+                                        Icons.person,
+                                        color: whiteColor,
+                                        size: 35,
+                                      ),
+                                    )
                                   : CircleAvatar(
                                       radius: 35.r,
                                       backgroundColor: Colors.transparent,
@@ -242,15 +246,14 @@ class DrawerScreen extends StatelessWidget {
                               },
                               child: Row(children: [
                                 Transform(
-                                  alignment: Alignment.center,
-                                  transform: Get.locale!.languageCode == 'ar'
-                                      ? Matrix4.rotationY(pi)
-                                      : Matrix4.rotationY(0),
-                                  child: Image.asset(
-                                      '$staticAssets/logout_icon.png',
-                                      width: 25.7.w,
-                                      height: 21.9.h),
-                                ),
+                                    alignment: Alignment.center,
+                                    transform: Get.locale!.languageCode == 'ar'
+                                        ? Matrix4.rotationY(pi)
+                                        : Matrix4.rotationY(0),
+                                    child: Icon(
+                                      Icons.login_rounded,
+                                      color: primaryColor,
+                                    )),
                                 Padding(
                                   padding:
                                       EdgeInsetsDirectional.only(start: 8.0),
@@ -295,6 +298,7 @@ class DrawerScreen extends StatelessWidget {
                     '$image',
                     height: height,
                     width: width,
+                    color: primaryColor,
                   )
                 : Image.asset(
                     '$image',

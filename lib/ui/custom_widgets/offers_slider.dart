@@ -44,7 +44,7 @@ class _OffersSliderState extends State<OffersSlider> {
                             context,
                             MaterialPageRoute(
                                 builder: (_) => CategProdScreen(
-                                    '${widget.offers[index].category}',
+                                    '${widget.offers[index].category}',widget.offers[index].id,
                                     isFromOffers: true,
                                     offer: widget.offers[index])));
                       },

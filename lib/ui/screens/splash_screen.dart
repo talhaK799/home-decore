@@ -68,7 +68,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-          color: primaryColor,
+          color: whiteColor,
           height: double.infinity,
           child: Center(
             child: Padding(
@@ -77,8 +77,9 @@ class _SplashScreenState extends State<SplashScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ImageContainer(
-                      height: 0.4.sh,
-                      assetImage: '$staticAssets/splash-logo.png',
+                      assetImage: '$staticAssets/logoo.png',
+                      height: 200.h,
+                      width: 200.h,
                       fit: BoxFit.contain),
                   // SizedBox(height: 30.h),
                   // Text('HORITOKI',

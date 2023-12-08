@@ -73,7 +73,7 @@ class OfferScreen extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                     builder: (_) => CategProdScreen(
-                                        '${offers[index].category}',
+                                        '${offers[index].category} ',offers[index].id?? "",
                                         isFromOffers: true,
                                         offer: offers[index])));
                           },
