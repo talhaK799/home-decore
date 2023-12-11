@@ -72,10 +72,12 @@ class _ProductsContainerState extends State<ProductsContainer> {
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                       style: boldTextStyleLato.copyWith(
-                          fontFamily: latoFont, fontSize: 14),
+                          color: blackColor,
+                          fontFamily: latoFont,
+                          fontSize: 14),
                     ),
                   ),
-                  SizedBox(height: 2.7.h),
+
                   // Flexible(
                   //   child: Row(
                   //     children: [
@@ -98,7 +100,7 @@ class _ProductsContainerState extends State<ProductsContainer> {
                   //     ],
                   //   ),
                   // ),
-                  SizedBox(height: 9.8.h),
+
                   Flexible(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -127,6 +129,7 @@ class _ProductsContainerState extends State<ProductsContainer> {
                                   style: boldTextStyleHacen.copyWith(
                                       fontSize: 12.sp,
                                       fontFamily: latoFont,
+                                      color: blackColor,
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
@@ -134,7 +137,6 @@ class _ProductsContainerState extends State<ProductsContainer> {
                           ),
                         ),
                         InkWell(
-                          
                           onTap: widget.onChange,
                           child: widget.product!.isLiked == true
                               ? Icon(
@@ -143,7 +145,7 @@ class _ProductsContainerState extends State<ProductsContainer> {
                                 )
                               : Icon(
                                   Icons.favorite_border,
-                                  color: primaryColor,
+                                  color: blackColor,
                                 ),
                         )
                       ],

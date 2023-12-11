@@ -67,10 +67,12 @@ class _ProductsContainerState extends State<HomeProdContainer> {
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                       style: boldTextStyleLato.copyWith(
-                          fontFamily: latoFont, fontSize: 14),
+                          color: blackColor,
+                          fontFamily: latoFont,
+                          fontSize: 14),
                     ),
                   ),
-                  SizedBox(height: 2.7.h),
+
                   // Flexible(
                   //   child: Row(
                   //     children: [
@@ -117,6 +119,7 @@ class _ProductsContainerState extends State<HomeProdContainer> {
                                 overflow: TextOverflow.ellipsis,
                                 style: boldTextStyleHacen.copyWith(
                                     fontSize: 12.sp,
+                                    color: blackColor,
                                     fontFamily: latoFont,
                                     fontWeight: FontWeight.bold),
                               ),
@@ -127,11 +130,12 @@ class _ProductsContainerState extends State<HomeProdContainer> {
                       InkWell(
                         onTap: widget.onChange,
                         child: Icon(
-                          widget.product!.isLiked == true
-                              ? Icons.favorite
-                              : Icons.favorite_border,
-                          color: primaryColor,
-                        ),
+                            widget.product!.isLiked == true
+                                ? Icons.favorite
+                                : Icons.favorite_border,
+                            color: widget.product!.isLiked == true
+                                ? primaryColor
+                                : blackColor),
                       ),
                       // InkWell(
                       //   onTap: widget.onChange,

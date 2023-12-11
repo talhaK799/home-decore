@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 // import 'package:share_plus/share_plus.dart';
 
 // ignore: must_be_immutable
@@ -47,7 +48,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       child: Consumer<ProductDetailProvider>(
         builder: (context, model, child) {
           return WillPopScope(
-            onWillPop: () => model.onBackPress(widget.product!),
+            onWillPop: () => model.onBackPress(widget.product),
             child: ModalProgressHUD(
               progressIndicator: circularProgressIndicator(),
               inAsyncCall: model.state == ViewState.busy,
@@ -287,10 +288,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             ],
           ),
           Padding(
-            padding:  EdgeInsets.symmetric(vertical: 10),
+            padding: EdgeInsets.symmetric(vertical: 10),
             child: Container(color: Color(0xFF808080), height: 0.13.h),
           ),
-        
 
           ///
           /// Related products
@@ -485,18 +485,21 @@ class _ImageSliderState extends State<ImageSlider> {
                           );
                         })),
                 // Spacer(),
-                Row(
-                  children: [
-                    InkWell(
-                        onTap: () {
-                          Get.to(() => FullScreenImage(
-                              imageUrl:
-                                  widget.images[widget.model!.currentImage]));
-                        },
-                        child: Icon(Icons.fullscreen,
-                            color: Colors.white, size: 25.r)),
-                    SizedBox(width: 10.w)
-                  ],
+                Padding(
+                  padding: const EdgeInsets.only(right: 20),
+                  child: Row(
+                    children: [
+                      InkWell(
+                          onTap: () {
+                            Get.to(() => FullScreenImage(
+                                imageUrl:
+                                    widget.images[widget.model!.currentImage]));
+                          },
+                          child: Icon(Icons.fullscreen,
+                              color: Colors.white, size: 25.r)),
+                      SizedBox(width: 10.w)
+                    ],
+                  ),
                 )
               ],
             ),
@@ -540,61 +543,66 @@ class _ImageSliderState extends State<ImageSlider> {
         ///
         /// Back, Share and Cart Icons
         ///
-        Container(
-          height: 50.h,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  IconButton(
-                      icon: Transform(
-                          alignment: Alignment.center,
-                          transform: Get.locale!.languageCode == 'ar'
-                              ? Matrix4.rotationY(pi)
-                              : Matrix4.rotationY(0),
-                          child: Image.asset('$staticAssets/back.png',
-                              color: primaryColor, height: 22.h, width: 11.w)),
-                      onPressed: () => Get.back()),
-                ],
-              ),
-              Row(
-                children: [
-                  IconButton(
-                      icon: widget.model!.authService.order.products == null
-                          ? Image.asset(
-                              '$staticAssets/no-item-cart.png',
-                              width: 21.06.w,
-                              height: 21.16.h,
-                            )
-                          : Image.asset(
-                              '$staticAssets/cart-with-items1.png',
-                              width: 21.06.w,
-                              height: 21.16.h,
-                            ),
-                      onPressed: () async {
-                        if (widget.model!.authService.isLogin) {
-                          widget.model!.authService.order.products =
-                              await Get.to(() => CartScreen()) ??
-                                  widget.model!.authService.order.products;
-                          setState(() {});
-                        } else {
-                          Get.dialog(SignupRequiredDialog('rootScreen'));
-                        }
-                      }),
-                  IconButton(
-                      icon: Icon(
-                        Icons.share,
-                        color: Colors.white,
-                        size: 22.h,
-                      ),
-                      onPressed: () {
-                        // Share.share(
-                        //     '${widget.images[0]}\n${widget.product!.name}\n${widget.product!.description}\n${widget.product!.salePrice}');
-                      }),
-                ],
-              )
-            ],
+        Padding(
+          padding: const EdgeInsets.only(top: 30.0),
+          child: Container(
+            height: 50.h,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    IconButton(
+                        icon: Transform(
+                            alignment: Alignment.center,
+                            transform: Get.locale!.languageCode == 'ar'
+                                ? Matrix4.rotationY(pi)
+                                : Matrix4.rotationY(0),
+                            child: Image.asset('$staticAssets/back.png',
+                                color: primaryColor,
+                                height: 22.h,
+                                width: 11.w)),
+                        onPressed: () => Get.back()),
+                  ],
+                ),
+                Row(
+                  children: [
+                    IconButton(
+                        icon: widget.model!.authService.order.products == null
+                            ? Image.asset(
+                                '$staticAssets/no-item-cart.png',
+                                width: 21.06.w,
+                                height: 21.16.h,
+                              )
+                            : Image.asset(
+                                '$staticAssets/cart-with-items1.png',
+                                width: 21.06.w,
+                                height: 21.16.h,
+                              ),
+                        onPressed: () async {
+                          if (widget.model!.authService.isLogin) {
+                            widget.model!.authService.order.products =
+                                await Get.to(() => CartScreen()) ??
+                                    widget.model!.authService.order.products;
+                            setState(() {});
+                          } else {
+                            Get.dialog(SignupRequiredDialog('rootScreen'));
+                          }
+                        }),
+                    IconButton(
+                        icon: Icon(
+                          Icons.share,
+                          color: Colors.white,
+                          size: 22.h,
+                        ),
+                        onPressed: () {
+                          Share.share(
+                              '${widget.images[0]}\n${widget.product!.name}\n${widget.product!.description}\n${widget.product!.salePrice}');
+                        }),
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ],

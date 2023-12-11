@@ -149,7 +149,7 @@ class OrderStatusScreen extends StatelessWidget {
                 style: bodyTextStyleLato.copyWith(
                   fontSize: 13.sp,
                 )),
-            Text('${myOrders.deliveryCharges ?? 00} BDT',
+            Text('${myOrders.deliveryCharges ?? 00}  €',
                 style: bodyTextStyleLato.copyWith(
                   fontSize: 12.sp,
                 )),
@@ -175,8 +175,8 @@ class OrderStatusScreen extends StatelessWidget {
                     color: Color(0xFF0B970B))),
             Text(
                 myOrders.deliveryCharges == null
-                    ? '${double.parse(myOrders.totalPrice!).toStringAsFixed(2)} BDT'
-                    : '${(double.parse(myOrders.totalPrice!) + myOrders.deliveryCharges!).toStringAsFixed(2)} BDT',
+                    ? '${double.parse(myOrders.totalPrice!).toStringAsFixed(2)}  €'
+                    : '${(double.parse(myOrders.totalPrice!) + myOrders.deliveryCharges!).toStringAsFixed(2)}  €',
                 style: titleTextStyle.copyWith(
                     fontFamily: latoFont,
                     fontSize: 16.sp,

@@ -184,19 +184,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Get.to(() => AllOrdersScreen());
                 }),
             SizedBox(height: 15.6.h),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: RectangularButton(
-                title: 'Logout',
-                radius: 6,
-                buttonColor: greyColor,
-                textStyle: bodyTextStyleLato.copyWith(color: Colors.white),
-                onTap: () async {
-                  await model.authSerivce.logout();
-                  Get.offAll(() => LoginScreen());
-                },
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            //   child: RectangularButton(
+            //     title: 'Logout',
+            //     radius: 6,
+            //     buttonColor: greyColor,
+            //     textStyle: bodyTextStyleLato.copyWith(color: Colors.white),
+            //     onTap: () async {
+            //       await model.authSerivce.logout();
+            //       Get.offAll(() => LoginScreen());
+            //     },
+            //   ),
+            // ),
             SizedBox(height: 30.6.h),
           ],
         ),

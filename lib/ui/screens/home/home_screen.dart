@@ -11,6 +11,7 @@ import 'package:f2_base_project/ui/custom_widgets/prod_shimmer.dart';
 
 import 'package:f2_base_project/ui/dialogs/signup_required_dialog.dart';
 import 'package:f2_base_project/ui/screens/cart-and-payment-section/cart_screen.dart';
+import 'package:f2_base_project/ui/screens/home/category_products/all_categories_screen.dart';
 
 import 'package:f2_base_project/ui/screens/home/category_products/sub_category_screen.dart';
 import 'package:f2_base_project/ui/screens/home/home_view_model.dart';
@@ -210,13 +211,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 // ),
                                 customViewAllRow(
                                     'Categories',
-                                    () => Get.to(() => NewArrivalScreen(
-                                        title: 'Top Rated',
-                                        newInProductsList: model
-                                            .authService.topRatedProducts))),
+                                    () => Get.to(() => AllCategoriesScreen(
+                                        title: 'Categories',
+                                        newInProductsList:
+                                            model.authService.categories))),
                                 SizedBox(height: 12.h),
                                 Container(
-                                  height: 110.h,
+                                  height: 150.h,
                                   child: ListView.builder(
                                     scrollDirection: Axis.horizontal,
                                     itemCount:
@@ -405,7 +406,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             padding: EdgeInsetsDirectional.only(start: 10.0),
             child: Text(
               title,
-              style: normalTextStyleLato.copyWith(
+              style: boldTextStyleLato.copyWith(
                   fontSize: 18.sp, color: blackColor),
             ),
           ),
@@ -462,7 +463,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   Widget categories(List<Categories> services, int index) {
     return Padding(
-        padding: EdgeInsets.only(right: 8.6.w),
+        padding: EdgeInsets.all(5),
         child: InkWell(
           onTap: () {
             Get.to(() =>
@@ -470,8 +471,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           },
 
           child: Container(
-            // height: 190.h,
-            width: 100.w,
+            height: 120.h,
+            width: 120.w,
             decoration: BoxDecoration(
                 color: whiteColor,
                 borderRadius: BorderRadius.circular(10.r),
@@ -484,11 +485,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   ),
                 ]),
             child: Padding(
-              padding: EdgeInsets.only(
-                left: 8,
-                right: 8,
-                top: 8,
-              ),
+              padding: EdgeInsets.only(left: 8, right: 8, top: 8, bottom: 8),
               child: Column(
                 children: [
                   services[index].iconUrl != null
@@ -496,8 +493,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           borderRadius: BorderRadius.circular(10),
                           child: Image.network(
                             '${services[index].iconUrl}',
-                            width: 70.w,
-                            height: 75.h,
+                            width: 120.w,
+                            height: 100.h.h,
                           ),
                         )
                       : Container(
@@ -512,10 +509,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     height: 5.h,
                   ),
                   Flexible(
-                    child: Text('${services[index].title ?? ''}',
-                        overflow: TextOverflow.ellipsis,
-                        style: bodyTextStyleLato.copyWith(
-                            color: Colors.black, fontSize: 12.sp)),
+                    child: Text(
+                      '${services[index].title ?? ''}',
+                      overflow: TextOverflow.ellipsis,
+                      style: boldTextStyleHacen.copyWith(
+                          fontSize: 12.sp,
+                          color: blackColor,
+                          fontFamily: latoFont,
+                          fontWeight: FontWeight.bold),
+                    ),
                   )
                 ],
               ),
