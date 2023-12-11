@@ -2,7 +2,6 @@ import 'package:f2_base_project/core/constants/colors.dart';
 import 'package:f2_base_project/core/constants/strings.dart';
 import 'package:f2_base_project/core/constants/styles.dart';
 import 'package:f2_base_project/core/models/products.dart';
-import 'package:f2_base_project/ui/custom_widgets/image-container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -21,7 +20,7 @@ class _ProductsContainerState extends State<HomeProdContainer> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      elevation: 4.0,
+      elevation: 2.0,
       borderRadius: BorderRadius.circular(10),
       shadowColor: lightGreyColor,
       child: Stack(
@@ -29,8 +28,8 @@ class _ProductsContainerState extends State<HomeProdContainer> {
           Padding(
             padding: EdgeInsetsDirectional.only(start: 3.0),
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 18.h, vertical: 11.h),
-              width: 153.w,
+              padding: EdgeInsets.symmetric(horizontal: 8.h, vertical: 11.h),
+              width: 140.w,
               // height: 225.h,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -48,17 +47,24 @@ class _ProductsContainerState extends State<HomeProdContainer> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    width: 117.w,
+                    width: 125.w,
                     height: 103.h,
-                    color: Color(0xFFE3E3E3),
+                    decoration: BoxDecoration(
+                      color: Color(0xFFE3E3E3),
+                       borderRadius: BorderRadius.circular(9),
+                    ),
                     child: Center(
-                        child: FadeInImage.assetNetwork(
-                      placeholder: '$productPlaceHolder',
-                      image: '${widget.product!.images![0]}',
-                      fit: BoxFit.contain,
-                      width: 117.w,
-                      height: 103.h,
-                    )),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(9),
+                          child: FadeInImage.assetNetwork(
+                                                placeholder: '$productPlaceHolder',
+                                                image: '${widget.product!.images![0]}',
+                                                
+                                                fit: BoxFit.contain,
+                                                width: 125.w,
+                                                height: 103.h,
+                                              ),
+                        )),
                   ),
                   SizedBox(height: 7.6.h),
                   Flexible(
@@ -173,7 +179,8 @@ class _ProductsContainerState extends State<HomeProdContainer> {
                           style: buttonTextStyle.copyWith(
                               fontSize: 8.sp, fontFamily: latoFont)),
                     ),
-                  ))
+                  ),
+                  )
               : Container()
         ],
       ),

@@ -169,7 +169,7 @@ class AllCategoriesScreen extends StatelessWidget {
               ),
             ]),
         child: Padding(
-          padding: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
+          padding: EdgeInsets.only(left: 8, right: 8, top: 10, bottom: 10),
           child: Column(
             children: [
               services[index].iconUrl != null
@@ -177,8 +177,9 @@ class AllCategoriesScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                       child: Image.network(
                         '${services[index].iconUrl}',
-                        width: 118.w,
-                        height: 118.h,
+                        width: 140.w,
+                        height: 130.h,
+                        fit: BoxFit.cover,
                       ),
                     )
                   : Container(
@@ -197,7 +198,7 @@ class AllCategoriesScreen extends StatelessWidget {
                   '${services[index].title ?? ''}',
                   overflow: TextOverflow.ellipsis,
                   style: boldTextStyleHacen.copyWith(
-                      fontSize: 12.sp,
+                      fontSize: 14.sp,
                       color: blackColor,
                       fontFamily: latoFont,
                       fontWeight: FontWeight.bold),

@@ -1,14 +1,11 @@
 import 'package:f2_base_project/core/constants/colors.dart';
 import 'package:f2_base_project/core/constants/strings.dart';
-import 'package:f2_base_project/core/constants/styles.dart';
 import 'package:f2_base_project/core/others/connectivity_helper.dart';
 import 'package:f2_base_project/core/others/screen_uitls.dart';
 import 'package:f2_base_project/core/services/auth_service.dart';
 import 'package:f2_base_project/core/services/notification_service.dart';
 import 'package:f2_base_project/ui/custom_widgets/image-container.dart';
 import 'package:f2_base_project/ui/dialogs/network_error_dialog.dart';
-import 'package:f2_base_project/ui/screens/auth_signup/login/login_screen.dart';
-import 'package:f2_base_project/ui/screens/auth_signup/signup/signup_screen.dart';
 import 'package:f2_base_project/ui/screens/root/root_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -81,14 +78,12 @@ class _SplashScreenState extends State<SplashScreen> {
                       height: 200.h,
                       width: 200.h,
                       fit: BoxFit.contain),
-                  // SizedBox(height: 30.h),
-                  // Text('HORITOKI',
-                  //     style: headingTextStyleLato.copyWith(
-                  //         color: primaryColor, fontSize: 30.sp))
+                  
                 ],
               ),
             ),
-          )),
+          ),
+          ),
     );
   }
 }
