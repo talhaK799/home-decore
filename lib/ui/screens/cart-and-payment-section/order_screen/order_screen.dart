@@ -73,7 +73,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                               fontSize: 13.sp,
                                               fontFamily: latoFont)),
                                       Text(
-                                          '${double.parse(model.authService.order.totalPrice!).toStringAsFixed(2)} BDT',
+                                          '${double.parse(model.authService.order.totalPrice!).toStringAsFixed(2)} €',
                                           style: TextStyle(
                                               fontSize: 12.sp,
                                               fontFamily: latoFont)),

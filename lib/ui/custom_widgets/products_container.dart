@@ -134,14 +134,17 @@ class _ProductsContainerState extends State<ProductsContainer> {
                           ),
                         ),
                         InkWell(
+                          
                           onTap: widget.onChange,
-                          child: ImageContainer(
-                            height: 15.2.h,
-                            width: 16.4.w,
-                            assetImage: widget.product!.isLiked ?? false
-                                ? '$staticAssets/like.png'
-                                : '$staticAssets/dislike.png',
-                          ),
+                          child: widget.product!.isLiked == true
+                              ? Icon(
+                                  Icons.favorite,
+                                  color: primaryColor,
+                                )
+                              : Icon(
+                                  Icons.favorite_border,
+                                  color: primaryColor,
+                                ),
                         )
                       ],
                     ),

@@ -215,10 +215,9 @@ class SignUpScreen extends StatelessWidget {
               children: [
                 CustomTextField(
                   errorColor: Colors.white,
-                  prefixIcon: ImageContainer(
-                    height: 22.h,
-                    width: 22.w,
-                    assetImage: "$assets/user_icon.png",
+                  prefixIcon: Icon(
+                    Icons.person,
+                    color: greyColor,
                   ),
                   validator: (value) {
                     if (value.isEmpty) {
@@ -237,10 +236,11 @@ class SignUpScreen extends StatelessWidget {
                 /// Email name field
                 CustomTextField(
                   errorColor: Colors.white,
-                  prefixIcon: ImageContainer(
-                    height: 18.3.h,
-                    width: 18.3.w,
-                    assetImage: "$staticAssets/email.png",
+                  prefixIcon: Image.asset(
+                    "$assets/IconEmail.png",
+                    color: greyColor,
+                    height: 26.h,
+                    width: 26.w,
                   ),
                   validator: (value) {
                     if (value.isEmpty) {
@@ -272,10 +272,11 @@ class SignUpScreen extends StatelessWidget {
                 /// Password field
                 CustomTextField(
                   errorColor: Colors.white,
-                  prefixIcon: ImageContainer(
+                  prefixIcon: Image.asset(
+                    "$assets/pass.png",
+                    color: greyColor,
                     height: 20.h,
-                    width: 14.9.w,
-                    assetImage: "$staticAssets/password_icon.png",
+                    width: 20.w,
                   ),
                   obscure: model.isPasswordVisible,
                   validator: (value) {

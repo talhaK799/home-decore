@@ -9,6 +9,7 @@ import 'package:f2_base_project/ui/custom_widgets/base_screen.dart';
 import 'package:f2_base_project/ui/custom_widgets/circular_progress_indicator.dart';
 import 'package:f2_base_project/ui/custom_widgets/custom_app_bar.dart';
 import 'package:f2_base_project/ui/custom_widgets/image-container.dart';
+import 'package:f2_base_project/ui/custom_widgets/rectangle_button.dart';
 import 'package:f2_base_project/ui/custom_widgets/rounded-raised-button.dart';
 import 'package:f2_base_project/ui/screens/profile/edit_profile/edit-profile-veiw-model.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +66,42 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     userInfo(model),
 
                     //save button
-                    saveButton(model),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        RectangularButton(
+                          radius: 9,
+                          width: 160.w,
+                          buttonColor: primaryColor,
+                          textStyle: boldTextStyleLato.copyWith(
+                              fontSize: 19.sp,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                          title: 'Save'.tr,
+                          onTap: () async {
+                            if (_formKey.currentState!.validate()) {
+                              if (model.image != null) {
+                                await model.updateUserAvatar();
+                                if (isDataEdit) {
+                                  await model.saveUserData();
+                                  // Get.back(result: model.userProfileResponse.userProfile);
+                                } else {
+                                  // Get.back(result: model.userProfileResponse.userProfile);
+                                }
+                              } else {
+                                if (isDataEdit) {
+                                  await model.saveUserData();
+                                  // Get.back(result: model.userProfileResponse.userProfile);
+                                }
+                              }
+                            }
+                          },
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 30,
+                    )
                   ]),
                 ),
               ),
@@ -102,9 +138,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ? widget.userProfile!.imageUrl == null
                             ? CircleAvatar(
                                 radius: 55.r,
-                                backgroundColor: Colors.transparent,
-                                backgroundImage:
-                                    AssetImage('$profilePlaceHolder'))
+                                backgroundColor: primaryColor,
+                                child: Icon(
+                                  Icons.person,
+                                  color: whiteColor,
+                                  size: 45,
+                                ),
+                              )
                             : CircleAvatar(
                                 radius: 55.r,
                                 backgroundColor: Colors.transparent,
@@ -379,10 +419,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ),
                         GestureDetector(
                           onTap: onEditPressed,
-                          child: ImageContainer(
-                            assetImage: "$assets/edit.png",
-                            height: 18.24.h,
-                            width: 18.91.w,
+                          child: Image.asset(
+                            "$assets/edit.png",
+                            scale: 4,
+                            color: primaryColor,
                           ),
                         ),
                       ],
@@ -397,41 +437,41 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     );
   }
 
-  saveButton(EditProfileViewModel model) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 55.8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            height: 40.94.h,
-            width: 158.w,
-            child: RoundedRaisedButton(
-              text: "save".tr,
-              onPressed: () async {
-                if (_formKey.currentState!.validate()) {
-                  if (model.image != null) {
-                    await model.updateUserAvatar();
-                    if (isDataEdit) {
-                      await model.saveUserData();
-                      // Get.back(result: model.userProfileResponse.userProfile);
-                    } else {
-                      // Get.back(result: model.userProfileResponse.userProfile);
-                    }
-                  } else {
-                    if (isDataEdit) {
-                      await model.saveUserData();
-                      // Get.back(result: model.userProfileResponse.userProfile);
-                    }
-                  }
-                }
-              },
-            ),
-          )
-        ],
-      ),
-    );
-  }
+  // saveButton(EditProfileViewModel model) {
+  //   return Padding(
+  //     padding: const EdgeInsets.only(bottom: 55.8),
+  //     child: Row(
+  //       mainAxisAlignment: MainAxisAlignment.center,
+  //       children: [
+  //         Container(
+  //           height: 40.94.h,
+  //           width: 158.w,
+  //           child: RoundedRaisedButton(
+  //             text: "save".tr,
+  //             onPressed: () async {
+  //               if (_formKey.currentState!.validate()) {
+  //                 if (model.image != null) {
+  //                   await model.updateUserAvatar();
+  //                   if (isDataEdit) {
+  //                     await model.saveUserData();
+  //                     // Get.back(result: model.userProfileResponse.userProfile);
+  //                   } else {
+  //                     // Get.back(result: model.userProfileResponse.userProfile);
+  //                   }
+  //                 } else {
+  //                   if (isDataEdit) {
+  //                     await model.saveUserData();
+  //                     // Get.back(result: model.userProfileResponse.userProfile);
+  //                   }
+  //                 }
+  //               }
+  //             },
+  //           ),
+  //         )
+  //       ],
+  //     ),
+  //   );
+  // }
 
   _topAppBar() {
     return Row(

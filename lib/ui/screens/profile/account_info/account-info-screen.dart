@@ -52,8 +52,13 @@ class AccountInfoScreen extends StatelessWidget {
           model.authService.appUser.imageUrl == null
               ? CircleAvatar(
                   radius: 50.r,
-                  backgroundColor: Colors.transparent,
-                  backgroundImage: AssetImage('$profilePlaceHolder'))
+                  backgroundColor: primaryColor,
+                  child: Icon(
+                    Icons.person,
+                    color: whiteColor,
+                    size: 45,
+                  ),
+                )
               : CircleAvatar(
                   radius: 50.r,
                   backgroundColor: Colors.transparent,

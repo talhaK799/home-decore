@@ -80,8 +80,10 @@ class _AddressScreenState extends State<AddressScreen> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Image.asset('$staticAssets/add_icon.png',
-                                      width: 23.w, height: 23.h),
+                                  Icon(
+                                    Icons.add_circle,
+                                    color: primaryColor,
+                                  ),
                                   SizedBox(width: 8.w),
                                   Text('add_new_address'.tr,
                                       style: bodyTextStyleLato.copyWith(

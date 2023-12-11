@@ -5,7 +5,7 @@ class UserAddress {
   String? countryCode;
   String? phone;
   String? country;
-  String? city = 'Dhaka';
+  String? city = 'Brussels';
   String? address;
   String? postalCode;
   DateTime? createdAt;
@@ -14,9 +14,9 @@ class UserAddress {
     this.addressId,
     this.userId,
     this.name,
-    this.countryCode = '+88',
+    this.countryCode = '+32',
     this.phone,
-    this.country = 'Bangladesh',
+    this.country = 'Belgium',
     this.city,
     this.address,
     this.postalCode,

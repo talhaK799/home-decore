@@ -158,13 +158,13 @@ class DrawerScreen extends StatelessWidget {
                               width: 20.w,
                               height: 20.h),
                           SizedBox(height: 20.4.h),
-                          drawerTile(
-                              onTap: () => Get.to(() => OfferScreen()),
-                              image: '$staticAssets/payment_icon.png',
-                              title: 'Offers'.tr,
-                              width: 20.w,
-                              height: 20.h),
-                          SizedBox(height: 20.4.h),
+                          // drawerTile(
+                          //     onTap: () => Get.to(() => OfferScreen()),
+                          //     image: '$staticAssets/payment_icon.png',
+                          //     title: 'Offers'.tr,
+                          //     width: 20.w,
+                          //     height: 20.h),
+                          // SizedBox(height: 20.4.h),
                           drawerTile(
                               onTap: () => Get.to(FaqScreen()),
                               image: '$staticAssets/faq_icon.png',
@@ -186,21 +186,21 @@ class DrawerScreen extends StatelessWidget {
                               width: 20.w,
                               height: 20.h),
                           SizedBox(height: 20.4.h),
-                          drawerTile(
-                              onTap: () async {
-                                String url =
-                                    "tel:${model.authService.helpline.number ?? '+8801309007585'}";
-                                if (await canLaunch(url)) {
-                                  await launch(url);
-                                } else {
-                                  throw 'Could not launch $url';
-                                }
-                              },
-                              image: '$staticAssets/phone_no.png',
-                              title: 'Helpline'.tr,
-                              width: 20.w,
-                              height: 20.h),
-                          SizedBox(height: 20.4.h),
+                          // drawerTile(
+                          //     onTap: () async {
+                          //       String url =
+                          //           "tel:${model.authService.helpline.number ?? '+8801309007585'}";
+                          //       if (await canLaunch(url)) {
+                          //         await launch(url);
+                          //       } else {
+                          //         throw 'Could not launch $url';
+                          //       }
+                          //     },
+                          //     image: '$staticAssets/phone_no.png',
+                          //     title: 'Helpline'.tr,
+                          //     width: 20.w,
+                          //     height: 20.h),
+                          // SizedBox(height: 20.4.h),
                           drawerTile(
                               onTap: () => Get.to(PrivacyPolicyScreen()),
                               image: '$staticAssets/privacy_icon.png',

@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import '../../../../../locator.dart';
 
 class AddCartAddressViewModel extends BaseViewModel {
-  UserAddress userAddress = UserAddress(city: "Dhaka");
+  UserAddress userAddress = UserAddress(city: "Brussels");
   final _dbService = locator<DatabaseService>();
   final _authService = locator<AuthService>();
   bool isSearching = false;

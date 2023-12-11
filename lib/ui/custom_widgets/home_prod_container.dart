@@ -127,9 +127,10 @@ class _ProductsContainerState extends State<HomeProdContainer> {
                       InkWell(
                         onTap: widget.onChange,
                         child: Icon(
-                          widget.product!.isLiked ?? false
-                              ? Icons.favorite_border
-                              : Icons.favorite,color: primaryColor,
+                          widget.product!.isLiked == true
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                          color: primaryColor,
                         ),
                       ),
                       // InkWell(

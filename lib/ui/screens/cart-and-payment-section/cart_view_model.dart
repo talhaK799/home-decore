@@ -45,7 +45,7 @@ class CartViewModel extends BaseViewModel {
             Get.dialog(CheckoutDialog(
               title: 'Verify before checkout',
               errorMessage:
-                  'Total price: BDT ${double.parse(authService.order.totalPrice!).toStringAsFixed(2)}\nAddress: ${addresses[selectedAddress].address} ${addresses[selectedAddress].city}\nMobile no:  +88 ${addresses[selectedAddress].phone}',
+                  'Total price: € ${double.parse(authService.order.totalPrice!).toStringAsFixed(2)}\nAddress: ${addresses[selectedAddress].address} ${addresses[selectedAddress].city}\nMobile no:  +88 ${addresses[selectedAddress].phone}',
               onChange: () async {
                 Get.back();
                 isLoading = true;

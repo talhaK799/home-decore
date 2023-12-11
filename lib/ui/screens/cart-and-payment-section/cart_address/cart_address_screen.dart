@@ -81,8 +81,10 @@ class _CartAddressScreenState extends State<CartAddressScreen> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Image.asset('$staticAssets/add_icon.png',
-                                    width: 23.w, height: 23.h),
+                                Icon(
+                                  Icons.add_circle,
+                                  color: primaryColor,
+                                ),
                                 SizedBox(width: 8.w),
                                 Text('add_new_address'.tr,
                                     style: bodyTextStyleLato.copyWith(
@@ -106,7 +108,7 @@ class _CartAddressScreenState extends State<CartAddressScreen> {
                               Text(
                                   model.addresses.isEmpty
                                       ? '...'
-                                      : '${model.addresses[model.selectedAddress].city == 'Dhaka' ? 'BDT 70' : 'BDT 130'}',
+                                      : '${model.addresses[model.selectedAddress].city == 'Dhaka' ? '€ 70' : '€ 130'}',
                                   style: TextStyle(
                                       fontSize: 12.sp, fontFamily: latoFont)),
                             ],
@@ -122,8 +124,8 @@ class _CartAddressScreenState extends State<CartAddressScreen> {
                                       fontSize: 13.sp, fontFamily: latoFont)),
                               Text(
                                   model.addresses.isEmpty
-                                      ? 'BDT ${double.parse(model.authService.order.totalPrice ?? '00').toStringAsFixed(2)}'
-                                      : 'BDT ${model.addresses[model.selectedAddress].city == 'Dhaka' ? (double.parse(model.authService.order.totalPrice ?? '0') + 70).toStringAsFixed(2) : (double.parse(model.authService.order.totalPrice ?? '0') + 130).toStringAsFixed(2)}',
+                                      ? '€ ${double.parse(model.authService.order.totalPrice ?? '00').toStringAsFixed(2)}'
+                                      : '€ ${model.addresses[model.selectedAddress].city == 'Dhaka' ? (double.parse(model.authService.order.totalPrice ?? '0') + 70).toStringAsFixed(2) : (double.parse(model.authService.order.totalPrice ?? '0') + 130).toStringAsFixed(2)}',
                                   style: TextStyle(
                                       fontSize: 12.sp, fontFamily: latoFont)),
                             ],
