@@ -13,6 +13,7 @@ class ImageContainer extends StatelessWidget {
     return Container(
       height: height,
       width: width,
+      alignment: Alignment.center,
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage(assetImage!),

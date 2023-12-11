@@ -6,19 +6,15 @@ import 'package:f2_base_project/core/models/categories.dart';
 import 'package:f2_base_project/core/models/products.dart';
 import 'package:f2_base_project/ui/custom_widgets/app_banners_slider.dart';
 import 'package:f2_base_project/ui/custom_widgets/home_prod_container.dart';
-
 import 'package:f2_base_project/ui/custom_widgets/prod_shimmer.dart';
-
 import 'package:f2_base_project/ui/dialogs/signup_required_dialog.dart';
 import 'package:f2_base_project/ui/screens/cart-and-payment-section/cart_screen.dart';
 import 'package:f2_base_project/ui/screens/home/category_products/all_categories_screen.dart';
-
 import 'package:f2_base_project/ui/screens/home/category_products/sub_category_screen.dart';
 import 'package:f2_base_project/ui/screens/home/home_view_model.dart';
 import 'package:f2_base_project/ui/screens/new_in_products/new_arrival_screen.dart';
 import 'package:f2_base_project/ui/screens/root/root_screen.dart';
 import 'package:f2_base_project/ui/screens/shop-section/all-product/product_detail/product_detail_screen.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:get/get.dart';
@@ -217,7 +213,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                             model.authService.categories))),
                                 SizedBox(height: 12.h),
                                 Container(
-                                  height: 150.h,
+                                  height: 170.h,
                                   child: ListView.builder(
                                     scrollDirection: Axis.horizontal,
                                     itemCount:
@@ -471,8 +467,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           },
 
           child: Container(
-            height: 120.h,
-            width: 120.w,
+            // height: 120.h,
+            width: 135.w,
             decoration: BoxDecoration(
                 color: whiteColor,
                 borderRadius: BorderRadius.circular(10.r),
@@ -493,8 +489,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           borderRadius: BorderRadius.circular(10),
                           child: Image.network(
                             '${services[index].iconUrl}',
-                            width: 120.w,
-                            height: 100.h.h,
+                            width: 130.w,
+                            height: 100.h,
+                            fit: BoxFit.cover,
                           ),
                         )
                       : Container(
@@ -511,9 +508,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   Flexible(
                     child: Text(
                       '${services[index].title ?? ''}',
+                      maxLines: 2,
+                      textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,
                       style: boldTextStyleHacen.copyWith(
-                          fontSize: 12.sp,
+                          fontSize: 14.sp,
                           color: blackColor,
                           fontFamily: latoFont,
                           fontWeight: FontWeight.bold),

@@ -16,9 +16,11 @@ class FullScreenImage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Container(
+        alignment: Alignment.center,
           // height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: 50.h),
               Row(
@@ -38,6 +40,7 @@ class FullScreenImage extends StatelessWidget {
               // SizedBox(height: 30.h),
               Expanded(
                 child: PhotoView(
+                  
                   imageProvider: NetworkImage(imageUrl),
                 ),
               ),

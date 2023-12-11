@@ -59,6 +59,7 @@ class SubCategoryScreen extends StatelessWidget {
                 body: Container(
                   alignment: Alignment.center,
                   decoration: topRoundedDecoration,
+                  padding: EdgeInsets.symmetric(horizontal: 15),
                   child: ListView(
                     physics: BouncingScrollPhysics(),
                     padding: EdgeInsets.zero,
@@ -72,8 +73,8 @@ class SubCategoryScreen extends StatelessWidget {
                             model.subCategory.isEmpty
                                 ? Center(
                                     child: Text(
-                                        'Products not found in this category'
-                                            .tr))
+                                        'Subcategory not found'
+                                            ))
                                 : Center(
                                     child: Row(
                                       mainAxisAlignment:
