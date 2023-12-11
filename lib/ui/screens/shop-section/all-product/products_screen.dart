@@ -47,7 +47,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                   : SingleChildScrollView(
                       physics: BouncingScrollPhysics(),
                       child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 2.w),
+                        padding: EdgeInsets.symmetric(horizontal: 15.w),
                         decoration: topRoundedDecoration,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -115,8 +115,8 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                                       ? 1 / 1.32
                                                       : 1 / 1.13,
                                           crossAxisCount: 2,
-                                          mainAxisSpacing: 4,
-                                          crossAxisSpacing: 4),
+                                          mainAxisSpacing: 15,
+                                          crossAxisSpacing: 15),
                                   itemBuilder: (context, index) {
                                     return Padding(
                                       padding: const EdgeInsets.only(

@@ -185,18 +185,14 @@ class SignUpScreen extends StatelessWidget {
             padding: EdgeInsets.only(top: 15.h),
             child: Center(
                 child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text('Logo',
-                    style: headingTextStyleLato.copyWith(
-                        fontSize: 30.sp, color: primaryColor)),
-                // ImageContainer(
-                //   assetImage: "$staticAssets/logo.png",
-                //   height: 85.h,
-                // ),
-                SizedBox(height: 30.h),
-                Text('Inna Home',
-                    style: headingTextStyleLato.copyWith(
-                        fontSize: 30.sp, color: primaryColor))
+                ImageContainer(
+                  assetImage: "$staticAssets/logoo.png",
+                  height: 150.h,
+                  // width: 150.w,
+                ),
               ],
             )),
           ),
@@ -209,7 +205,7 @@ class SignUpScreen extends StatelessWidget {
     return Form(
       key: model.formKey,
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.7,
+        height: MediaQuery.of(context).size.height * 0.6,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -219,10 +215,9 @@ class SignUpScreen extends StatelessWidget {
               children: [
                 CustomTextField(
                   errorColor: Colors.white,
-                  prefixIcon: ImageContainer(
-                    height: 22.h,
-                    width: 22.w,
-                    assetImage: "$assets/user_icon.png",
+                  prefixIcon: Icon(
+                    Icons.person,
+                    color: greyColor,
                   ),
                   validator: (value) {
                     if (value.isEmpty) {
@@ -233,7 +228,7 @@ class SignUpScreen extends StatelessWidget {
                   },
                   hintText: "username".tr,
                   onSaved: (value) {
-                    model.signUpBody.name = value;
+                    model.appUser.name = value;
                   },
                 ),
                 SizedBox(height: 18.h),
@@ -241,10 +236,11 @@ class SignUpScreen extends StatelessWidget {
                 /// Email name field
                 CustomTextField(
                   errorColor: Colors.white,
-                  prefixIcon: ImageContainer(
-                    height: 18.3.h,
-                    width: 18.3.w,
-                    assetImage: "$staticAssets/email.png",
+                  prefixIcon: Image.asset(
+                    "$assets/IconEmail.png",
+                    color: greyColor,
+                    height: 26.h,
+                    width: 26.w,
                   ),
                   validator: (value) {
                     if (value.isEmpty) {
@@ -267,7 +263,7 @@ class SignUpScreen extends StatelessWidget {
                   // controller: model.isPasswordVisible,
                   hintText: "email".tr,
                   onChange: (value) {
-                    model.signUpBody.email = value;
+                    model.appUser.email = value;
                   },
                 ),
 
@@ -276,10 +272,11 @@ class SignUpScreen extends StatelessWidget {
                 /// Password field
                 CustomTextField(
                   errorColor: Colors.white,
-                  prefixIcon: ImageContainer(
+                  prefixIcon: Image.asset(
+                    "$assets/pass.png",
+                    color: greyColor,
                     height: 20.h,
-                    width: 14.9.w,
-                    assetImage: "$staticAssets/password_icon.png",
+                    width: 20.w,
                   ),
                   obscure: model.isPasswordVisible,
                   validator: (value) {
@@ -309,7 +306,7 @@ class SignUpScreen extends StatelessWidget {
                   controller: model.passwrdController,
                   hintText: "password".tr,
                   onSaved: (value) {
-                    model.signUpBody.password = value;
+                    model.appUser.password = value;
                   },
                 ),
               ],
@@ -348,48 +345,52 @@ class SignUpScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20.0),
-                  child: GestureDetector(
-                    onTap: () {
-                      // if (model.formKey.currentState!
-                      //     .validate()) {
-                      model.formKey.currentState!.save();
-                      model.signUpWithEmailAndPassword();
-                      // }
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.symmetric(
-                        vertical: 10,
-                      ),
-                      decoration: BoxDecoration(
-                          color: const Color(0xFFFFFFFF),
-                          borderRadius: BorderRadius.circular(16.r)),
-                      child: Text("Sign Up", style: buttonTextStyle),
+                GestureDetector(
+                  onTap: () {
+                    // if (model.formKey.currentState!
+                    //     .validate()) {
+                    model.formKey.currentState!.save();
+                    model.signUpWithEmailAndPassword();
+                    // }
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.symmetric(
+                      vertical: 10,
                     ),
+                    decoration: BoxDecoration(
+                        color: const Color(0xFFFFFFFF),
+                        borderRadius: BorderRadius.circular(16.r)),
+                    child: Text("Sign Up", style: buttonTextStyle),
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      "I have Already Account ?",
-                      style: titleTextStyle.copyWith(color: greyColor),
-                    ),
-                    TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => LoginScreen()));
-                        },
-                        child: Text(
-                          "Sign In",
-                          style: titleTextStyle.copyWith(color: whiteColor),
-                        )),
-                  ],
+                SizedBox(
+                  height: 3,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Get.to(LoginScreen());
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Already have an Account? ",
+                        style: bodyTextStyleHacen.copyWith(
+                          color: whiteColor,
+                          fontSize: 11.sp,
+                        ),
+                      ),
+                      Text(" Login ",
+                          style: bodyTextStyleHacen.copyWith(
+                              fontSize: 13.sp,
+                              decorationColor: whiteColor,
+                              decorationThickness: 2,
+                              decoration: TextDecoration.underline,
+                              color: whiteColor)),
+                    ],
+                  ),
                 ),
               ],
             ),

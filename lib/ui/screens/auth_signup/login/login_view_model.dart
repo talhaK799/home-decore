@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:f2_base_project/core/enums/view_state.dart';
 import 'package:f2_base_project/core/models/app_user.dart';
 import 'package:f2_base_project/core/models/fcm.dart';
@@ -88,11 +90,14 @@ class LoginViewModel extends BaseViewModel {
     setState(ViewState.busy);
     authResult = await _authService.loginWithEmailPassword(
         email: appUser.email, password: appUser.password);
+    log('$authResult');
     if (authResult.status!) {
       print("User logged in successfully");
       _authService.isLogin = true;
       Get.offAll(() => RootScreen());
+      notifyListeners();
     } else {
+      setState(ViewState.idle);
       Get.dialog(AlertDialog(
         title: Text("Error"),
         content: Text("${authResult.errorMessage}"),
@@ -100,8 +105,10 @@ class LoginViewModel extends BaseViewModel {
           ElevatedButton(child: Text("Ok"), onPressed: () => Get.back())
         ],
       ));
+      notifyListeners();
     }
     setState(ViewState.idle);
+    notifyListeners();
   }
 
   verifyOTP(String otp) async {

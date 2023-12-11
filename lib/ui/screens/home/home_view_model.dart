@@ -26,8 +26,8 @@ class HomeViewModel extends BaseViewModel {
     getOffers();
     getCategories();
     getAllProducts();
-    // getLatestProducts();
-    // getTopRatedProducts();
+    getLatestProducts();
+    getTopRatedProducts();
     // getHelpLine();
   }
 

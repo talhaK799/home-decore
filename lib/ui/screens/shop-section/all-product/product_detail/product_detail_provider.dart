@@ -253,8 +253,9 @@ class ProductDetailProvider extends BaseViewModel {
     }
   }
 
-  onBackPress(Product product) {
-    Get.back(result: authService.order.products);
+  onBackPress(Product? product) {
+    // Get.back(result: authService.order.products);
+    Get.back();
   }
 
   calculateDiscountSalePrice(Product product, Offers offer, int index) {

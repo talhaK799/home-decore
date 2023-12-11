@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:f2_base_project/core/models/app_user.dart';
 import 'package:f2_base_project/core/models/categories.dart';
@@ -404,12 +406,13 @@ class DatabaseService {
   /// Get products of specific cateogry
   ///
   Future<List<Product>> getCategoryProducts(String category) async {
+    print('...........................$category');
     debugPrint('@gettingCategoryProducts');
     final List<Product> categories = [];
     try {
       final snapshot = await _db
           .collection("products")
-          .where('category', isEqualTo: category)
+          .where('subCategoryId', isEqualTo: category)
           .get();
       if (snapshot.docs.isNotEmpty) {
         for (var doc in snapshot.docs) {
@@ -419,6 +422,40 @@ class DatabaseService {
     } catch (e) {
       debugPrint('Exception @DatabaseService/gettingCategory $e');
     }
+    return categories;
+  }
+
+  ///
+  ///
+  /// Get  of sub cateogry
+  ///
+  Future<List<SubCategory>> getSubCategories(String categoryId) async {
+    print('.......$categoryId');
+
+
+
+
+
+
+    
+    debugPrint('@gettingSubCategoryProducts');
+    final List<SubCategory> categories = [];
+    try {
+      final snapshot = await _db
+          .collection("sub-categories")
+          .where('categoryId', isEqualTo: categoryId)
+          .get();
+      print('.............${snapshot.docs.length}');
+      if (snapshot.docs.isNotEmpty) {
+        for (var doc in snapshot.docs) {
+          categories.add(SubCategory.fromJson(doc, doc.id));
+          print('njjjj');
+        }
+      }
+    } catch (e) {
+      debugPrint('Exception @DatabaseService/gettingsubCategory $e');
+    }
+    print('njjjj $categories');
     return categories;
   }
 
@@ -448,15 +485,21 @@ class DatabaseService {
   ///
   /// Get app banners
   ///
+  ///
+
   Future<List<String>> getAppBanners() async {
     debugPrint('@gettingAppBanners');
     final List<String> categories = [];
     try {
-      final snapshot = await _db
-          .collection("banners")
-          .orderBy('createdAt', descending: true)
-          .limit(5)
-          .get();
+      QuerySnapshot snapshot = await _db.collection('banner').get();
+      // final snapshot = await _db
+      //     .collection("banners")
+      //     // .orderBy('createdAt', descending: true)
+      //     // .limit(5)
+      //     .get();
+      print('Number of documents: ${snapshot.docs.length}');
+
+      print('debugging .............${snapshot.docs.length}');
       if (snapshot.docs.isNotEmpty) {
         for (var doc in snapshot.docs) {
           categories.add(doc['imageUrl']);

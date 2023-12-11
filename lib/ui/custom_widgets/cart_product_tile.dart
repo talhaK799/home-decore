@@ -41,24 +41,9 @@ Widget cartProductTile(int index, onProductDelete) {
                             style: boldTextStyleLato.copyWith(
                                 fontSize: 14.sp, fontFamily: latoFont)),
                         SizedBox(height: 3.h),
-                        Row(
-                          children: [
-                            Text(
-                              'By: ',
-                              style: boldTextStyleLato.copyWith(
-                                  fontSize: 10.sp, color: Color(0xFF58595B)),
-                            ),
-                            Text(
-                                '${model.authService.order.products![index].category}',
-                                style: boldTextStyleLato.copyWith(
-                                    decoration: TextDecoration.underline,
-                                    fontSize: 10.sp,
-                                    color: Color(0xFF58595B))),
-                          ],
-                        ),
                         SizedBox(height: 3.h),
                         Text(
-                            'BDT ${model.authService.order.products![index].salePrice ?? model.authService.order.products![index].price}',
+                            '€ ${model.authService.order.products![index].salePrice ?? model.authService.order.products![index].price}',
                             style: TextStyle(
                                 fontSize: 13.sp,
                                 color: primaryColor,

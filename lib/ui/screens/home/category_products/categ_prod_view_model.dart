@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:f2_base_project/core/enums/view_state.dart';
 import 'package:f2_base_project/core/models/offers.dart';
 import 'package:f2_base_project/core/models/products.dart';
@@ -12,14 +14,18 @@ class CategProdViewModel extends BaseViewModel {
   final _dbService = locator<DatabaseService>();
   final authService = locator<AuthService>();
   List<Product> products = [];
+  List<SubCategory> subCategory = [];
 
-  CategProdViewModel(String category, bool isFromOffer, Offers? offer) {
-    getCategProducts(category, isFromOffer, offer);
+  CategProdViewModel(
+      String category, bool isFromOffer, Offers? offer, String CategoryId) {
+    getCategProducts(category, isFromOffer, offer, CategoryId);
+    getSubCategories(category, isFromOffer, offer, CategoryId);
   }
 
-  getCategProducts(String category, bool isFromOffer, Offers? offer) async {
+  getCategProducts(String category, bool isFromOffer, Offers? offer,
+      String categoryId) async {
     setState(ViewState.busy);
-    products = await _dbService.getCategoryProducts(category);
+    products = await _dbService.getCategoryProducts(categoryId);
     print('categoryProducts => ${products.length}');
     if (isFromOffer) {
       for (var prod in products) {
@@ -34,6 +40,30 @@ class CategProdViewModel extends BaseViewModel {
         }
       }
     }
+    setState(ViewState.idle);
+  }
+
+  getSubCategories(String category, bool isFromOffer, Offers? offer,
+      String categoryId) async {
+    print('object');
+    setState(ViewState.busy);
+    subCategory = await _dbService.getSubCategories(categoryId);
+    print('........${subCategory.length}');
+
+    // print('SubCategoreis => ${products.length}');
+    // if (isFromOffer) {
+    //   for (var prod in products) {
+    //     if (prod.discountPercentage != null) {
+    //       if (int.parse(offer!.percentage!) != 0) {
+    //         calculateDiscountSalePrice(prod, offer);
+    //       } else {
+    //         calculateFlatSalePrice(prod, offer);
+    //       }
+    //     } else {
+    //       calculateFlatSalePrice(prod, offer!);
+    //     }
+    //   }
+    // }
     setState(ViewState.idle);
   }
 

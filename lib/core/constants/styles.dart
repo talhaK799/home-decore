@@ -46,9 +46,9 @@ final TextStyle subBodyTextStyle = TextStyle(
 );
 
 final TextStyle buttonTextStyle = TextStyle(
-    color: primaryColor,
-    fontSize: 19.sp,
-    fontWeight: FontWeight.bold,
+    color: blackColor,
+    fontSize: 17.sp,
+    fontWeight: FontWeight.w500,
     fontFamily: hacenFontHd);
 
 final topRoundedDecoration = BoxDecoration(

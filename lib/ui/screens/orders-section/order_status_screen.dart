@@ -44,7 +44,7 @@ class OrderStatusScreen extends StatelessWidget {
             SizedBox(height: 20.h),
             Text(
                 'TOTAL PRICE'.tr +
-                    ': ${(double.parse(myOrders!.totalPrice!) + myOrders!.deliveryCharges!).toStringAsFixed(2)} BDT',
+                    ': ${(double.parse(myOrders!.totalPrice!) + myOrders!.deliveryCharges!).toStringAsFixed(2)} €',
                 style: titleTextStyle.copyWith(fontFamily: latoFont)),
             SizedBox(height: 20.h),
             Text('TOTAL QUANTITY'.tr + ': ${myOrders!.totalProducts!}',
@@ -56,10 +56,9 @@ class OrderStatusScreen extends StatelessWidget {
             ///
             Row(
               children: [
-                Image.asset(
-                  '$staticAssets/profile_icon.png',
-                  width: 10.w,
-                  height: 12.h,
+                Icon(
+                  Icons.person,
+                  color: primaryColor,
                 ),
                 SizedBox(width: 10.w),
                 Text('${locator<AuthService>().appUser.name}',
@@ -82,7 +81,7 @@ class OrderStatusScreen extends StatelessWidget {
                     style: bodyTextStyleLato.copyWith(fontSize: 13)),
               ],
             ),
-
+            SizedBox(height: 8.h),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -93,7 +92,7 @@ class OrderStatusScreen extends StatelessWidget {
                   height: 13.h,
                 ),
                 SizedBox(width: 10.w),
-                Text("+88${myOrders!.userAddress!.phone}",
+                Text("+34${myOrders!.userAddress!.phone}",
                     style: bodyTextStyleLato.copyWith(fontSize: 13)),
               ],
             ),
@@ -150,7 +149,7 @@ class OrderStatusScreen extends StatelessWidget {
                 style: bodyTextStyleLato.copyWith(
                   fontSize: 13.sp,
                 )),
-            Text('${myOrders.deliveryCharges ?? 00} BDT',
+            Text('${myOrders.deliveryCharges ?? 00}  €',
                 style: bodyTextStyleLato.copyWith(
                   fontSize: 12.sp,
                 )),
@@ -176,8 +175,8 @@ class OrderStatusScreen extends StatelessWidget {
                     color: Color(0xFF0B970B))),
             Text(
                 myOrders.deliveryCharges == null
-                    ? '${double.parse(myOrders.totalPrice!).toStringAsFixed(2)} BDT'
-                    : '${(double.parse(myOrders.totalPrice!) + myOrders.deliveryCharges!).toStringAsFixed(2)} BDT',
+                    ? '${double.parse(myOrders.totalPrice!).toStringAsFixed(2)}  €'
+                    : '${(double.parse(myOrders.totalPrice!) + myOrders.deliveryCharges!).toStringAsFixed(2)}  €',
                 style: titleTextStyle.copyWith(
                     fontFamily: latoFont,
                     fontSize: 16.sp,

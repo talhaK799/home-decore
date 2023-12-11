@@ -84,21 +84,7 @@ class OrderedProductsList extends StatelessWidget {
                           ],
                         ),
                         SizedBox(height: 2.h),
-                        Row(
-                          children: [
-                            Text(
-                              'By: ',
-                              style: boldTextStyleLato.copyWith(
-                                  fontSize: 11.sp, color: Color(0xFF58595B)),
-                            ),
-                            Text('${orderDetails[index].category ?? "Nike"}',
-                                style: boldTextStyleLato.copyWith(
-                                    decoration: TextDecoration.underline,
-                                    fontSize: 10.sp,
-                                    color: Color(0xFF8A8A8A))),
-                          ],
-                        ),
-                        SizedBox(height: 2.h),
+                      
                         Text(
                             '${orderDetails[index].description != null ? orderDetails[index].description!.length > 20 ? orderDetails[index].description!.substring(0, 20) : orderDetails[index].description : ''}',
                             maxLines: 1,
@@ -108,7 +94,7 @@ class OrderedProductsList extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(),
-                            Text('${orderDetails[index].salePrice} BDT',
+                            Text('${orderDetails[index].salePrice} €',
                                 style: TextStyle(
                                     fontFamily: latoFont,
                                     fontSize: 12.sp,

@@ -55,9 +55,13 @@ class DrawerScreen extends StatelessWidget {
                               model.authService.appUser.imageUrl == null
                                   ? CircleAvatar(
                                       radius: 35.r,
-                                      backgroundColor: Colors.transparent,
-                                      backgroundImage:
-                                          AssetImage('$profilePlaceHolder'))
+                                      backgroundColor: primaryColor,
+                                      child: Icon(
+                                        Icons.person,
+                                        color: whiteColor,
+                                        size: 35,
+                                      ),
+                                    )
                                   : CircleAvatar(
                                       radius: 35.r,
                                       backgroundColor: Colors.transparent,
@@ -154,13 +158,13 @@ class DrawerScreen extends StatelessWidget {
                               width: 20.w,
                               height: 20.h),
                           SizedBox(height: 20.4.h),
-                          drawerTile(
-                              onTap: () => Get.to(() => OfferScreen()),
-                              image: '$staticAssets/payment_icon.png',
-                              title: 'Offers'.tr,
-                              width: 20.w,
-                              height: 20.h),
-                          SizedBox(height: 20.4.h),
+                          // drawerTile(
+                          //     onTap: () => Get.to(() => OfferScreen()),
+                          //     image: '$staticAssets/payment_icon.png',
+                          //     title: 'Offers'.tr,
+                          //     width: 20.w,
+                          //     height: 20.h),
+                          // SizedBox(height: 20.4.h),
                           drawerTile(
                               onTap: () => Get.to(FaqScreen()),
                               image: '$staticAssets/faq_icon.png',
@@ -182,21 +186,21 @@ class DrawerScreen extends StatelessWidget {
                               width: 20.w,
                               height: 20.h),
                           SizedBox(height: 20.4.h),
-                          drawerTile(
-                              onTap: () async {
-                                String url =
-                                    "tel:${model.authService.helpline.number ?? '+8801309007585'}";
-                                if (await canLaunch(url)) {
-                                  await launch(url);
-                                } else {
-                                  throw 'Could not launch $url';
-                                }
-                              },
-                              image: '$staticAssets/phone_no.png',
-                              title: 'Helpline'.tr,
-                              width: 20.w,
-                              height: 20.h),
-                          SizedBox(height: 20.4.h),
+                          // drawerTile(
+                          //     onTap: () async {
+                          //       String url =
+                          //           "tel:${model.authService.helpline.number ?? '+8801309007585'}";
+                          //       if (await canLaunch(url)) {
+                          //         await launch(url);
+                          //       } else {
+                          //         throw 'Could not launch $url';
+                          //       }
+                          //     },
+                          //     image: '$staticAssets/phone_no.png',
+                          //     title: 'Helpline'.tr,
+                          //     width: 20.w,
+                          //     height: 20.h),
+                          // SizedBox(height: 20.4.h),
                           drawerTile(
                               onTap: () => Get.to(PrivacyPolicyScreen()),
                               image: '$staticAssets/privacy_icon.png',
@@ -242,15 +246,14 @@ class DrawerScreen extends StatelessWidget {
                               },
                               child: Row(children: [
                                 Transform(
-                                  alignment: Alignment.center,
-                                  transform: Get.locale!.languageCode == 'ar'
-                                      ? Matrix4.rotationY(pi)
-                                      : Matrix4.rotationY(0),
-                                  child: Image.asset(
-                                      '$staticAssets/logout_icon.png',
-                                      width: 25.7.w,
-                                      height: 21.9.h),
-                                ),
+                                    alignment: Alignment.center,
+                                    transform: Get.locale!.languageCode == 'ar'
+                                        ? Matrix4.rotationY(pi)
+                                        : Matrix4.rotationY(0),
+                                    child: Icon(
+                                      Icons.login_rounded,
+                                      color: primaryColor,
+                                    )),
                                 Padding(
                                   padding:
                                       EdgeInsetsDirectional.only(start: 8.0),
@@ -295,6 +298,7 @@ class DrawerScreen extends StatelessWidget {
                     '$image',
                     height: height,
                     width: width,
+                    color: primaryColor,
                   )
                 : Image.asset(
                     '$image',

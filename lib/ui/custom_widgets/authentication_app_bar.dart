@@ -46,7 +46,7 @@ class AuthenticationAppBar extends StatelessWidget {
           Text("${heading!}",
               style: TextStyle(
                   fontSize: 20.sp,
-                  color: primaryColor,
+                  color: blackColor,
                   fontWeight:
                       isHeadingBold ? FontWeight.bold : FontWeight.normal)),
         ],

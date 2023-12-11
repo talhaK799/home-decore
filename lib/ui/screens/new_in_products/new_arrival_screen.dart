@@ -52,7 +52,8 @@ class NewArrivalScreen extends StatelessWidget {
                   padding: EdgeInsets.zero,
                   children: [
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 2.0),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -93,9 +94,9 @@ class NewArrivalScreen extends StatelessWidget {
                           ),
                           SizedBox(height: 5.h),
 
-                          ///
-                          /// Scrollable New Products
-                          ///
+                          // /
+                          // / Scrollable New Products
+                          // /
                           // model.getFilteredProd.baseProduct.products.isEmpty
                           //     ?
                           newInProductsList.isEmpty
@@ -122,8 +123,8 @@ class NewArrivalScreen extends StatelessWidget {
                                                             ? 1 / 1.3
                                                             : 1 / 1.13,
                                                     crossAxisCount: 2,
-                                                    mainAxisSpacing: 4,
-                                                    crossAxisSpacing: 4),
+                                                    mainAxisSpacing: 15,
+                                                    crossAxisSpacing: 15),
                                             itemBuilder: (context, index) {
                                               return Padding(
                                                 padding: const EdgeInsets.only(
@@ -135,7 +136,7 @@ class NewArrivalScreen extends StatelessWidget {
                                                     newInProductsList[
                                                         index] = await Get.to(() =>
                                                             ProductDetailScreen(
-                        isFirstTime: true,
+                                                              isFirstTime: true,
                                                               product:
                                                                   newInProductsList[
                                                                       index],

@@ -7,6 +7,7 @@ import 'package:f2_base_project/core/models/user_address.dart';
 import 'package:f2_base_project/core/others/screen_uitls.dart';
 import 'package:f2_base_project/ui/custom_widgets/base_screen.dart';
 import 'package:f2_base_project/ui/custom_widgets/custom_app_bar.dart';
+import 'package:f2_base_project/ui/custom_widgets/rectangle_button.dart';
 import 'package:f2_base_project/ui/custom_widgets/rounded-raised-button.dart';
 import 'package:f2_base_project/ui/screens/cart-and-payment-section/cart_address/add_cart_address/add_cart_address_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -58,8 +59,30 @@ class AddCartAddressScreen extends StatelessWidget {
                           //add new address form
                           addNewAddressForm(model, context),
 
+                          SizedBox(
+                            height: 25,
+                          ),
                           //save button
-                          saveButton(model),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              RectangularButton(
+                                radius: 9,
+                                width: 160.w,
+                                buttonColor: primaryColor,
+                                textStyle: boldTextStyleLato.copyWith(
+                                    fontSize: 19.sp,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                                title: 'Save'.tr,
+                                onTap: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    model.saveAddress(userAddress);
+                                  }
+                                },
+                              ),
+                            ],
+                          )
                         ],
                       ),
                     ),
@@ -99,7 +122,7 @@ class AddCartAddressScreen extends StatelessWidget {
                         border: Border(
                             bottom: BorderSide(
                                 color: Colors.grey.withOpacity(0.3)))),
-                    child: Text(model.userAddress.countryCode ?? '+973',
+                    child: Text(model.userAddress.countryCode ?? '+32',
                         style: bodyTextStyleLato.copyWith(
                             fontSize: model.userAddress.countryCode == null
                                 ? 10.sp
@@ -111,7 +134,7 @@ class AddCartAddressScreen extends StatelessWidget {
             ),
           ),
           textfield(
-            hintText: '017XXXXXXXX',
+            hintText: '',
             label: "phone".tr,
             onChange: (value) {
               model.userAddress.phone = value;
@@ -134,7 +157,7 @@ class AddCartAddressScreen extends StatelessWidget {
                         border: Border(
                             bottom: BorderSide(
                                 color: Colors.grey.withOpacity(0.3)))),
-                    child: Text(model.userAddress.country ?? 'Bangladesh',
+                    child: Text(model.userAddress.country ?? 'Belgium',
                         style: bodyTextStyleLato.copyWith(
                             fontSize: model.userAddress.country == null
                                 ? 10.sp
@@ -195,8 +218,7 @@ class AddCartAddressScreen extends StatelessWidget {
           ),
           textfield(
               label: "address".tr,
-              hintText:
-                  'Apartment, Suite, Unit, Building, Area, Upazila etc Details',
+              hintText: '',
               onChange: (value) {
                 model.userAddress.address = value;
               }),
@@ -275,26 +297,28 @@ class AddCartAddressScreen extends StatelessWidget {
 
   //save button
   saveButton(AddCartAddressViewModel model) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 55.8, top: 42.3),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            height: 41.h,
-            width: 133.w,
-            child: RoundedRaisedButton(
-              text: "save".tr,
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  model.saveAddress(userAddress);
-                }
-              },
-            ),
-          )
-        ],
-      ),
-    );
+    //   var roundedRaisedButton = RoundedRaisedButton(
+    //     text: "save".tr,
+    //     onPressed: () {
+    //       if (_formKey.currentState!.validate()) {
+    //         model.saveAddress(userAddress);
+    //       }
+    //     },
+    //   );
+    //   return Padding(
+    //     padding: const EdgeInsets.only(bottom: 55.8, top: 42.3),
+    //     child: Row(
+    //       mainAxisAlignment: MainAxisAlignment.center,
+    //       children: [
+    //         Container(
+    //           padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+    //           // height: 41.h,
+    //           // width: 133.w,
+    //           child: Center(child: roundedRaisedButton),
+    //         )
+    //       ],
+    //     ),
+    //   );
   }
 
   ///

@@ -67,33 +67,35 @@ class _ProductsContainerState extends State<HomeProdContainer> {
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                       style: boldTextStyleLato.copyWith(
-                          fontFamily: latoFont, fontSize: 14),
+                          color: blackColor,
+                          fontFamily: latoFont,
+                          fontSize: 14),
                     ),
                   ),
-                  SizedBox(height: 2.7.h),
-                  Flexible(
-                    child: Row(
-                      children: [
-                        Text(
-                          'By: ',
-                          style: boldTextStyleLato.copyWith(
-                              fontSize: 13.sp, color: Color(0xFF58595B)),
-                        ),
-                        Expanded(
-                          child: Text(
-                            '${widget.product!.category ?? " "}',
-                            overflow: TextOverflow.ellipsis,
-                            // "Nike",
-                            style: boldTextStyleLato.copyWith(
-                                decoration: TextDecoration.underline,
-                                fontSize: 13.sp,
-                                color: Color(0xFF58595B)),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 9.8.h),
+
+                  // Flexible(
+                  //   child: Row(
+                  //     children: [
+                  //       Text(
+                  //         'By: ',
+                  //         style: boldTextStyleLato.copyWith(
+                  //             fontSize: 13.sp, color: Color(0xFF58595B)),
+                  //       ),
+                  //       Expanded(
+                  //         child: Text(
+                  //           '${widget.product!.category ?? " "}',
+                  //           overflow: TextOverflow.ellipsis,
+                  //           // "Nike",
+                  //           style: boldTextStyleLato.copyWith(
+                  //               decoration: TextDecoration.underline,
+                  //               fontSize: 13.sp,
+                  //               color: Color(0xFF58595B)),
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // // ),
+                  // SizedBox(height: 9.8.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -102,7 +104,7 @@ class _ProductsContainerState extends State<HomeProdContainer> {
                           children: [
                             widget.product!.isDiscountAvailable == true
                                 ? Text(
-                                    'BDT ${widget.product!.price ?? 00.toStringAsFixed(2)}',
+                                    '€ ${widget.product!.price ?? 00.toStringAsFixed(2)}',
                                     overflow: TextOverflow.ellipsis,
                                     style: boldTextStyleHacen.copyWith(
                                         fontSize: 7.sp,
@@ -113,10 +115,11 @@ class _ProductsContainerState extends State<HomeProdContainer> {
                                 : Container(),
                             Flexible(
                               child: Text(
-                                'BDT ${widget.product!.salePrice ?? 00.toStringAsFixed(2)}',
+                                '€ ${widget.product!.salePrice ?? 00.toStringAsFixed(2)}',
                                 overflow: TextOverflow.ellipsis,
                                 style: boldTextStyleHacen.copyWith(
                                     fontSize: 12.sp,
+                                    color: blackColor,
                                     fontFamily: latoFont,
                                     fontWeight: FontWeight.bold),
                               ),
@@ -126,14 +129,24 @@ class _ProductsContainerState extends State<HomeProdContainer> {
                       ),
                       InkWell(
                         onTap: widget.onChange,
-                        child: ImageContainer(
-                          height: 15.2.h,
-                          width: 16.4.w,
-                          assetImage: widget.product!.isLiked ?? false
-                              ? '$staticAssets/like.png'
-                              : '$staticAssets/dislike.png',
-                        ),
-                      )
+                        child: Icon(
+                            widget.product!.isLiked == true
+                                ? Icons.favorite
+                                : Icons.favorite_border,
+                            color: widget.product!.isLiked == true
+                                ? primaryColor
+                                : blackColor),
+                      ),
+                      // InkWell(
+                      //   onTap: widget.onChange,
+                      //   child: ImageContainer(
+                      //     height: 15.2.h,
+                      //     width: 16.4.w,
+                      //     assetImage: widget.product!.isLiked ?? false
+                      //         ? '$staticAssets/like.png'
+                      //         : '$staticAssets/dislike.png',
+                      //   ),
+                      // )
                     ],
                   )
                 ],

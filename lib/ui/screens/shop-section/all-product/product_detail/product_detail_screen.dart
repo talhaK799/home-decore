@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 // import 'package:share_plus/share_plus.dart';
 
 // ignore: must_be_immutable
@@ -47,7 +48,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       child: Consumer<ProductDetailProvider>(
         builder: (context, model, child) {
           return WillPopScope(
-            onWillPop: () => model.onBackPress(widget.product!),
+            onWillPop: () => model.onBackPress(widget.product),
             child: ModalProgressHUD(
               progressIndicator: circularProgressIndicator(),
               inAsyncCall: model.state == ViewState.busy,
@@ -113,14 +114,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       padding: EdgeInsets.symmetric(horizontal: 6, vertical: 15),
       child: Row(
         children: [
-          InkWell(
-            onTap: () {
-              model.toggleProductLike(product);
-            },
-            child: widget.product!.isLiked ?? false
-                ? Icon(Icons.favorite, color: primaryColor, size: 46.h)
-                : Icon(Icons.favorite_border, color: greyColor, size: 46.h),
-          ),
           SizedBox(width: 10.w),
           Expanded(
             child: RectangularButton(
@@ -188,87 +181,87 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 color: Colors.black, fontSize: 32.sp, fontFamily: latoFont),
           ),
           SizedBox(height: 7.5.h),
-          Row(
-            children: [
-              widget.product!.isDiscountAvailable == true
-                  ? Text(
-                      'BDT ${model.price}',
-                      style: boldTextStyleHacen.copyWith(
-                          fontSize: 11.sp,
-                          color: Color(0xFF58595B),
-                          fontFamily: latoFont,
-                          decoration: TextDecoration.lineThrough),
-                    )
-                  : Container(),
-              SizedBox(width: 7.w),
-              Text(
-                'BDT ${model.salePrice}',
-                style: boldTextStyleHacen.copyWith(
-                    fontSize: 14.sp, color: primaryColor, fontFamily: latoFont),
-              ),
-              SizedBox(width: 7.w),
-              widget.product!.productSizes.length > 0
-                  ? Expanded(
-                      child: Row(
-                        children: [
-                          Text(
-                            'Sizes:  ',
-                            style: boldTextStyleHacen.copyWith(
-                                fontSize: 14.sp,
-                                color: primaryColor,
-                                fontFamily: latoFont),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                                // color: primaryColor,
-                                border: Border.all(
-                                    color: greyColor.withOpacity(0.5)),
-                                borderRadius: BorderRadius.circular(6)),
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton<String>(
-                                value: model.selectedSize,
-                                elevation: 2,
-                                borderRadius: BorderRadius.circular(6),
-                                focusColor: primaryColor,
-                                onChanged: (String? newValue) {
-                                  for (int i = 0;
-                                      i < widget.product!.productSizes.length;
-                                      i++) {
-                                    if (newValue ==
-                                        widget.product!.productSizes[i].size) {
-                                      model.selectedSizeIndex = i;
-                                    }
-                                  }
-                                  model.changeSize(
-                                      widget.product!, model.selectedSizeIndex,
-                                      isFromOffer: widget.isFromOffer,
-                                      offer: widget.offer);
-                                  setState(() {
-                                    model.selectedSize = newValue!;
-                                  });
-                                },
-                                items: widget.product!.productSizes
-                                    .map((ProductSizes value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value.size,
-                                    child: Text(
-                                      '${value.size}',
-                                      style: bodyTextStyleLato,
-                                    ),
-                                  );
-                                }).toList(),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    )
-                  : Container(),
-              SizedBox(width: 7.w),
-            ],
-          ),
+          // Row(
+          //   children: [
+          //     widget.product!.isDiscountAvailable == true
+          //         ? Text(
+          //             'BDT ${model.price}',
+          //             style: boldTextStyleHacen.copyWith(
+          //                 fontSize: 11.sp,
+          //                 color: Color(0xFF58595B),
+          //                 fontFamily: latoFont,
+          //                 decoration: TextDecoration.lineThrough),
+          //           )
+          //         : Container(),
+          //     SizedBox(width: 7.w),
+          //     Text(
+          //       'BDT ${model.salePrice}',
+          //       style: boldTextStyleHacen.copyWith(
+          //           fontSize: 14.sp, color: primaryColor, fontFamily: latoFont),
+          //     ),
+          //     SizedBox(width: 7.w),
+          //     widget.product!.productSizes.length > 0
+          //         ? Expanded(
+          //             child: Row(
+          //               children: [
+          //                 Text(
+          //                   'Sizes:  ',
+          //                   style: boldTextStyleHacen.copyWith(
+          //                       fontSize: 14.sp,
+          //                       color: primaryColor,
+          //                       fontFamily: latoFont),
+          //                 ),
+          //                 Container(
+          //                   decoration: BoxDecoration(
+          //                       // color: primaryColor,
+          //                       border: Border.all(
+          //                           color: greyColor.withOpacity(0.5)),
+          //                       borderRadius: BorderRadius.circular(6)),
+          //                   child: DropdownButtonHideUnderline(
+          //                     child: DropdownButton<String>(
+          //                       value: model.selectedSize,
+          //                       elevation: 2,
+          //                       borderRadius: BorderRadius.circular(6),
+          //                       focusColor: primaryColor,
+          //                       onChanged: (String? newValue) {
+          //                         for (int i = 0;
+          //                             i < widget.product!.productSizes.length;
+          //                             i++) {
+          //                           if (newValue ==
+          //                               widget.product!.productSizes[i].size) {
+          //                             model.selectedSizeIndex = i;
+          //                           }
+          //                         }
+          //                         model.changeSize(
+          //                             widget.product!, model.selectedSizeIndex,
+          //                             isFromOffer: widget.isFromOffer,
+          //                             offer: widget.offer);
+          //                         setState(() {
+          //                           model.selectedSize = newValue!;
+          //                         });
+          //                       },
+          //                       items: widget.product!.productSizes
+          //                           .map((ProductSizes value) {
+          //                         return DropdownMenuItem<String>(
+          //                           value: value.size,
+          //                           child: Text(
+          //                             '${value.size}',
+          //                             style: bodyTextStyleLato,
+          //                           ),
+          //                         );
+          //                       }).toList(),
+          //                     ),
+          //                   ),
+          //                 )
+          //               ],
+          //             ),
+          //           )
+          //         : Container(),
+          //     SizedBox(width: 7.w),
+          //   ],
+          // ),
 
-          SizedBox(height: 15.h),
+          SizedBox(height: 5.h),
           Text('${widget.product!.description ?? ''}',
               style: TextStyle(
                   fontSize: 12.sp,
@@ -276,11 +269,28 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   fontFamily: latoFont)),
           SizedBox(height: 20.h),
 
-          ///
-          /// Rating stars
-          ///
-          Container(color: Color(0xFF808080), height: 0.13.h),
-          SizedBox(height: 20.h),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                '€ ${widget.product!.price}',
+                style: headingTextStyleLato.copyWith(color: primaryColor),
+              ),
+              InkWell(
+                onTap: () {
+                  model.toggleProductLike(widget.product!);
+                },
+                child: widget.product!.isLiked ?? false
+                    ? Icon(Icons.favorite, color: primaryColor, size: 25.h)
+                    : Icon(Icons.favorite_border,
+                        color: primaryColor, size: 25.h),
+              ),
+            ],
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 10),
+            child: Container(color: Color(0xFF808080), height: 0.13.h),
+          ),
 
           ///
           /// Related products
@@ -291,11 +301,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text('Related Products',
-                        style:
-                            headingTextStyleLato.copyWith(color: primaryColor)),
+                        style: headingTextStyleLato.copyWith(
+                            color: blackColor, fontSize: 15.sp)),
                     SizedBox(height: 9),
                     Container(
-                        height: 180.h,
+                        height: 120.h,
                         child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             itemCount: model.relatedProducts.length,
@@ -332,8 +342,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         offer: widget.offer)));
           },
           child: Container(
-              width: 120.w,
-              height: 120.h,
+              width: 90.w,
+              height: 80.h,
               color: Color(0xFFE3E3E3),
               child: Stack(
                 children: [
@@ -386,24 +396,24 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             Text(
               '${model.relatedProducts[index].name}',
               style: boldTextStyleLato.copyWith(
-                  fontSize: 13.sp, fontFamily: latoFont),
+                  color: blackColor, fontSize: 13.sp, fontFamily: latoFont),
             ),
-            widget.product!.isDiscountAvailable == true
-                ? Text(
-                    'BDT ${model.price}',
-                    style: boldTextStyleHacen.copyWith(
-                        fontSize: 11.sp,
-                        color: Color(0xFF58595B),
-                        fontFamily: latoFont,
-                        decoration: TextDecoration.lineThrough),
-                  )
-                : Container(),
-            SizedBox(width: 7.w),
-            Text(
-              'BDT ${model.salePrice}',
-              style: boldTextStyleHacen.copyWith(
-                  fontSize: 13.sp, fontFamily: latoFont),
-            ),
+            // widget.product!.isDiscountAvailable == true
+            //     ? Text(
+            //         'BDT ${model.price}',
+            //         style: boldTextStyleHacen.copyWith(
+            //             fontSize: 11.sp,
+            //             color: Color(0xFF58595B),
+            //             fontFamily: latoFont,
+            //             decoration: TextDecoration.lineThrough),
+            //       )
+            //     : Container(),
+            // SizedBox(width: 7.w),
+            // Text(
+            //   'BDT ${model.salePrice}',
+            //   style: boldTextStyleHacen.copyWith(
+            //       fontSize: 13.sp, fontFamily: latoFont),
+            // ),
           ],
         ),
       ],
@@ -475,18 +485,21 @@ class _ImageSliderState extends State<ImageSlider> {
                           );
                         })),
                 // Spacer(),
-                Row(
-                  children: [
-                    InkWell(
-                        onTap: () {
-                          Get.to(() => FullScreenImage(
-                              imageUrl:
-                                  widget.images[widget.model!.currentImage]));
-                        },
-                        child: Icon(Icons.fullscreen,
-                            color: Colors.white, size: 25.r)),
-                    SizedBox(width: 10.w)
-                  ],
+                Padding(
+                  padding: const EdgeInsets.only(right: 20),
+                  child: Row(
+                    children: [
+                      InkWell(
+                          onTap: () {
+                            Get.to(() => FullScreenImage(
+                                imageUrl:
+                                    widget.images[widget.model!.currentImage]));
+                          },
+                          child: Icon(Icons.fullscreen,
+                              color: Colors.white, size: 25.r)),
+                      SizedBox(width: 10.w)
+                    ],
+                  ),
                 )
               ],
             ),
@@ -530,61 +543,66 @@ class _ImageSliderState extends State<ImageSlider> {
         ///
         /// Back, Share and Cart Icons
         ///
-        Container(
-          height: 50.h,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  IconButton(
-                      icon: Transform(
-                          alignment: Alignment.center,
-                          transform: Get.locale!.languageCode == 'ar'
-                              ? Matrix4.rotationY(pi)
-                              : Matrix4.rotationY(0),
-                          child: Image.asset('$staticAssets/back.png',
-                              color: primaryColor, height: 22.h, width: 11.w)),
-                      onPressed: () => Get.back()),
-                ],
-              ),
-              Row(
-                children: [
-                  IconButton(
-                      icon: widget.model!.authService.order.products == null
-                          ? Image.asset(
-                              '$staticAssets/no-item-cart.png',
-                              width: 21.06.w,
-                              height: 21.16.h,
-                            )
-                          : Image.asset(
-                              '$staticAssets/cart-with-items1.png',
-                              width: 21.06.w,
-                              height: 21.16.h,
-                            ),
-                      onPressed: () async {
-                        if (widget.model!.authService.isLogin) {
-                          widget.model!.authService.order.products =
-                              await Get.to(() => CartScreen()) ??
-                                  widget.model!.authService.order.products;
-                          setState(() {});
-                        } else {
-                          Get.dialog(SignupRequiredDialog('rootScreen'));
-                        }
-                      }),
-                  IconButton(
-                      icon: Icon(
-                        Icons.share,
-                        color: Colors.white,
-                        size: 22.h,
-                      ),
-                      onPressed: () {
-                        // Share.share(
-                        //     '${widget.images[0]}\n${widget.product!.name}\n${widget.product!.description}\n${widget.product!.salePrice}');
-                      }),
-                ],
-              )
-            ],
+        Padding(
+          padding: const EdgeInsets.only(top: 30.0),
+          child: Container(
+            height: 50.h,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    IconButton(
+                        icon: Transform(
+                            alignment: Alignment.center,
+                            transform: Get.locale!.languageCode == 'ar'
+                                ? Matrix4.rotationY(pi)
+                                : Matrix4.rotationY(0),
+                            child: Image.asset('$staticAssets/back.png',
+                                color: primaryColor,
+                                height: 22.h,
+                                width: 11.w)),
+                        onPressed: () => Get.back()),
+                  ],
+                ),
+                Row(
+                  children: [
+                    IconButton(
+                        icon: widget.model!.authService.order.products == null
+                            ? Image.asset(
+                                '$staticAssets/no-item-cart.png',
+                                width: 21.06.w,
+                                height: 21.16.h,
+                              )
+                            : Image.asset(
+                                '$staticAssets/cart-with-items1.png',
+                                width: 21.06.w,
+                                height: 21.16.h,
+                              ),
+                        onPressed: () async {
+                          if (widget.model!.authService.isLogin) {
+                            widget.model!.authService.order.products =
+                                await Get.to(() => CartScreen()) ??
+                                    widget.model!.authService.order.products;
+                            setState(() {});
+                          } else {
+                            Get.dialog(SignupRequiredDialog('rootScreen'));
+                          }
+                        }),
+                    IconButton(
+                        icon: Icon(
+                          Icons.share,
+                          color: Colors.white,
+                          size: 22.h,
+                        ),
+                        onPressed: () {
+                          Share.share(
+                              '${widget.images[0]}\n${widget.product!.name}\n${widget.product!.description}\n${widget.product!.salePrice}');
+                        }),
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ],

@@ -98,8 +98,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
             model.authSerivce.appUser.imageUrl == null
                 ? CircleAvatar(
                     radius: 50.r,
-                    backgroundColor: Colors.transparent,
-                    backgroundImage: AssetImage('$profilePlaceHolder'))
+                    backgroundColor: primaryColor,
+                    child: Icon(
+                      Icons.person,
+                      size: 45,
+                      color: whiteColor,
+                    ))
                 : CircleAvatar(
                     radius: 50.r,
                     backgroundColor: Colors.transparent,
@@ -116,15 +120,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ImageContainer(
-                  assetImage: "$assets/location.png",
-                  height: 13.01.h,
-                  width: 10.46.w,
+                Icon(
+                  Icons.location_on,
+                  color: primaryColor,
                 ),
                 SizedBox(width: 4.8.w),
                 Text(
                   "${model.authSerivce.appUser.location ?? "London UK"}",
-                  style: bodyTextStyleLato.copyWith(fontSize: 13),
+                  style: bodyTextStyleLato.copyWith(fontSize: 13,color: blackColor),
                 )
               ],
             ),
@@ -181,19 +184,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Get.to(() => AllOrdersScreen());
                 }),
             SizedBox(height: 15.6.h),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: RectangularButton(
-                title: 'Logout',
-                radius: 6,
-                buttonColor: greyColor,
-                textStyle: bodyTextStyleLato.copyWith(color: Colors.white),
-                onTap: () async {
-                  await model.authSerivce.logout();
-                  Get.offAll(() => LoginScreen());
-                },
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            //   child: RectangularButton(
+            //     title: 'Logout',
+            //     radius: 6,
+            //     buttonColor: greyColor,
+            //     textStyle: bodyTextStyleLato.copyWith(color: Colors.white),
+            //     onTap: () async {
+            //       await model.authSerivce.logout();
+            //       Get.offAll(() => LoginScreen());
+            //     },
+            //   ),
+            // ),
             SizedBox(height: 30.6.h),
           ],
         ),

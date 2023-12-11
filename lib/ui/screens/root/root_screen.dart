@@ -58,8 +58,11 @@ class _RootScreenState extends State<RootScreen> with TickerProviderStateMixin {
           widget.selectedPage, widget.selectedMonth,
           selectedDate: widget.selectedDate),
       child: Consumer<RootProvider>(
+
         builder: (context, model, child) {
+          
           return WillPopScope(
+
             onWillPop: () async {
               return model.onWillPop();
             },
@@ -142,23 +145,26 @@ class _RootScreenState extends State<RootScreen> with TickerProviderStateMixin {
                                           : Colors.white,
                                     ),
                                   ),
-                            // Offers screen
-                            model.pageIndex == 2
-                                ? selectedIcon(
-                                    icon: 'payment_icon.png',
-                                    onTap: () => model.onTap(2))
-                                : GestureDetector(
-                                    onTap: () => model.onTap(2),
-                                    child: Image.asset(
-                                      '$staticAssets/payment_icon.png',
-                                      width: model.pageIndex == 2 ? 26.w : 20.w,
-                                      height:
-                                          model.pageIndex == 2 ? 26.h : 20.h,
-                                      color: model.pageIndex == 3
-                                          ? primaryColor
-                                          : Colors.white,
-                                    ),
-                                  ),
+                            ///
+                            /// removed    Offers screen
+                            /// 
+                            
+                            // model.pageIndex == 2
+                            //     ? selectedIcon(
+                            //         icon: 'payment_icon.png',
+                            //         onTap: () => model.onTap(2))
+                            //     : GestureDetector(
+                            //         onTap: () => model.onTap(2),
+                            //         child: Image.asset(
+                            //           '$staticAssets/payment_icon.png',
+                            //           width: model.pageIndex == 2 ? 26.w : 20.w,
+                            //           height:
+                            //               model.pageIndex == 2 ? 26.h : 20.h,
+                            //           color: model.pageIndex == 3
+                            //               ? primaryColor
+                            //               : Colors.white,
+                            //         ),
+                            //       ),
                             // payment Screen
                             model.pageIndex == 3
                                 ? selectedIcon(

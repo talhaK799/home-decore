@@ -57,7 +57,7 @@ class CustomTextField extends StatelessWidget {
     return Stack(
       children: [
         Container(
-            height: (42.h * maxline),
+            height: (50.h * maxline),
             decoration: BoxDecoration(
                 color: fillColor,
                 borderRadius: isMobile
@@ -133,7 +133,7 @@ class CustomTextField extends StatelessWidget {
                   EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
               hintText: this.hintText,
               hintStyle: bodyTextStyleLato.copyWith(
-                  fontSize: 16.sp, color: primaryColor.withOpacity(0.5))),
+                  fontSize: 14.sp, color: greyColor.withOpacity(0.5))),
         ),
       ],
     );

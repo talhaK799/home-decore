@@ -6,18 +6,19 @@ import 'package:f2_base_project/core/models/categories.dart';
 import 'package:f2_base_project/core/models/products.dart';
 import 'package:f2_base_project/ui/custom_widgets/app_banners_slider.dart';
 import 'package:f2_base_project/ui/custom_widgets/home_prod_container.dart';
-import 'package:f2_base_project/ui/custom_widgets/image-container.dart';
-import 'package:f2_base_project/ui/custom_widgets/offers_slider.dart';
+
 import 'package:f2_base_project/ui/custom_widgets/prod_shimmer.dart';
-import 'package:f2_base_project/ui/custom_widgets/products_container.dart';
+
 import 'package:f2_base_project/ui/dialogs/signup_required_dialog.dart';
 import 'package:f2_base_project/ui/screens/cart-and-payment-section/cart_screen.dart';
-import 'package:f2_base_project/ui/screens/home/category_products/category_product_screen.dart';
+import 'package:f2_base_project/ui/screens/home/category_products/all_categories_screen.dart';
+
+import 'package:f2_base_project/ui/screens/home/category_products/sub_category_screen.dart';
 import 'package:f2_base_project/ui/screens/home/home_view_model.dart';
 import 'package:f2_base_project/ui/screens/new_in_products/new_arrival_screen.dart';
 import 'package:f2_base_project/ui/screens/root/root_screen.dart';
 import 'package:f2_base_project/ui/screens/shop-section/all-product/product_detail/product_detail_screen.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:get/get.dart';
@@ -100,46 +101,52 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                               ),
                               SizedBox(width: 7.w),
                               Text(
-                                'sportsTalent'.tr,
+                                'Inna Home'.tr,
                                 style: normalTextStyleLato,
                               )
                             ],
                           ),
-                          SizedBox(width: 15.w),
-                          Expanded(
-                            child: Container(
-                              height: 30.h,
-                              // width: 0.35.sw,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: TextField(
-                                textInputAction: TextInputAction.search,
-                                onSubmitted: (value) {
-                                  model.searchByName(value);
-                                },
-                                onChanged: (value) {
-                                  model.searchByName(value);
-                                },
-                                decoration: InputDecoration(
-                                    suffixIcon: UnconstrainedBox(
-                                      child: ImageContainer(
-                                          height: 16.h,
-                                          width: 16.w,
-                                          assetImage:
-                                              '$staticAssets/search.png'),
-                                    ),
-                                    contentPadding:
-                                        EdgeInsets.only(left: 13, bottom: 17),
-                                    border: InputBorder.none,
-                                    hintText: 'Search products'.tr,
-                                    hintStyle: normalTextStyleLato.copyWith(
-                                        fontSize: 13.sp,
-                                        color: Color(0xFFCFCFCF))),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 11.w),
+                          Spacer(),
+
+                          ///
+                          ///
+                          ///Removed search bar according to new design
+                          ///
+                          // SizedBox(width: 15.w),
+                          // Expanded(
+                          //   child: Container(
+                          //     height: 30.h,
+                          //     // width: 0.35.sw,
+                          //     decoration: BoxDecoration(
+                          //         color: Colors.white,
+                          //         borderRadius: BorderRadius.circular(10)),
+                          //     child: TextField(
+                          //       textInputAction: TextInputAction.search,
+                          //       onSubmitted: (value) {
+                          //         model.searchByName(value);
+                          //       },
+                          //       onChanged: (value) {
+                          //         model.searchByName(value);
+                          //       },
+                          //       decoration: InputDecoration(
+                          //           suffixIcon: UnconstrainedBox(
+                          //             child: ImageContainer(
+                          //                 height: 16.h,
+                          //                 width: 16.w,
+                          //                 assetImage:
+                          //                     '$staticAssets/search.png'),
+                          //           ),
+                          //           contentPadding:
+                          //               EdgeInsets.only(left: 13, bottom: 17),
+                          //           border: InputBorder.none,
+                          //           hintText: 'Search products'.tr,
+                          //           hintStyle: normalTextStyleLato.copyWith(
+                          //               fontSize: 13.sp,
+                          //               color: Color(0xFFCFCFCF))),
+                          //     ),
+                          //   ),
+                          // ),
+                          // SizedBox(width: 11.w),
                           IconButton(
                             constraints: BoxConstraints(maxHeight: 23),
                             padding: EdgeInsets.zero,
@@ -193,18 +200,24 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 ///
                                 /// categories
                                 ///
-                                Padding(
-                                  padding:
-                                      EdgeInsetsDirectional.only(start: 8.0),
-                                  child: Text(
-                                    'Categories'.tr,
-                                    style: normalTextStyleLato.copyWith(
-                                        fontSize: 18.sp, color: blackColor),
-                                  ),
-                                ),
+                                // Padding(
+                                //   padding:
+                                //       EdgeInsetsDirectional.only(start: 8.0),
+                                //   child: Text(
+                                //     'Categories'.tr,
+                                //     style: normalTextStyleLato.copyWith(
+                                //         fontSize: 18.sp, color: blackColor),
+                                //   ),
+                                // ),
+                                customViewAllRow(
+                                    'Categories',
+                                    () => Get.to(() => AllCategoriesScreen(
+                                        title: 'Categories',
+                                        newInProductsList:
+                                            model.authService.categories))),
                                 SizedBox(height: 12.h),
                                 Container(
-                                  height: 100.h,
+                                  height: 150.h,
                                   child: ListView.builder(
                                     scrollDirection: Axis.horizontal,
                                     itemCount:
@@ -215,7 +228,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                     },
                                   ),
                                 ),
-                                SizedBox(height: 20.h),
+
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 15),
+                                  child: Divider(
+                                    color: Colors.grey.withOpacity(0.5),
+                                  ),
+                                ),
 
                                 /// =========================================================
                                 /// New Arrivals
@@ -227,8 +246,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                         newInProductsList:
                                             model.authService.latestProducts))),
                                 SizedBox(height: 8.h),
+
                                 Container(
-                                  height: 220.h,
+                                  height: 190.h,
                                   child:
 
                                       ///
@@ -253,7 +273,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                               : newInProductsList(model,
                                                   model.searchedProducts),
                                 ),
-                                SizedBox(height: 25.h),
+
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 15),
+                                  child: Divider(
+                                    color: Colors.grey.withOpacity(0.5),
+                                  ),
+                                ),
 
                                 /// ============================================
                                 /// Top Rated products
@@ -268,7 +294,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 SizedBox(height: 8.h),
 
                                 Container(
-                                  height: 220.h,
+                                  height: 190.h,
                                   child:
 
                                       ///
@@ -291,12 +317,18 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                   .topRatedProducts),
                                 ),
 
-                                SizedBox(height: 25.h),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 15),
+                                  child: Divider(
+                                    color: Colors.grey.withOpacity(0.5),
+                                  ),
+                                ),
 
                                 /// =========================================================
                                 ///
                                 /// All Products
                                 ///
+
                                 customViewAllRow(
                                     'All Products',
                                     () => Get.offAll(
@@ -304,7 +336,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
                                 SizedBox(height: 8.h),
                                 Container(
-                                  height: 220.h,
+                                  height: 190.h,
                                   child:
 
                                       ///
@@ -334,18 +366,20 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                             fontSize: 18.sp,
                                             color: blackColor))),
 
+////removed offerslider
                                 ///
-                                /// offer images
-                                ///
-                                Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 15.0),
-                                    child: OffersSlider(
-                                        offers: model.authService.offers,
-                                        images: model.offersImages,
-                                        model: model)),
+                                // ///
+                                // /// offer images
+                                // ///
+                                // Padding(
+                                //     padding: const EdgeInsets.symmetric(
+                                //         horizontal: 15.0),
+                                //     child: OffersSlider(
+                                //         offers: model.authService.offers,
+                                //         images: model.offersImages,
+                                //         model: model)),
 
-                                SizedBox(height: 100.h),
+                                // SizedBox(height: 100.h),
                               ],
                             ),
                           )
@@ -372,7 +406,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             padding: EdgeInsetsDirectional.only(start: 10.0),
             child: Text(
               title,
-              style: normalTextStyleLato.copyWith(
+              style: boldTextStyleLato.copyWith(
                   fontSize: 18.sp, color: blackColor),
             ),
           ),
@@ -406,7 +440,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 onTap: () async {
                   model.authService.order.products =
                       await Get.to(() => ProductDetailScreen(
-                        isFirstTime: true,
+                                isFirstTime: true,
                                 product: products[index],
                               )) ??
                           model.authService.order.products;
@@ -429,62 +463,117 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   Widget categories(List<Categories> services, int index) {
     return Padding(
-        padding: EdgeInsets.only(right: 8.6.w),
+        padding: EdgeInsets.all(5),
         child: InkWell(
           onTap: () {
-            Get.to(() => CategProdScreen(services[index].title!));
+            Get.to(() =>
+                SubCategoryScreen(services[index].title!, services[index].id!));
           },
-          child: UnconstrainedBox(
-            child: Container(
-              height: 70.2.h,
-              width: 86.8.w,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: primaryColor,
-              ),
-              child: Stack(
-                children: [
-                  Align(
-                    alignment: Alignment.bottomRight,
-                    // child:
-                    //     // services[index].imageUrl != null
-                    //     //     ? FadeInImage.assetNetwork(
-                    //     //         placeholder:
-                    //     //             '$staticAssets/service-sport-background.png',
-                    //     //         image: '${services[index].imageUrl}',
-                    //     //         fit: BoxFit.contain,
-                    //     //       )
-                    //     //     :
-                    //     Image.network(
-                    //   '${services[index].iconUrl}',
-                    //   width: 77.7.w,
-                    //   height: 71.9.h,
-                    //   fit: BoxFit.cover,
-                    //   // color: Color(0xFFDA4646),
-                    // ),
+
+          child: Container(
+            height: 120.h,
+            width: 120.w,
+            decoration: BoxDecoration(
+                color: whiteColor,
+                borderRadius: BorderRadius.circular(10.r),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.2),
+                    spreadRadius: 2,
+                    blurRadius: 7,
+                    offset: Offset(0, 0),
                   ),
-                  Positioned(
-                    top: 8.h,
-                    left: 6.w,
-                    right: 5.w,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        services[index].iconUrl != null
-                            ? Image.network('${services[index].iconUrl}',
-                                width: 37.w, height: 35.h, color: Colors.white)
-                            : Container(),
-                        SizedBox(height: 4.h),
-                        Text('${services[index].title}',
-                            style: bodyTextStyleLato.copyWith(
-                                color: Colors.white, fontSize: 15.sp))
-                      ],
+                ]),
+            child: Padding(
+              padding: EdgeInsets.only(left: 8, right: 8, top: 8, bottom: 8),
+              child: Column(
+                children: [
+                  services[index].iconUrl != null
+                      ? ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.network(
+                            '${services[index].iconUrl}',
+                            width: 120.w,
+                            height: 100.h.h,
+                          ),
+                        )
+                      : Container(
+                          width: 70.w,
+                          height: 75.h,
+                          decoration: BoxDecoration(
+                            color: greyColor,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                  SizedBox(
+                    height: 5.h,
+                  ),
+                  Flexible(
+                    child: Text(
+                      '${services[index].title ?? ''}',
+                      overflow: TextOverflow.ellipsis,
+                      style: boldTextStyleHacen.copyWith(
+                          fontSize: 12.sp,
+                          color: blackColor,
+                          fontFamily: latoFont,
+                          fontWeight: FontWeight.bold),
                     ),
                   )
                 ],
               ),
             ),
           ),
+          // child: UnconstrainedBox(
+          //   child: Container(
+          //     height: 70.2.h,
+          //     width: 86.8.w,
+          //     decoration: BoxDecoration(
+          //       borderRadius: BorderRadius.circular(12),
+          //       color: primaryColor,
+          //     ),
+          //     child: Stack(
+          //       children: [
+          //         Align(
+          //           alignment: Alignment.bottomRight,
+          //           // child:
+          //           //     // services[index].imageUrl != null
+          //           //     //     ? FadeInImage.assetNetwork(
+          //           //     //         placeholder:
+          //           //     //             '$staticAssets/service-sport-background.png',
+          //           //     //         image: '${services[index].imageUrl}',
+          //           //     //         fit: BoxFit.contain,
+          //           //     //       )
+          //           //     //     :
+          //           //     Image.network(
+          //           //   '${services[index].iconUrl}',
+          //           //   width: 77.7.w,
+          //           //   height: 71.9.h,
+          //           //   fit: BoxFit.cover,
+          //           //   // color: Color(0xFFDA4646),
+          //           // ),
+          //         ),
+          //         Positioned(
+          //           top: 8.h,
+          //           left: 6.w,
+          //           right: 5.w,
+          //           child: Column(
+          //             crossAxisAlignment: CrossAxisAlignment.start,
+          //             children: [
+          //               services[index].iconUrl != null
+          //                   ? Image.network('${services[index].iconUrl}',
+          //                       width: 37.w, height: 35.h, color: Colors.white)
+          //                   : Container(),
+          //               SizedBox(height: 4.h),
+          //               Text('${services[index].title}',
+          //                   style: bodyTextStyleLato.copyWith(
+          //                       color: Colors.white, fontSize: 15.sp))
+          //             ],
+          //           ),
+          //         )
+          //       ],
+          //     ),
+          //   ),
+          // ),
         ));
   }
 }

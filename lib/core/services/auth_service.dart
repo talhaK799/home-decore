@@ -198,6 +198,7 @@ class AuthService extends ChangeNotifier {
     try {
       final credentials = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
+      print('credentiallllssss  ...............$credentials');
       if (credentials.user == null) {
         customAuthResult.status = false;
         customAuthResult.errorMessage = 'An undefined Error happened.';
