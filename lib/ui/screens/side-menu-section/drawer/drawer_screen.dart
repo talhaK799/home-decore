@@ -38,6 +38,7 @@ class DrawerScreen extends StatelessWidget {
                   child: ListView(
                     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
+                      SizedBox(height: 60.h),
                       ///
                       /// Profile data
                       ///

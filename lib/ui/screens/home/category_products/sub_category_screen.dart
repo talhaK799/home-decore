@@ -67,7 +67,7 @@ class SubCategoryScreen extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 2.0),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             SizedBox(height: 10.h),
                             model.subCategory.isEmpty
@@ -89,8 +89,11 @@ class SubCategoryScreen extends StatelessWidget {
                                               padding: EdgeInsets.zero,
                                                gridDelegate:
                                               SliverGridDelegateWithFixedCrossAxisCount(
-                                                  childAspectRatio: MediaQuery.of(context).size.width /
-                      (MediaQuery.of(context).size.height / 1.6),
+                                             childAspectRatio: Get.height >= 800
+                                                ? MediaQuery.of(context).size.width /
+                                                    (MediaQuery.of(context).size.height / 1.75)
+                                                : MediaQuery.of(context).size.width /
+                                                    (MediaQuery.of(context).size.height / 1.6),
                                                       crossAxisCount: 2,
                                                       mainAxisSpacing: 4,
                                                       crossAxisSpacing: 4),

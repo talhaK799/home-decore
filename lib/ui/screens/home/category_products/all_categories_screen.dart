@@ -25,8 +25,7 @@ class AllCategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
+
     return ChangeNotifierProvider(
       create: (context) => NewInProductsViewModel(),
       child: Consumer<NewInProductsViewModel>(
@@ -116,8 +115,11 @@ class AllCategoriesScreen extends StatelessWidget {
                                           padding: EdgeInsets.zero,
                                           gridDelegate:
                                               SliverGridDelegateWithFixedCrossAxisCount(
-                                                  childAspectRatio: MediaQuery.of(context).size.width /
-                      (MediaQuery.of(context).size.height / 1.76),
+                                                   childAspectRatio: Get.height >= 800
+                                                ? MediaQuery.of(context).size.width /
+                                                    (MediaQuery.of(context).size.height / 1.94)
+                                                : MediaQuery.of(context).size.width /
+                                                    (MediaQuery.of(context).size.height / 1.76),
                                                   crossAxisCount: 2,
                                                   mainAxisSpacing: 15,
                                                   crossAxisSpacing: 15),
@@ -177,8 +179,8 @@ class AllCategoriesScreen extends StatelessWidget {
                       ),
                     )
                   : Container(
-                      width: 118.w,
-                      height: 118.h,
+                        width: 140.w,
+                        height: 130.h,
                       decoration: BoxDecoration(
                         color: greyColor,
                         borderRadius: BorderRadius.circular(10),
@@ -202,57 +204,6 @@ class AllCategoriesScreen extends StatelessWidget {
           ),
         ),
       ),
-      // child: UnconstrainedBox(
-      //   child: Container(
-      //     height: 70.2.h,
-      //     width: 86.8.w,
-      //     decoration: BoxDecoration(
-      //       borderRadius: BorderRadius.circular(12),
-      //       color: primaryColor,
-      //     ),
-      //     child: Stack(
-      //       children: [
-      //         Align(
-      //           alignment: Alignment.bottomRight,
-      //           // child:
-      //           //     // services[index].imageUrl != null
-      //           //     //     ? FadeInImage.assetNetwork(
-      //           //     //         placeholder:
-      //           //     //             '$staticAssets/service-sport-background.png',
-      //           //     //         image: '${services[index].imageUrl}',
-      //           //     //         fit: BoxFit.contain,
-      //           //     //       )
-      //           //     //     :
-      //           //     Image.network(
-      //           //   '${services[index].iconUrl}',
-      //           //   width: 77.7.w,
-      //           //   height: 71.9.h,
-      //           //   fit: BoxFit.cover,
-      //           //   // color: Color(0xFFDA4646),
-      //           // ),
-      //         ),
-      //         Positioned(
-      //           top: 8.h,
-      //           left: 6.w,
-      //           right: 5.w,
-      //           child: Column(
-      //             crossAxisAlignment: CrossAxisAlignment.start,
-      //             children: [
-      //               services[index].iconUrl != null
-      //                   ? Image.network('${services[index].iconUrl}',
-      //                       width: 37.w, height: 35.h, color: Colors.white)
-      //                   : Container(),
-      //               SizedBox(height: 4.h),
-      //               Text('${services[index].title}',
-      //                   style: bodyTextStyleLato.copyWith(
-      //                       color: Colors.white, fontSize: 15.sp))
-      //             ],
-      //           ),
-      //         )
-      //       ],
-      //     ),
-      //   ),
-      // ),
-    );
+     );
   }
 }

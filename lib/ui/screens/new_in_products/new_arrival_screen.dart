@@ -113,8 +113,11 @@ class NewArrivalScreen extends StatelessWidget {
                                             padding: EdgeInsets.zero,
                                              gridDelegate:
                                               SliverGridDelegateWithFixedCrossAxisCount(
-                                                  childAspectRatio: MediaQuery.of(context).size.width /
-                      (MediaQuery.of(context).size.height / 1.6),
+                                                   childAspectRatio: Get.height >= 800
+                                                ? MediaQuery.of(context).size.width /
+                                                    (MediaQuery.of(context).size.height / 1.78)
+                                                : MediaQuery.of(context).size.width /
+                                                    (MediaQuery.of(context).size.height / 1.6),
                                                     crossAxisCount: 2,
                                                     mainAxisSpacing: 15,
                                                     crossAxisSpacing: 15),
