@@ -88,7 +88,7 @@ class _MyAppState extends State<MyApp> {
             ChangeNotifierProvider(create: (context) => HomeViewModel()),
           ],
           child: GetMaterialApp(
-              title: "HomeDecor",
+              title: "Inna Home",
               debugShowCheckedModeBanner: false,
               onGenerateRoute: Rooter.generateRoute,
               translations: LocalizationClass(),
