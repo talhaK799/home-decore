@@ -53,7 +53,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
                           padding: EdgeInsets.symmetric(horizontal: 2.w),
                           decoration: topRoundedDecoration,
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               SizedBox(height: 10.h),
                               Row(
@@ -96,53 +96,54 @@ class _WishlistScreenState extends State<WishlistScreen> {
                               ),
                               SizedBox(height: 5.h),
                               Center(
-                                child: GridView.builder(
-                                    padding: EdgeInsets.zero,
-                                    primary: false,
-                                    itemCount: model.wishlistedProducts.length,
-                                    shrinkWrap: true,
-                                    gridDelegate:
-                                        SliverGridDelegateWithFixedCrossAxisCount(
-                                            childAspectRatio:
-                                                width <= 340 && height <= 712
-                                                    ? 1 / 1.4
-                                                    : width <= 360.0 &&
-                                                            height <= 732.0
-                                                        ? 1 / 1.3
-                                                        : 1 / 1.13,
-                                            crossAxisCount: 2,
-                                            mainAxisSpacing: 4,
-                                            crossAxisSpacing: 4),
-                                    itemBuilder: (context, index) {
-                                      return Padding(
-                                        padding: const EdgeInsets.only(
-                                            bottom: 8.0, left: 3, right: 3),
-                                        child: GestureDetector(
-                                          onTap: () async {
-                                            model.wishlistedProducts[
-                                                index] = await Get.to(
-                                                    () => ProductDetailScreen(
-                        isFirstTime: true,
-
-                                                          product: model
-                                                                  .wishlistedProducts[
-                                                              index],
-                                                        )) ??
-                                                model.wishlistedProducts[index];
-                                            setState(() {});
-                                          },
-                                          child: ProductsContainer(
-                                            onChange: () {
-                                              model.toggleProductLike(
-                                                  model.wishlistedProducts,
-                                                  index);
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                                  child: GridView.builder(
+                                      padding: EdgeInsets.zero,
+                                      primary: false,
+                                      itemCount: model.wishlistedProducts.length,
+                                      shrinkWrap: true,
+                                      gridDelegate:
+                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                               childAspectRatio: Get.height >= 800
+                                                  ? MediaQuery.of(context).size.width /
+                                                      (MediaQuery.of(context).size.height / 1.85)
+                                                  : MediaQuery.of(context).size.width /
+                                                      (MediaQuery.of(context).size.height / 1.67),
+                                              crossAxisCount: 2,
+                                              mainAxisSpacing: 4,
+                                              crossAxisSpacing: 4),
+                                      itemBuilder: (context, index) {
+                                        return Padding(
+                                          padding: const EdgeInsets.only(
+                                              bottom: 8.0, left: 3, right: 3),
+                                          child: GestureDetector(
+                                            onTap: () async {
+                                              model.wishlistedProducts[
+                                                  index] = await Get.to(
+                                                      () => ProductDetailScreen(
+                                                          isFirstTime: true,
+                                  
+                                                            product: model
+                                                                    .wishlistedProducts[
+                                                                index],
+                                                          )) ??
+                                                  model.wishlistedProducts[index];
+                                              setState(() {});
                                             },
-                                            product:
-                                                model.wishlistedProducts[index],
+                                            child: ProductsContainer(
+                                              onChange: () {
+                                                model.toggleProductLike(
+                                                    model.wishlistedProducts,
+                                                    index);
+                                              },
+                                              product:
+                                                  model.wishlistedProducts[index],
+                                            ),
                                           ),
-                                        ),
-                                      );
-                                    }),
+                                        );
+                                      }),
+                                ),
                               ),
                               SizedBox(height: 100.h),
                             ],

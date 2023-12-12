@@ -352,30 +352,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                           : newInProductsList(model,
                                               model.authService.allProducts),
                                 ),
-                                SizedBox(height: 25.h),
-
-                                Padding(
-                                    padding: EdgeInsetsDirectional.only(
-                                        start: 10.0, bottom: 10),
-                                    child: Text('Offers',
-                                        style: normalTextStyleLato.copyWith(
-                                            fontSize: 18.sp,
-                                            color: blackColor))),
-
-////removed offerslider
-                                ///
-                                // ///
-                                // /// offer images
-                                // ///
-                                // Padding(
-                                //     padding: const EdgeInsets.symmetric(
-                                //         horizontal: 15.0),
-                                //     child: OffersSlider(
-                                //         offers: model.authService.offers,
-                                //         images: model.offersImages,
-                                //         model: model)),
-
-                                // SizedBox(height: 100.h),
+                                SizedBox(height: 70.h),
                               ],
                             ),
                           )

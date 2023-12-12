@@ -26,8 +26,7 @@ class CategProdScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
+
     return ChangeNotifierProvider(
       create: (context) => CategProdViewModel(
           subCategory, isFromOffers, offer ?? null, subCategoryId!),
@@ -60,7 +59,7 @@ class CategProdScreen extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 2.0),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             SizedBox(height: 10.h),
                             Row(
@@ -118,49 +117,55 @@ class CategProdScreen extends StatelessWidget {
                                           MainAxisAlignment.center,
                                       children: [
                                         Expanded(
-                                          child: GridView.builder(
-                                              primary: false,
-                                              itemCount: model.products.length,
-                                              shrinkWrap: true,
-                                              padding: EdgeInsets.zero,
-                                               gridDelegate:
-                                              SliverGridDelegateWithFixedCrossAxisCount(
-                                                  childAspectRatio: MediaQuery.of(context).size.width /
-                      (MediaQuery.of(context).size.height / 1.71),
-                                                      crossAxisCount: 2,
-                                                      mainAxisSpacing: 4,
-                                                      crossAxisSpacing: 4),
-                                              itemBuilder: (context, index) {
-                                                return Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          bottom: 8.0,
-                                                          left: 3,
-                                                          right: 3),
-                                                  child: GestureDetector(
-                                                    onTap: () {
-                                                      Get.to(
-                                                          ProductDetailScreen(
-                                                              isFirstTime: true,
-                                                              isFromOffer:
-                                                                  isFromOffers,
-                                                              offer: offer,
-                                                              product: model
-                                                                      .products[
-                                                                  index]));
-                                                    },
-                                                    child: ProductsContainer(
-                                                      onChange: () {
-                                                        model.toggleProductLike(
-                                                            model.products,
-                                                            index);
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                                            child: GridView.builder(
+                                                primary: false,
+                                                itemCount: model.products.length,
+                                                shrinkWrap: true,
+                                                padding: EdgeInsets.zero,
+                                                 gridDelegate:
+                                                SliverGridDelegateWithFixedCrossAxisCount(
+                                                     childAspectRatio: Get.height >= 800
+                                                  ? MediaQuery.of(context).size.width /
+                                                      (MediaQuery.of(context).size.height / 1.78)
+                                                  : MediaQuery.of(context).size.width /
+                                                      (MediaQuery.of(context).size.height / 1.6),
+                                                        crossAxisCount: 2,
+                                                        mainAxisSpacing: 4,
+                                                        crossAxisSpacing: 4),
+                                                itemBuilder: (context, index) {
+                                                  return Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            bottom: 8.0,
+                                                            left: 3,
+                                                            right: 3),
+                                                    child: GestureDetector(
+                                                      onTap: () {
+                                                        Get.to(
+                                                            ProductDetailScreen(
+                                                                isFirstTime: true,
+                                                                isFromOffer:
+                                                                    isFromOffers,
+                                                                offer: offer,
+                                                                product: model
+                                                                        .products[
+                                                                    index]));
                                                       },
-                                                      product:
-                                                          model.products[index],
+                                                      child: ProductsContainer(
+                                                        onChange: () {
+                                                          model.toggleProductLike(
+                                                              model.products,
+                                                              index);
+                                                        },
+                                                        product:
+                                                            model.products[index],
+                                                      ),
                                                     ),
-                                                  ),
-                                                );
-                                              }),
+                                                  );
+                                                }),
+                                          ),
                                         ),
                                       ],
                                     ),

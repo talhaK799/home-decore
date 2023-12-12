@@ -22,8 +22,7 @@ class ProductsScreen extends StatefulWidget {
 class _ProductsScreenState extends State<ProductsScreen> {
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
+    
     return ChangeNotifierProvider(
       create: (context) => ProductsViewModel(),
       child: Consumer<ProductsViewModel>(
@@ -107,8 +106,11 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                   shrinkWrap: true,
                                   gridDelegate:
                                               SliverGridDelegateWithFixedCrossAxisCount(
-                                                  childAspectRatio: MediaQuery.of(context).size.width /
-                      (MediaQuery.of(context).size.height / 1.6),
+                                                  childAspectRatio: Get.height >= 800
+                                                ? MediaQuery.of(context).size.width /
+                                                    (MediaQuery.of(context).size.height / 1.78)
+                                                : MediaQuery.of(context).size.width /
+                                                    (MediaQuery.of(context).size.height / 1.6),
                                           crossAxisCount: 2,
                                           mainAxisSpacing: 15,
                                           crossAxisSpacing: 15),
