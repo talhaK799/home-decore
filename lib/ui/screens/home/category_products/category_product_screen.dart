@@ -10,7 +10,6 @@ import 'package:f2_base_project/ui/custom_widgets/products_container.dart';
 import 'package:f2_base_project/ui/screens/home/category_products/categ_prod_view_model.dart';
 import 'package:f2_base_project/ui/screens/shop-section/all-product/filter/filter_screen.dart';
 import 'package:f2_base_project/ui/screens/shop-section/all-product/product_detail/product_detail_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -124,17 +123,10 @@ class CategProdScreen extends StatelessWidget {
                                               itemCount: model.products.length,
                                               shrinkWrap: true,
                                               padding: EdgeInsets.zero,
-                                              gridDelegate:
-                                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                                      childAspectRatio: width <=
-                                                                  340 &&
-                                                              height <= 712
-                                                          ? 1 / 1.4
-                                                          : width <= 360.0 &&
-                                                                  height <=
-                                                                      732.0
-                                                              ? 1 / 1.3
-                                                              : 1 / 1.13,
+                                               gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                                  childAspectRatio: MediaQuery.of(context).size.width /
+                      (MediaQuery.of(context).size.height / 1.71),
                                                       crossAxisCount: 2,
                                                       mainAxisSpacing: 4,
                                                       crossAxisSpacing: 4),

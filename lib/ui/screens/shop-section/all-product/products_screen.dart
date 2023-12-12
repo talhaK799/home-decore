@@ -106,14 +106,9 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                       model.authService.allProducts.length,
                                   shrinkWrap: true,
                                   gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                          childAspectRatio:
-                                              width <= 340 && height <= 712
-                                                  ? 1 / 1.4
-                                                  : width <= 360.0 &&
-                                                          height <= 732.0
-                                                      ? 1 / 1.32
-                                                      : 1 / 1.13,
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                                  childAspectRatio: MediaQuery.of(context).size.width /
+                      (MediaQuery.of(context).size.height / 1.6),
                                           crossAxisCount: 2,
                                           mainAxisSpacing: 15,
                                           crossAxisSpacing: 15),

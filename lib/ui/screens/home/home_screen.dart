@@ -213,7 +213,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                             model.authService.categories))),
                                 SizedBox(height: 12.h),
                                 Container(
-                                  height: 170.h,
+                                  height: 160.h,
                                   child: ListView.builder(
                                     scrollDirection: Axis.horizontal,
                                     itemCount:
@@ -481,7 +481,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   ),
                 ]),
             child: Padding(
-              padding: EdgeInsets.only(left: 8, right: 8, top: 8, bottom: 8),
+              padding: EdgeInsets.only(left: 8, right: 8, top: 8, bottom: 0),
               child: Column(
                 children: [
                   services[index].iconUrl != null
@@ -495,8 +495,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           ),
                         )
                       : Container(
-                          width: 70.w,
-                          height: 75.h,
+                          width: 130.w,
+                          height: 100.h,
                           decoration: BoxDecoration(
                             color: greyColor,
                             borderRadius: BorderRadius.circular(10),
@@ -508,7 +508,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   Flexible(
                     child: Text(
                       '${services[index].title ?? ''}',
-                      maxLines: 2,
+                      // maxLines: 2,
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,
                       style: boldTextStyleHacen.copyWith(
@@ -517,62 +517,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           fontFamily: latoFont,
                           fontWeight: FontWeight.bold),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
           ),
-          // child: UnconstrainedBox(
-          //   child: Container(
-          //     height: 70.2.h,
-          //     width: 86.8.w,
-          //     decoration: BoxDecoration(
-          //       borderRadius: BorderRadius.circular(12),
-          //       color: primaryColor,
-          //     ),
-          //     child: Stack(
-          //       children: [
-          //         Align(
-          //           alignment: Alignment.bottomRight,
-          //           // child:
-          //           //     // services[index].imageUrl != null
-          //           //     //     ? FadeInImage.assetNetwork(
-          //           //     //         placeholder:
-          //           //     //             '$staticAssets/service-sport-background.png',
-          //           //     //         image: '${services[index].imageUrl}',
-          //           //     //         fit: BoxFit.contain,
-          //           //     //       )
-          //           //     //     :
-          //           //     Image.network(
-          //           //   '${services[index].iconUrl}',
-          //           //   width: 77.7.w,
-          //           //   height: 71.9.h,
-          //           //   fit: BoxFit.cover,
-          //           //   // color: Color(0xFFDA4646),
-          //           // ),
-          //         ),
-          //         Positioned(
-          //           top: 8.h,
-          //           left: 6.w,
-          //           right: 5.w,
-          //           child: Column(
-          //             crossAxisAlignment: CrossAxisAlignment.start,
-          //             children: [
-          //               services[index].iconUrl != null
-          //                   ? Image.network('${services[index].iconUrl}',
-          //                       width: 37.w, height: 35.h, color: Colors.white)
-          //                   : Container(),
-          //               SizedBox(height: 4.h),
-          //               Text('${services[index].title}',
-          //                   style: bodyTextStyleLato.copyWith(
-          //                       color: Colors.white, fontSize: 15.sp))
-          //             ],
-          //           ),
-          //         )
-          //       ],
-          //     ),
-          //   ),
-          // ),
-        ));
+        ),
+      );
   }
 }
