@@ -23,8 +23,7 @@ class NewArrivalScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
+
     return ChangeNotifierProvider(
       create: (context) => NewInProductsViewModel(),
       child: Consumer<NewInProductsViewModel>(
@@ -112,16 +111,10 @@ class NewArrivalScreen extends StatelessWidget {
                                             itemCount: newInProductsList.length,
                                             shrinkWrap: true,
                                             padding: EdgeInsets.zero,
-                                            gridDelegate:
-                                                SliverGridDelegateWithFixedCrossAxisCount(
-                                                    childAspectRatio: width <=
-                                                                340 &&
-                                                            height <= 712
-                                                        ? 1 / 1.4
-                                                        : width <= 360.0 &&
-                                                                height <= 732.0
-                                                            ? 1 / 1.3
-                                                            : 1 / 1.13,
+                                             gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                                  childAspectRatio: MediaQuery.of(context).size.width /
+                      (MediaQuery.of(context).size.height / 1.6),
                                                     crossAxisCount: 2,
                                                     mainAxisSpacing: 15,
                                                     crossAxisSpacing: 15),

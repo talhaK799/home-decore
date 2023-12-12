@@ -87,17 +87,10 @@ class SubCategoryScreen extends StatelessWidget {
                                                   model.subCategory.length,
                                               shrinkWrap: true,
                                               padding: EdgeInsets.zero,
-                                              gridDelegate:
-                                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                                      childAspectRatio: width <=
-                                                                  340 &&
-                                                              height <= 712
-                                                          ? 1 / 1.4
-                                                          : width <= 360.0 &&
-                                                                  height <=
-                                                                      732.0
-                                                              ? 1 / 1.3
-                                                              : 1 / 1.13,
+                                               gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                                  childAspectRatio: MediaQuery.of(context).size.width /
+                      (MediaQuery.of(context).size.height / 1.6),
                                                       crossAxisCount: 2,
                                                       mainAxisSpacing: 4,
                                                       crossAxisSpacing: 4),

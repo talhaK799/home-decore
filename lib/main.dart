@@ -76,10 +76,11 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     return MediaQuery(
-      data: MediaQueryData(size: Size(375, 810)),
+      data: MediaQueryData(size: Size(screenSize.width, screenSize.height)),
       child: ScreenUtilInit(
-        designSize: Size(375, 810),
+        designSize: Size(screenSize.width, screenSize.height),
         builder: (context, child) => MultiProvider(
           providers: [
             ChangeNotifierProvider(create: (context) => CartViewModel(this)),
