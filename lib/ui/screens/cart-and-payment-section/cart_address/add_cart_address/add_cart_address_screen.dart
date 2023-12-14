@@ -106,35 +106,35 @@ class AddCartAddressScreen extends StatelessWidget {
               onChange: (value) {
                 model.userAddress.name = value;
               }),
-          Padding(
-            padding: const EdgeInsets.only(top: 25.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text("country_code".tr,
-                    style: bodyTextStyleLato.copyWith(
-                        color: primaryColor, fontSize: 16.sp)),
-                Container(
-                    height: 40.h,
-                    alignment: Alignment.centerLeft,
-                    decoration: BoxDecoration(
-                        border: Border(
-                            bottom: BorderSide(
-                                color: Colors.grey.withOpacity(0.3)))),
-                    child: Text(model.userAddress.countryCode ?? '+32',
-                        style: bodyTextStyleLato.copyWith(
-                            fontSize: model.userAddress.countryCode == null
-                                ? 10.sp
-                                : 16.sp,
-                            color: model.userAddress.countryCode == null
-                                ? Colors.black.withOpacity(0.5)
-                                : Colors.black))),
-              ],
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(top: 25.0),
+          //   child: Column(
+          //     mainAxisAlignment: MainAxisAlignment.start,
+          //     crossAxisAlignment: CrossAxisAlignment.stretch,
+          //     children: [
+          //       Text("country_code".tr,
+          //           style: bodyTextStyleLato.copyWith(
+          //               color: primaryColor, fontSize: 16.sp)),
+          //       Container(
+          //           height: 40.h,
+          //           alignment: Alignment.centerLeft,
+          //           decoration: BoxDecoration(
+          //               border: Border(
+          //                   bottom: BorderSide(
+          //                       color: Colors.grey.withOpacity(0.3)))),
+          //           child: Text(model.userAddress.countryCode ?? '+32',
+          //               style: bodyTextStyleLato.copyWith(
+          //                   fontSize: model.userAddress.countryCode == null
+          //                       ? 10.sp
+          //                       : 16.sp,
+          //                   color: model.userAddress.countryCode == null
+          //                       ? Colors.black.withOpacity(0.5)
+          //                       : Colors.black))),
+          //     ],
+          //   ),
+          // ),
           textfield(
-            hintText: '',
+            hintText: 'Phone number with country code',
             label: "phone".tr,
             onChange: (value) {
               model.userAddress.phone = value;
@@ -142,29 +142,37 @@ class AddCartAddressScreen extends StatelessWidget {
             textInputType: TextInputType.number,
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 25.0),
+            padding: const EdgeInsets.only(top: 0.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text("country".tr,
-                    style: bodyTextStyleLato.copyWith(
-                        color: primaryColor, fontSize: 16.sp)),
-                Container(
-                    height: 40.h,
-                    alignment: Alignment.centerLeft,
-                    decoration: BoxDecoration(
-                        border: Border(
-                            bottom: BorderSide(
-                                color: Colors.grey.withOpacity(0.3)))),
-                    child: Text(model.userAddress.country ?? 'Belgium',
-                        style: bodyTextStyleLato.copyWith(
-                            fontSize: model.userAddress.country == null
-                                ? 10.sp
-                                : 16.sp,
-                            color: model.userAddress.country == null
-                                ? Colors.black.withOpacity(0.5)
-                                : Colors.black))),
+                // Text("country".tr,
+                //     style: bodyTextStyleLato.copyWith(
+                //         color: primaryColor, fontSize: 16.sp)),
+                        textfield(
+            hintText: 'Country name',
+            label: "Country".tr,
+            onChange: (value) {
+              model.userAddress.country = value;
+            },
+            textInputType: TextInputType.number,
+          ),
+                // Container(
+                //     height: 40.h,
+                //     alignment: Alignment.centerLeft,
+                //     decoration: BoxDecoration(
+                //         border: Border(
+                //             bottom: BorderSide(
+                //                 color: Colors.grey.withOpacity(0.3)))),
+                //     child: Text(model.userAddress.country ?? 'Belgium',
+                //         style: bodyTextStyleLato.copyWith(
+                //             fontSize: model.userAddress.country == null
+                //                 ? 10.sp
+                //                 : 16.sp,
+                //             color: model.userAddress.country == null
+                //                 ? Colors.black.withOpacity(0.5)
+                //                 : Colors.black))),
               ],
             ),
           ),

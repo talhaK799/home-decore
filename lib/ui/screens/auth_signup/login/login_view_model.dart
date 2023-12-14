@@ -32,27 +32,27 @@ class LoginViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  signUpWithFacebook() async {
-    setState(ViewState.busy);
-    authResult = await _authService.signupWithFacebook();
-    if (authResult.status!) {
-      print("Facebook user created successfully");
-      _authService.appUser = await _dbService.getAppUser(authResult.user.id);
-      final newToken = await FirebaseMessaging.instance.getToken();
-      _authService.appUser.fcmToken = newToken;
-      await _dbService.updateUserFcm(newToken, authResult.user.id);
-      Get.offAll(() => RootScreen());
-    } else {
-      Get.dialog(AlertDialog(
-        title: Text("Error"),
-        content: Text("Sigining with Facebook"),
-        actions: [
-          ElevatedButton(child: Text("Ok"), onPressed: () => Get.back())
-        ],
-      ));
-    }
-    setState(ViewState.idle);
-  }
+  // signUpWithFacebook() async {
+  //   setState(ViewState.busy);
+  //   authResult = await _authService.signupWithFacebook();
+  //   if (authResult.status!) {
+  //     print("Facebook user created successfully");
+  //     _authService.appUser = await _dbService.getAppUser(authResult.user.id);
+  //     final newToken = await FirebaseMessaging.instance.getToken();
+  //     _authService.appUser.fcmToken = newToken;
+  //     await _dbService.updateUserFcm(newToken, authResult.user.id);
+  //     Get.offAll(() => RootScreen());
+  //   } else {
+  //     Get.dialog(AlertDialog(
+  //       title: Text("Error"),
+  //       content: Text("Sigining with Facebook"),
+  //       actions: [
+  //         ElevatedButton(child: Text("Ok"), onPressed: () => Get.back())
+  //       ],
+  //     ));
+  //   }
+  //   setState(ViewState.idle);
+  // }
 
   signUpWithGoogle() async {
     setState(ViewState.busy);
