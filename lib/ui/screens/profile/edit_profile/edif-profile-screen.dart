@@ -10,7 +10,6 @@ import 'package:f2_base_project/ui/custom_widgets/circular_progress_indicator.da
 import 'package:f2_base_project/ui/custom_widgets/custom_app_bar.dart';
 import 'package:f2_base_project/ui/custom_widgets/image-container.dart';
 import 'package:f2_base_project/ui/custom_widgets/rectangle_button.dart';
-import 'package:f2_base_project/ui/custom_widgets/rounded-raised-button.dart';
 import 'package:f2_base_project/ui/screens/profile/edit_profile/edit-profile-veiw-model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -392,7 +391,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               size: 15, color: Colors.white),
                           elevation: 0,
                           onChanged: onEditPressed,
-                          items: <String>['Male', 'Female']
+                          items: <String>['Male', 'Female',"Prefer not to disclose"]
                               .map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,

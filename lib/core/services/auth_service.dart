@@ -10,7 +10,6 @@ import 'package:f2_base_project/ui/screens/auth_signup/otp/otp_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'auth_exception_service.dart';
@@ -24,7 +23,7 @@ class AuthService extends ChangeNotifier {
   User? user;
   bool isLogin = false;
   AppUser appUser = AppUser();
-  final _facebookSignIn = FacebookAuth.instance;
+  // final _facebookSignIn = FacebookAuth.instance;
   List<Categories> categories = [];
   String fbaPhoneVerificationId = '';
   bool isPhoneVerified = false;
@@ -66,52 +65,52 @@ class AuthService extends ChangeNotifier {
     }
   }
 
-  signupWithFacebook() async {
-    //Todo: Do settings in the Google cloud for 0Auth Credentials
-    try {
-      final LoginResult result = await _facebookSignIn.login();
-      print('Facebook login => ${result.message}');
-      if (result.status == LoginStatus.success) {
-        print('Facebook login result success');
-        final AccessToken accessToken = result.accessToken!;
-        print("AccessToken::FaceAuth => ${accessToken.token}");
-        final firebaseAuthCred =
-            FacebookAuthProvider.credential(accessToken.token);
-        final loginResult =
-            await FirebaseAuth.instance.signInWithCredential(firebaseAuthCred);
-        final userData = await FacebookAuth.instance.getUserData();
-        this.appUser = AppUser();
+  // signupWithFacebook() async {
+  //   //Todo: Do settings in the Google cloud for 0Auth Credentials
+  //   try {
+  //     final LoginResult result = await _facebookSignIn.login();
+  //     print('Facebook login => ${result.message}');
+  //     if (result.status == LoginStatus.success) {
+  //       print('Facebook login result success');
+  //       final AccessToken accessToken = result.accessToken!;
+  //       print("AccessToken::FaceAuth => ${accessToken.token}");
+  //       final firebaseAuthCred =
+  //           FacebookAuthProvider.credential(accessToken.token);
+  //       final loginResult =
+  //           await FirebaseAuth.instance.signInWithCredential(firebaseAuthCred);
+  //       final userData = await FacebookAuth.instance.getUserData();
+  //       this.appUser = AppUser();
 
-        /// Get user data
-        appUser.id = loginResult.user!.uid;
-        appUser.name = userData['name'];
-        appUser.email = userData['email'];
-        appUser.imageUrl = userData['picture']['data']['url'];
-        print('facebookUserImageUrl => ${userData['picture']['data']['url']}');
-        print('facebook login => ${appUser.name}');
-        customAuthResult.status = true;
-        customAuthResult.user = appUser;
-        isLogin = true;
-        bool isUserExist = await _dbService.checkUser(appUser);
-        if (isUserExist) {
-          appUser = await _dbService.getAppUser(appUser.id);
-        } else {
-          await _dbService.registerAppUser(appUser);
-        }
+  //       /// Get user data
+  //       appUser.id = loginResult.user!.uid;
+  //       appUser.name = userData['name'];
+  //       appUser.email = userData['email'];
+  //       appUser.imageUrl = userData['picture']['data']['url'];
+  //       print('facebookUserImageUrl => ${userData['picture']['data']['url']}');
+  //       print('facebook login => ${appUser.name}');
+  //       customAuthResult.status = true;
+  //       customAuthResult.user = appUser;
+  //       isLogin = true;
+  //       bool isUserExist = await _dbService.checkUser(appUser);
+  //       if (isUserExist) {
+  //         appUser = await _dbService.getAppUser(appUser.id);
+  //       } else {
+  //         await _dbService.registerAppUser(appUser);
+  //       }
 
-        // Todo: Create Account in Database
-      } else {
-        customAuthResult.status = false;
-        customAuthResult.errorMessage = 'An undefined error happened.';
-      }
-    } catch (e) {
-      print('Exception @sighupWithFacebook: $e');
-      customAuthResult.status = false;
-      // customAuthResult.errorMessage =
-      //     AuthExceptionsService.generateExceptionMessage(e);
-    }
-    return customAuthResult;
-  }
+  //       // Todo: Create Account in Database
+  //     } else {
+  //       customAuthResult.status = false;
+  //       customAuthResult.errorMessage = 'An undefined error happened.';
+  //     }
+  //   } catch (e) {
+  //     print('Exception @sighupWithFacebook: $e');
+  //     customAuthResult.status = false;
+  //     // customAuthResult.errorMessage =
+  //     //     AuthExceptionsService.generateExceptionMessage(e);
+  //   }
+  //   return customAuthResult;
+  // }
 
   ///
   /// Google SignIn
