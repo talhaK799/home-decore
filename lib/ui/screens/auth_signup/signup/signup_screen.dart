@@ -268,6 +268,26 @@ class SignUpScreen extends StatelessWidget {
                 ),
 
                 SizedBox(height: 18.h),
+                 CustomTextField(
+                  inputType: TextInputType.number,
+                  errorColor: Colors.white,
+                  prefixIcon: Icon(
+                    Icons.phone_android,
+                    color: greyColor,
+                  ),
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return "Enter phone number".tr;
+                    } else {
+                      return null;
+                    }
+                  },
+                  hintText: "Phone number".tr,
+                  onSaved: (value) {
+                    model.appUser.mobileNo = value.trim();
+                  },
+                ),
+                SizedBox(height: 18.h),
 
                 /// Password field
                 CustomTextField(
@@ -347,11 +367,11 @@ class SignUpScreen extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    // if (model.formKey.currentState!
-                    //     .validate()) {
+                    if (model.formKey.currentState!
+                        .validate()) {
                     model.formKey.currentState!.save();
                     model.signUpWithEmailAndPassword();
-                    // }
+                    }
                   },
                   child: Container(
                     alignment: Alignment.center,

@@ -1,9 +1,11 @@
 import 'package:f2_base_project/core/constants/colors.dart';
 import 'package:f2_base_project/core/constants/strings.dart';
 import 'package:f2_base_project/core/constants/styles.dart';
+import 'package:f2_base_project/core/enums/view_state.dart';
 import 'package:f2_base_project/core/others/screen_uitls.dart';
 import 'package:f2_base_project/ui/custom_widgets/image-container.dart';
 import 'package:f2_base_project/ui/dialogs/signup_required_dialog.dart';
+import 'package:f2_base_project/ui/screens/auth_signup/login/login_screen.dart';
 import 'package:f2_base_project/ui/screens/cart-and-payment-section/cart_screen.dart';
 import 'package:f2_base_project/ui/screens/home/home_view_model.dart';
 import 'package:f2_base_project/ui/screens/root/root_provider.dart';
@@ -41,6 +43,11 @@ class _RootScreenState extends State<RootScreen> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    if( isDrawerOpened == true){
+          toggleAnimation();
+    }
+
+
     animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 300));
   }
@@ -74,7 +81,9 @@ class _RootScreenState extends State<RootScreen> with TickerProviderStateMixin {
               animationDuration: const Duration(milliseconds: 300),
               animateChildDecoration: true,
               disabledGestures: false,
-              drawer: DrawerScreen(),
+              drawer: DrawerScreen(
+               
+              ),
               child: GestureDetector(
                 onTap: () {
                   if (isDrawerOpened) {

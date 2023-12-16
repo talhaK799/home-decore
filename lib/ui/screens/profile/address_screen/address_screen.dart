@@ -128,7 +128,23 @@ class _AddressScreenState extends State<AddressScreen> {
             ),
             InkWell(
                 onTap: () {
-                  model!.deleteAddress(model.addresses[index]);
+
+                  Get.dialog(AlertDialog(
+                                      title: Text("Delete"),
+                                      content: Text("Are you sure to delete the address?"),
+                                      actions: [
+                                        ElevatedButton(child: Text("Yes"), onPressed: () {
+                                           model!.deleteAddress(model.addresses[index]);
+                                        },),
+                                        ElevatedButton(child: Text("No"), onPressed: () {
+                                           Get.back();
+                                        },),
+                                      ],
+                                    ),
+                                    );
+
+
+                  
                 },
                 child: Icon(Icons.delete, color: primaryColor)),
           ],

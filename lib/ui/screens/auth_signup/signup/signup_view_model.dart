@@ -20,6 +20,7 @@ class SignUpViewModel extends BaseViewModel {
   var passwrdController = TextEditingController();
   var locationController = TextEditingController();
   var countryCodeController = TextEditingController();
+    var phoneNumber = TextEditingController();
 
   var confirmPasswrdControler = TextEditingController();
   AppUser signUpBody = AppUser();
