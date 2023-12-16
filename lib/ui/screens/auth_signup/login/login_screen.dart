@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:f2_base_project/core/constants/colors.dart';
 import 'package:f2_base_project/core/constants/strings.dart';
@@ -9,7 +8,6 @@ import 'package:f2_base_project/ui/custom_widgets/authentication_app_bar.dart';
 import 'package:f2_base_project/ui/custom_widgets/circular_progress_indicator.dart';
 import 'package:f2_base_project/ui/custom_widgets/custom_text_field.dart';
 import 'package:f2_base_project/ui/custom_widgets/image-container.dart';
-import 'package:f2_base_project/ui/custom_widgets/rectangle_button.dart';
 import 'package:f2_base_project/ui/screens/auth_signup/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -242,7 +240,6 @@ class LoginScreen extends StatelessWidget {
                       : GestureDetector(
                           onTap: () {
                             if (model.formKey.currentState!.validate()) {
-                              print('object');
                               model.loginWithEmailAndPassword();
                             }
                           },

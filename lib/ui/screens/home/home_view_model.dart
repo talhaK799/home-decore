@@ -39,6 +39,7 @@ class HomeViewModel extends BaseViewModel {
 
   Future getCategories() async {
     setState(ViewState.busy);
+    authService.categories = [];
     authService.categories = await _dbService.getCategories();
     print('categoriesLength => ${authService.categories.length}');
     setState(ViewState.idle);

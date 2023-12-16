@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:f2_base_project/core/models/app_user.dart';
 import 'package:f2_base_project/core/models/categories.dart';
+import 'package:f2_base_project/core/models/contsct_us.dart';
 import 'package:f2_base_project/core/models/faqs.dart';
 import 'package:f2_base_project/core/models/helpline.dart';
 import 'package:f2_base_project/core/models/notifications.dart';
@@ -77,11 +78,18 @@ class DatabaseService {
   }
 
   updateUser(AppUser appUser, id) async {
-    await _db
+    try{
+      await _db
         .collection("app_user")
         .doc(id)
         .update(appUser.toJson())
         .then((value) => debugPrint('user updated successfully'));
+        return true;
+    }catch(e){
+       debugPrint('Exception @DatabaseService/update profile');
+      return false;
+      
+    }
   }
 
   /// save address
@@ -565,6 +573,23 @@ class DatabaseService {
     } catch (e) {
       print('Exception @DatabaseService/getHelpline $e');
       return HelpLine();
+    }
+  }
+
+
+  /// Register app user
+  addContactUsRecord(ContactUs contactUs) async {
+    
+    try {
+      await _db
+          .collection('contact_us')
+          .add(contactUs.toJson())
+          .then((value) => debugPrint('contact_us successfully added'));
+          return true;
+    } catch (e, s) {
+      debugPrint('Exception @DatabaseService/contact_us');
+      debugPrint(s.toString());
+      return false;
     }
   }
 }

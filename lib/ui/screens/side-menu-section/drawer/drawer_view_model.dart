@@ -9,7 +9,14 @@ import '../../../../locator.dart';
 
 class DrawerViewModel extends BaseViewModel {
   final authService = locator<AuthService>();
-  final _dbService = locator<DatabaseService>();
+  
+
+  DrawerViewModel(){
+    print("Lenght ===> ${authService.categories.length}");
+  
+  }
+ 
+
 
   void logOut() async {
     setState(ViewState.busy);

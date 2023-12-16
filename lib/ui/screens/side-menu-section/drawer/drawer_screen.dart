@@ -7,6 +7,7 @@ import 'package:f2_base_project/core/others/screen_uitls.dart';
 import 'package:f2_base_project/core/services/string_formate_service.dart';
 import 'package:f2_base_project/ui/dialogs/signup_required_dialog.dart';
 import 'package:f2_base_project/ui/screens/auth_signup/login/login_screen.dart';
+import 'package:f2_base_project/ui/screens/home/category_products/sub_category_screen.dart';
 import 'package:f2_base_project/ui/screens/notification/notification-screen.dart';
 import 'package:f2_base_project/ui/screens/offers/offers_screen.dart';
 import 'package:f2_base_project/ui/screens/profile/profile-screen.dart';
@@ -23,6 +24,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../faq/FAQ_screen.dart';
 
 class DrawerScreen extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -113,6 +115,7 @@ class DrawerScreen extends StatelessWidget {
                         ),
                       ),
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(height: 15.h),
                           Padding(
@@ -120,95 +123,41 @@ class DrawerScreen extends StatelessWidget {
                                 const EdgeInsets.only(right: 15.0, left: 25),
                             child: Divider(color: greyColor),
                           ),
-                          SizedBox(height: 25.h),
-                          drawerTile(
-                              onTap: () => model.authService.isLogin
-                                  ? Get.to(ProfileScreen())
-                                  : Get.dialog(
-                                      SignupRequiredDialog('rootScreen')),
-                              image: '$staticAssets/profile_icon.png',
-                              title: 'profile'.tr,
-                              width: 20.w,
-                              height: 20.h),
-                          SizedBox(height: 20.4.h),
-                          drawerTile(
-                              onTap: () => Get.to(() => ProductsScreen()),
-                              image: '$staticAssets/shop.png',
-                              title: 'shop'.tr,
-                              width: 20.w,
-                              isShop: true,
-                              height: 20.h),
-                          SizedBox(height: 20.4.h),
-                          drawerTile(
-                              onTap: () => model.authService.isLogin
-                                  ? Get.to(WishlistScreen())
-                                  : Get.dialog(
-                                      SignupRequiredDialog('WishlistScreen')),
-                              image: '$staticAssets/like.png',
-                              title: 'wishlist'.tr,
-                              width: 20.w,
-                              height: 20.h),
-                          SizedBox(height: 20.4.h),
-                          drawerTile(
-                              onTap: () => model.authService.isLogin
-                                  ? Get.to(NotificationScreen())
-                                  : Get.dialog(SignupRequiredDialog(
-                                      'notificationScreen')),
-                              image: '$staticAssets/notifications.png',
-                              title: 'notifications'.tr,
-                              width: 20.w,
-                              height: 20.h),
-                          SizedBox(height: 20.4.h),
-                          // drawerTile(
-                          //     onTap: () => Get.to(() => OfferScreen()),
-                          //     image: '$staticAssets/payment_icon.png',
-                          //     title: 'Offers'.tr,
-                          //     width: 20.w,
-                          //     height: 20.h),
-                          // SizedBox(height: 20.4.h),
-                          drawerTile(
-                              onTap: () => Get.to(FaqScreen()),
-                              image: '$staticAssets/faq_icon.png',
-                              title: 'faqs'.tr,
-                              width: 20.w,
-                              height: 20.h),
-                          SizedBox(height: 20.4.h),
-                          drawerTile(
-                              onTap: () async {
-                                const url = "https://m.me/horitokibd";
-                                if (await canLaunch(url)) {
-                                  await launch(url);
-                                } else {
-                                  throw 'Could not launch $url';
-                                }
-                              },
-                              image: '$staticAssets/email.png',
-                              title: 'Contact Us'.tr,
-                              width: 20.w,
-                              height: 20.h),
-                          SizedBox(height: 20.4.h),
-                          // drawerTile(
-                          //     onTap: () async {
-                          //       String url =
-                          //           "tel:${model.authService.helpline.number ?? '+8801309007585'}";
-                          //       if (await canLaunch(url)) {
-                          //         await launch(url);
-                          //       } else {
-                          //         throw 'Could not launch $url';
-                          //       }
-                          //     },
-                          //     image: '$staticAssets/phone_no.png',
-                          //     title: 'Helpline'.tr,
-                          //     width: 20.w,
-                          //     height: 20.h),
-                          // SizedBox(height: 20.4.h),
-                          drawerTile(
-                              onTap: () => Get.to(PrivacyPolicyScreen()),
-                              image: '$staticAssets/privacy_icon.png',
-                              title: 'Terms and Conditions'.tr,
-                              width: 20.w,
-                              height: 20.h),
-                          SizedBox(height: 60.h),
+                           Padding(
+                             padding: const EdgeInsets.only(left: 15),
+                             child: Text('Categories',
+                                           style: normalTextStyleLato.copyWith(
+                                               color: blackColor, fontSize: 15.sp, fontFamily: latoFont)),
+                           ),
+                          
+                          Container(
+                                  // height: 160.h,
+                                  child: ListView.builder(
+                                    padding: EdgeInsets.only(left: 7),
+                                    shrinkWrap: true,
+                                    primary: false,
+
+                                    // scrollDirection: Axis.horizontal,
+                                    itemCount:
+                                        model.authService.categories.length,
+                                    itemBuilder: (context, index) {
+                                      return drawerTile(
+                                          // model.authService.categories, index,
+                                          onTap: () {
+                                             Get.to(() =>
+                SubCategoryScreen(model.authService.categories[index].title!, model.authService.categories[index].id!));
+                                          },
+                              
+                              title: '${model.authService.categories[index].title}'.tr,
+
+                                          );
+                                    },
+                                  ),
+                                ),
+                         
+                        
+                         
+                          SizedBox(height: 20.h),
                         ],
                       ),
 
@@ -219,56 +168,35 @@ class DrawerScreen extends StatelessWidget {
                         padding: EdgeInsets.only(bottom: 31.h),
                         child: Row(
                           children: [
-                            SizedBox(width: 20.w),
-                            // Icon(Icons.settings, color: primaryColor),
-                            // GestureDetector(
-                            //   onTap: () {
-                            //     Get.to(SettingsScreen());
-                            //   },
-                            //   child: Padding(
-                            //     padding: EdgeInsetsDirectional.only(start: 8.0),
-                            //     child: Text('settings'.tr,
-                            //         style: boldTextStyleLato.copyWith(
-                            //             fontSize: 17.sp, color: blackColor)),
-                            //   ),
-                            // ),
-                            // SizedBox(width: 15.w),
-                            // Container(
-                            //   width: 1.w,
-                            //   color: Colors.black,
-                            //   height: 17.9.h,
-                            // ),
+                            SizedBox(width: 3.w),
+                            
                             SizedBox(width: 15.w),
-                            GestureDetector(
-                              onTap: () {
-                                model.authService.isLogin
-                                    ? model.logOut()
-                                    : Get.to(() => LoginScreen());
-                              },
-                              child: Row(children: [
-                                Transform(
-                                    alignment: Alignment.center,
-                                    transform: Get.locale!.languageCode == 'ar'
-                                        ? Matrix4.rotationY(pi)
-                                        : Matrix4.rotationY(0),
-                                    child: Icon(
-                                      Icons.login_rounded,
-                                      color: primaryColor,
-                                    )),
-                                Padding(
-                                  padding:
-                                      EdgeInsetsDirectional.only(start: 8.0),
-                                  child: Text(
-                                      model.authService.isLogin
-                                          ? 'logout'.tr
-                                          : 'login'.tr,
-                                      style: boldTextStyleHacen.copyWith(
-                                          fontSize: 17.sp,
-                                          color: blackColor,
-                                          fontFamily: latoFont)),
-                                ),
-                              ]),
-                            )
+                            // GestureDetector(
+                            //   onTap: onLogout,
+                            //   child: Row(children: [
+                            //     Transform(
+                            //         alignment: Alignment.center,
+                            //         transform: Get.locale!.languageCode == 'ar'
+                            //             ? Matrix4.rotationY(pi)
+                            //             : Matrix4.rotationY(0),
+                            //         child: Icon(
+                            //           Icons.login_rounded,
+                            //           color: primaryColor,
+                            //         )),
+                            //     Padding(
+                            //       padding:
+                            //           EdgeInsetsDirectional.only(start: 8.0),
+                            //       child: Text(
+                            //           model.authService.isLogin
+                            //               ? 'logout'.tr
+                            //               : 'login'.tr,
+                            //           style: boldTextStyleHacen.copyWith(
+                            //               fontSize: 17.sp,
+                            //               color: blackColor,
+                            //               fontFamily: latoFont)),
+                            //     ),
+                            //   ]),
+                            // )
                           ],
                         ),
                       ),
@@ -282,38 +210,33 @@ class DrawerScreen extends StatelessWidget {
   }
 
   Widget drawerTile(
-      {String? image,
+      {
       String? title,
-      double? height,
-      double? width,
+     
       onTap,
-      isShop = false}) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Padding(
-        padding: EdgeInsetsDirectional.only(start: 35.w),
-        child: Row(
-          children: [
-            isShop
-                ? Image.asset(
-                    '$image',
-                    height: height,
-                    width: width,
-                    color: primaryColor,
-                  )
-                : Image.asset(
-                    '$image',
-                    height: height,
-                    width: width,
-                    color: primaryColor,
-                  ),
-            SizedBox(width: 20.6.w),
-            Text('$title',
-                style: normalTextStyleLato.copyWith(
-                    color: blackColor, fontSize: 15.sp, fontFamily: latoFont)),
-          ],
-        ),
+     }) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+      child: ListTile(
+        onTap: onTap,
+        
+        contentPadding: EdgeInsets.zero,
+        minVerticalPadding: 0,
+        
+        trailing: Icon(Icons.arrow_forward_ios_rounded),
+        
+        title:  Text('$title',
+              style: normalTextStyleLato.copyWith(
+                  color: blackColor, fontSize: 15.sp, fontFamily: latoFont)),
       ),
     );
   }
+
+  
+
+  
+
+
+  
 }
+

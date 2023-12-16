@@ -1,6 +1,10 @@
 import 'dart:io';
 import 'package:f2_base_project/core/constants/colors.dart';
+import 'package:f2_base_project/core/enums/view_state.dart';
+import 'package:f2_base_project/core/others/base_view_model.dart';
 import 'package:f2_base_project/core/services/auth_service.dart';
+import 'package:f2_base_project/core/services/database_service.dart';
+import 'package:f2_base_project/ui/screens/auth_signup/login/login_screen.dart';
 import 'package:f2_base_project/ui/screens/home/home_screen.dart';
 import 'package:f2_base_project/ui/screens/notification/notification-screen.dart';
 import 'package:f2_base_project/ui/screens/offers/offers_screen.dart';
@@ -11,7 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../locator.dart';
 
-class RootProvider extends ChangeNotifier {
+class RootProvider extends BaseViewModel {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   int selectedDate = 1;
   String? selectedMonth;
@@ -23,6 +27,7 @@ class RootProvider extends ChangeNotifier {
 
   RootProvider(int selectedPage, String? selectedMonth,
       {int selectedDate = 1}) {
+        getCategory();
     pageController = PageController(initialPage: 0);
     pageIndex = selectedPage;
     this.selectedDate = selectedDate;
@@ -34,6 +39,14 @@ class RootProvider extends ChangeNotifier {
       ProfileScreen(),
       AllOrdersScreen(),
     ];
+  }
+  final _dbService = locator<DatabaseService>();
+
+
+  getCategory()async{
+    authService.categories = [];
+    authService.categories =  await _dbService.getCategories();
+    notifyListeners();
   }
 
   onTap(int pageIndex) {
@@ -59,4 +72,8 @@ class RootProvider extends ChangeNotifier {
             onConfirm: () => exit(0)) ??
         false;
   }
+
+ 
+
+  
 }

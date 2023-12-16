@@ -20,7 +20,7 @@ class NotificationScreen extends StatelessWidget {
               appBarChild: CustomAppBar(
                 leadingIcon: '$staticAssets/back_icon.png',
                 onLeadingPressed: () {
-                  Get.offAll(RootScreen());
+                  Get.back();
                 },
                 title: 'Notifications'.tr,
               ),

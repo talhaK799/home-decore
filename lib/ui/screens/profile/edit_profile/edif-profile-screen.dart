@@ -71,14 +71,23 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         RectangularButton(
                           radius: 9,
                           width: 160.w,
-                          buttonColor: primaryColor,
+                          buttonColor:isNmaeEdit ==true||
+   isEmailEdit ==true||
+   isMobileNoEdit ==true||
+   isdobEdit ==true||
+   isDataEdit ==true? primaryColor:Colors.grey,
                           textStyle: boldTextStyleLato.copyWith(
                               fontSize: 19.sp,
                               color: Colors.white,
                               fontWeight: FontWeight.bold),
                           title: 'Save'.tr,
                           onTap: () async {
-                            if (_formKey.currentState!.validate()) {
+                            if(isNmaeEdit ==true||
+                              isEmailEdit ==true||
+                              isMobileNoEdit ==true||
+                              isdobEdit ==true||
+                              isDataEdit ==true){
+                                if (_formKey.currentState!.validate()) {
                               if (model.image != null) {
                                 await model.updateUserAvatar();
                                 if (isDataEdit) {
@@ -94,6 +103,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 }
                               }
                             }
+
+                              }else{
+                                print("Button desible");
+                              }
+                            
                           },
                         ),
                       ],
@@ -276,7 +290,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     secondary: greyColor,
                     primary: primaryColor,
                     onPrimary: Colors.white,
-                    surface: primaryColor,
+                    surface: Colors.white,
                     onSurface: Colors.black,
                   ),
                   indicatorColor: primaryColor,

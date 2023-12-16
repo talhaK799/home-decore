@@ -15,25 +15,30 @@ class CheckoutDialog extends StatelessWidget {
       title: Text('$title'),
       content: Text("$errorMessage"),
       actions: [
-        ElevatedButton(
-          style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(primaryColor)),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text(
-            'Cancel'.tr,
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
-        ElevatedButton(
-          style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Colors.green)),
-          onPressed: onChange,
-          child: Text(
-            'Confirm Checkout'.tr,
-            style: TextStyle(color: Colors.white),
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(primaryColor)),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text(
+                'Cancel'.tr,
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+            ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.green)),
+              onPressed: onChange,
+              child: Text(
+                'Confirm Checkout'.tr,
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ],
         ),
       ],
     );
