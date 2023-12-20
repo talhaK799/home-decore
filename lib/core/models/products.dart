@@ -3,17 +3,18 @@ import 'package:f2_base_project/locator.dart';
 
 class SubCategory {
   String? id;
-   String? categoryId;
-  String? createdAt;
+  String? categoryId;
+  DateTime? createdAt;
   String? imageUrl;
   String? title;
 
-  SubCategory({this.id, this.createdAt, this.imageUrl, this.title, this.categoryId});
+  SubCategory(
+      {this.id, this.createdAt, this.imageUrl, this.title, this.categoryId});
   SubCategory.fromJson(json, this.id) {
-    categoryId =json['categoryId'];
-    createdAt = json['createdAt'];
+    categoryId = json['categoryId'];
+    createdAt = json['createdAt'].toDate();
     imageUrl = json['imageUrl'];
-    title = json['title'];
+    title = json['name_en'];
   }
 }
 
@@ -36,13 +37,14 @@ class Product {
   bool? isDiscountAvailable;
   bool? isLiked;
   List<String>? likedUserIds;
-  late List<ProductSizes> productSizes;
+  List<ProductSizes>? productSizes;
   int? count;
   String? selectedSize;
 
   Product({
     this.id,
     this.sku,
+    this.productSizes,
     this.name,
     this.category,
     this.stock,
@@ -61,12 +63,11 @@ class Product {
     this.likedUserIds,
     this.count = 1,
     this.selectedSize,
-    required this.productSizes,
   });
   Product.fromJson(json, this.id) {
     try {
       sku = json['sku'];
-      name = json['name'];
+      name = json['name_en'];
       category = json['category'];
       stock = int.parse(json['stock']);
       discountPercentage = json['discountPercentage'] != null
@@ -113,11 +114,11 @@ class Product {
 
       ///
       /// other work
-      description = json['description'];
+      description = json['description_en'];
       productSizes = [];
       if (json['prodSizes'] != null) {
         json['prodSizes'].forEach((e) {
-          productSizes.add(ProductSizes.formJson(e));
+          productSizes?.add(ProductSizes.formJson(e));
         });
       }
       if (json['discountPercentage'] == null ||
@@ -126,6 +127,7 @@ class Product {
       } else {
         isDiscountAvailable = true;
       }
+      print('.............${json['images']}');
       if (json['images'] != null) {
         images = [];
         json['images'].forEach((e) {
@@ -156,9 +158,18 @@ class Product {
 
   Product.fromOrdersJson(json, this.id) {
     sku = json['sku'];
-    name = json['name'];
+    name = json['name_en'];
     category = json['category'];
-    stock = json['stock'];
+    try {
+      stock = json['stock'] != null ? int.parse(json['stock']) : 0;
+    } catch (e) {
+      // Handle the error, e.g., set a default value or log a message.
+      stock = 0;
+      print('Error parsing stock: $e');
+    }
+
+// Similar error handling for other parsing operations
+
     count = json['count'];
     selectedSize = json['selectedSize'];
     discountPercentage =
@@ -190,12 +201,12 @@ class Product {
 
     ///
     /// other work
-    description = json['description'];
+    description = json['description_en'];
     productSizes = [];
     print("prodSizes: ${json['prodSizes']}");
     if (json['prodSizes'] != null) {
       json['prodSizes'].forEach((e) {
-        productSizes.add(ProductSizes.formJson(e));
+        productSizes?.add(ProductSizes.formJson(e));
       });
     }
     if (json['orderSizes'] != null) {
@@ -251,13 +262,13 @@ class Product {
   toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['sku'] = sku;
-    data['name'] = name;
+    data['name_en'] = name;
     data['category'] = category;
     data['stock'] = stock;
     data['discountPercentage'] = discountPercentage;
     data['price'] = price;
     data['salePrice'] = salePrice;
-    data['description'] = description;
+    data['description_en'] = description;
     data['images'] = images;
     data['likedUsersIds'] = likedUserIds;
     data['createdAt'] = createdAt;
@@ -265,8 +276,8 @@ class Product {
     // data['sizes'] = sizes;
     data['prices'] = prices;
     data['selectedSize'] = selectedSize;
-    if (productSizes.isNotEmpty) {
-      data['prodSizes'] = productSizes.map((v) => v.toJson()).toList();
+    if (productSizes!.isNotEmpty) {
+      data['prodSizes'] = productSizes?.map((v) => v.toJson()).toList();
     }
     if (sizes != null) {
       data['orderSizes'] = sizes!.map((v) => v.toJson()).toList();

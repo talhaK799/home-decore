@@ -349,7 +349,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                     height: 200.h,
                                                     radius: 10.0);
                                               })
-                                          : newInProductsList(model,
+                                          : newInProductsList(
+                                            model,
                                               model.authService.allProducts),
                                 ),
                                 SizedBox(height: 70.h),
@@ -412,6 +413,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               return InkWell(
                 onTap: () async {
                   model.authService.order.products =
+                  
                       await Get.to(() => ProductDetailScreen(
                                 isFirstTime: true,
                                 product: products[index],

@@ -17,13 +17,13 @@ class Categories {
 
   Categories.fromJson(json, id) {
     this.id = id;
-    this.title = json['title'];
+    this.title = json['categoryName_en'];
     this.iconUrl = json['iconUrl'];
     this.createdAt = json['createdAt'].toDate();
   }
 
   toJson() => {
-        'title': this.title,
+        'categoryName_en': this.title,
         'iconUrl': this.iconUrl,
         'createdAt': this.createdAt,
       };
