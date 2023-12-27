@@ -28,16 +28,43 @@ class LanguageSettingScreen extends StatelessWidget {
               onLeadingPressed: () {
                 Get.back();
               },
-              title: 'Account Info'.tr,
+              title: 'Language'.tr,
             ),
 
             ///
             ///[body]
             ///
-            body: SingleChildScrollView(
-              child: Column(children: [
-               // accountInfo(model),
-              ]),
+            body: ListView.separated(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+              itemCount: model.languages.length,
+              itemBuilder: (context, index){
+                return GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: (){
+                    model.selectLanguage(index);
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Padding(
+                      padding:  EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("${model.languages[index].title}"),
+                          model.languages[index].isSelected==true? Icon(Icons.done):Container(),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              }, 
+              separatorBuilder: (context, index){
+                return SizedBox(height: 10);
+              }, 
+              
             ),
           );
         },
