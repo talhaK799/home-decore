@@ -14,7 +14,7 @@ import 'package:f2_base_project/ui/screens/orders-section/all_orders_screen.dart
 import 'package:f2_base_project/ui/screens/profile/account_info/account-info-screen.dart';
 import 'package:f2_base_project/ui/screens/profile/address_screen/address_screen.dart';
 import 'package:f2_base_project/ui/screens/profile/edit_profile/edif-profile-screen.dart';
-import 'package:f2_base_project/ui/screens/profile/language/language_settings_scree.dart';
+import 'package:f2_base_project/ui/screens/profile/language/language_settings_screen.dart';
 import 'package:f2_base_project/ui/screens/profile/profile-view-model.dart';
 import 'package:f2_base_project/ui/screens/root/root_screen.dart';
 import 'package:f2_base_project/ui/screens/side-menu-section/faq/FAQ_screen.dart';
