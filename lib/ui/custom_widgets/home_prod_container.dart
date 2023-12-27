@@ -51,20 +51,19 @@ class _ProductsContainerState extends State<HomeProdContainer> {
                     height: 103.h,
                     decoration: BoxDecoration(
                       color: Color(0xFFE3E3E3),
-                       borderRadius: BorderRadius.circular(9),
+                      borderRadius: BorderRadius.circular(9),
                     ),
                     child: Center(
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(9),
-                          child: FadeInImage.assetNetwork(
-                                                placeholder: '$productPlaceHolder',
-                                                image: '${widget.product!.images![0]}',
-                                                
-                                                fit: BoxFit.contain,
-                                                width: 125.w,
-                                                height: 103.h,
-                                              ),
-                        )),
+                      borderRadius: BorderRadius.circular(9),
+                      child: FadeInImage.assetNetwork(
+                        placeholder: '$productPlaceHolder',
+                        image: '${widget.product?.images![0] ?? ""}',
+                        fit: BoxFit.contain,
+                        width: 125.w,
+                        height: 103.h,
+                      ),
+                    )),
                   ),
                   SizedBox(height: 7.6.h),
                   Flexible(
@@ -180,7 +179,7 @@ class _ProductsContainerState extends State<HomeProdContainer> {
                               fontSize: 8.sp, fontFamily: latoFont)),
                     ),
                   ),
-                  )
+                )
               : Container()
         ],
       ),

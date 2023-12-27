@@ -14,6 +14,7 @@ import 'package:f2_base_project/ui/screens/orders-section/all_orders_screen.dart
 import 'package:f2_base_project/ui/screens/profile/account_info/account-info-screen.dart';
 import 'package:f2_base_project/ui/screens/profile/address_screen/address_screen.dart';
 import 'package:f2_base_project/ui/screens/profile/edit_profile/edif-profile-screen.dart';
+import 'package:f2_base_project/ui/screens/profile/language/language_settings_scree.dart';
 import 'package:f2_base_project/ui/screens/profile/profile-view-model.dart';
 import 'package:f2_base_project/ui/screens/root/root_screen.dart';
 import 'package:f2_base_project/ui/screens/side-menu-section/faq/FAQ_screen.dart';
@@ -46,22 +47,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   //back button
-            
+
                   backButton(model),
-                
-            
+
                   //user avatar nd edit profile button
                   userInfoAndAvatar(model),
-            
+
                   //account setting  tile
                   Expanded(
                     child: Container(
-      decoration: BoxDecoration(
-          color: primaryColor,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(24.0), topRight: Radius.circular(24.0))),
+                      decoration: BoxDecoration(
+                          color: primaryColor,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(24.0),
+                              topRight: Radius.circular(24.0))),
                       child: ListView(
-                        
                         children: [
                           settingTiles(model),
                         ],
@@ -106,19 +106,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
           ),
-
-            Container(
-                // height: 40.94.h,
-                child: IconButton(
-                icon: Icon(Icons.edit),
-                  onPressed: () async {
-                    model.authSerivce.appUser = await Get.to(() =>
-                            EditProfileScreen(
-                                userProfile: model.authSerivce.appUser)) ??
-                        model.authSerivce.appUser;
-                    setState(() {});
-                  },
-                )),
+          Container(
+              // height: 40.94.h,
+              child: IconButton(
+            icon: Icon(Icons.edit),
+            onPressed: () async {
+              model.authSerivce.appUser = await Get.to(() => EditProfileScreen(
+                      userProfile: model.authSerivce.appUser)) ??
+                  model.authSerivce.appUser;
+              setState(() {});
+            },
+          )),
         ],
       ),
     );
@@ -164,12 +162,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 SizedBox(width: 4.8.w),
                 Text(
                   "${model.authSerivce.appUser.location ?? "London UK"}",
-                  style: bodyTextStyleLato.copyWith(fontSize: 13,color: blackColor),
+                  style: bodyTextStyleLato.copyWith(
+                      fontSize: 13, color: blackColor),
                 )
               ],
             ),
 //edit profle button
-            
           ],
         ),
       ),
@@ -189,7 +187,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 print("presed");
                 Get.to(() => AccountInfoScreen());
               }),
-              // ContactUsScreen
+          // ContactUsScreen
           _tile(
               title: "my_addresses".tr,
               ontap: () {
@@ -202,7 +200,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 print("presed");
                 Get.to(() => AllOrdersScreen());
               }),
-          
+          _tile(
+              title: "Language Settings".tr,
+              ontap: () {
+                print("presed");
+                Get.to(() => LanguageSettingScreen());
+              }),
+
           _tile(
               title: "Contact Us".tr,
               ontap: () {
@@ -210,79 +214,76 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Get.to(() => ContactUsScreen());
               }),
 
-              _tile(
-                              ontap: () =>Get.to(WishlistScreen()),
-                                
-                         
-                              title: 'wishlist'.tr,
+          _tile(
+            ontap: () => Get.to(WishlistScreen()),
+            title: 'wishlist'.tr,
+          ),
+
+          _tile(
+            ontap: () => Get.to(NotificationScreen()),
+            title: 'notifications'.tr,
+          ),
+
+          _tile(
+            ontap: () => Get.to(FaqScreen()),
+            title: 'faqs'.tr,
+          ),
+
+          _tile(
+            ontap: () => Get.to(PrivacyPolicyScreen()),
+            title: 'Terms and Conditions'.tr,
+          ),
+
+          _tile(
+              title: 'Logout'.tr,
+              ontap: () {
+                model.authSerivce.isLogin
+                    ? Get.dialog(
+                        AlertDialog(
+                          title: Text("Logout"),
+                          content: Text("Are you sure to logout?"),
+                          actions: [
+                            ElevatedButton(
+                              child: Text("Yes"),
+                              onPressed: () async {
+                                // toggleAnimation();
+                                // animationController!.reverse();
+
+                                Get.back();
+
+                                model.logOut();
+                              },
                             ),
-              
-                          _tile(
-                              ontap: () => Get.to(NotificationScreen()),
-                                  
-                              title: 'notifications'.tr,
-                              ),
-         
-                         
-                          _tile(
-                              ontap: () => Get.to(FaqScreen()),
-                             
-                              title: 'faqs'.tr,
-                          ),
-                        
-           
-                          
-                          _tile(
-                              ontap: () => Get.to(PrivacyPolicyScreen()),
-               
-                              title: 'Terms and Conditions'.tr,
-                          ),
-
-                          _tile(
-                            title: 'Logout'.tr,
-                            ontap: (){
-                               model.authSerivce.isLogin
-                                    ? 
-                                    Get.dialog(AlertDialog(
-                                      title: Text("Logout"),
-                                      content: Text("Are you sure to logout?"),
-                                      actions: [
-                                        ElevatedButton(child: Text("Yes"), onPressed: () async{
-                                        // toggleAnimation();
-                                          // animationController!.reverse();
-                                      
-                                        Get.back();
-                                          
-                                           model.logOut();
-                                        },),
-                                        ElevatedButton(child: Text("No"), onPressed: () {
-                                           Get.back();
-                                        },),
-                                      ],
-                                    ),
-                                    )
-                                    
-                                   
-                                    : Get.dialog(AlertDialog(
-                                      title: Text("Login"),
-                                      content: Text("Are you sure to login?"),
-                                      actions: [
-                                        ElevatedButton(child: Text("Yes"), onPressed: () {
-                                           Get.to(() => LoginScreen());
-                                        },),
-                                        ElevatedButton(child: Text("No"), onPressed: () {
-                                           Get.back();
-                                        },),
-                                      ],
-                                    ),
-                                    );
-
-                                    
-
-                                    
-                                    
-                            }
-                          ),
+                            ElevatedButton(
+                              child: Text("No"),
+                              onPressed: () {
+                                Get.back();
+                              },
+                            ),
+                          ],
+                        ),
+                      )
+                    : Get.dialog(
+                        AlertDialog(
+                          title: Text("Login"),
+                          content: Text("Are you sure to login?"),
+                          actions: [
+                            ElevatedButton(
+                              child: Text("Yes"),
+                              onPressed: () {
+                                Get.to(() => LoginScreen());
+                              },
+                            ),
+                            ElevatedButton(
+                              child: Text("No"),
+                              onPressed: () {
+                                Get.back();
+                              },
+                            ),
+                          ],
+                        ),
+                      );
+              }),
           SizedBox(height: 15.6.h),
           // Padding(
           //   padding: const EdgeInsets.symmetric(horizontal: 24.0),

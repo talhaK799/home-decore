@@ -30,16 +30,16 @@ class ProductDetailProvider extends BaseViewModel {
     pageController = PageController(initialPage: currentImage);
     price = product.price!;
     salePrice = product.salePrice!;
-    if (product.productSizes.isNotEmpty) {
-      selectedSize = product.productSizes[0].size!;
-      for (var e in product.productSizes) {
+    if (product.productSizes!.isNotEmpty) {
+      selectedSize = product.productSizes![0].size!;
+      for (var e in product.productSizes!) {
         sizes.add(e.size!);
       }
     }
-    if (product.productSizes.isNotEmpty) {
+    if (product.productSizes!.isNotEmpty) {
       changeSize(product, 0, isFromOffer: isFromOffer, offer: offer);
     }
-    if (product.productSizes.isEmpty) {
+    if (product.productSizes!.isEmpty) {
       print('isFromOfferScreen => $isFromOffer');
       if (isFirstTime == false) {
         if (isFromOffer == true) {
@@ -181,7 +181,7 @@ class ProductDetailProvider extends BaseViewModel {
       price = 0.0;
       salePrice = 0.0;
       selectedSizeIndex = index;
-      selectedSize = product.productSizes[index].size!;
+      selectedSize = product.productSizes![index].size!;
       if (product.discountPercentage != null) {
         print('offer!.percentage => ${offer!.percentage}');
         if (int.parse(offer.percentage!) != 0) {
@@ -195,9 +195,9 @@ class ProductDetailProvider extends BaseViewModel {
       price = 0.0;
       salePrice = 0.0;
       selectedSizeIndex = index;
-      price = double.parse(product.productSizes[index].price!);
-      salePrice = double.parse(product.productSizes[index].salePrice!);
-      selectedSize = product.productSizes[index].size!;
+      price = double.parse(product.productSizes![index].price!);
+      salePrice = double.parse(product.productSizes![index].salePrice!);
+      selectedSize = product.productSizes![index].size!;
     }
     setState(ViewState.idle);
   }
@@ -263,11 +263,11 @@ class ProductDetailProvider extends BaseViewModel {
     print('offerDiscount => ${offer.percentage}');
     print('offerFlatDiscount => ${offer.flatDiscount}');
     if (offer.percentage != null &&
-        product.productSizes[index].salePrice != null) {
+        product.productSizes![index].salePrice != null) {
       sale = (int.parse(offer.percentage!) / 100) *
-          double.parse(product.productSizes[index].salePrice!);
+          double.parse(product.productSizes![index].salePrice!);
       print('sale => $sale');
-      sale = double.parse(product.productSizes[index].salePrice!) - sale;
+      sale = double.parse(product.productSizes![index].salePrice!) - sale;
       salePrice = sale;
     }
     notifyListeners();
@@ -277,7 +277,7 @@ class ProductDetailProvider extends BaseViewModel {
     if (offer.flatDiscount != null &&
         int.parse(offer.flatDiscount!) != 0 &&
         product.price != null) {
-      salePrice = double.parse(product.productSizes[index].salePrice!) -
+      salePrice = double.parse(product.productSizes![index].salePrice!) -
           int.parse(offer.flatDiscount!);
     }
     setState(ViewState.idle);

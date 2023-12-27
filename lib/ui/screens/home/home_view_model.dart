@@ -54,13 +54,15 @@ class HomeViewModel extends BaseViewModel {
 
   Future getAllProducts() async {
     isShimmer = true;
-    notifyListeners();
+    
     authService.allProducts = await _dbService.getProducts();
+       print(authService.allProducts[0].toJson());
     print('allProductsLength => ${authService.allProducts.length}');
     print(authService.allProducts[0].toJson());
 
     isShimmer = false;
     setState(ViewState.idle);
+    notifyListeners();
   }
 
   Future getLatestProducts() async {

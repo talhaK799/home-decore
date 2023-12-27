@@ -113,6 +113,7 @@ class SharedPrefsService {
 
   Future<String> getSelectedLanguage() async {
     await init();
+    
     return sharedPrefsRef!.getString("lang_code") ?? 'en';
   }
 }

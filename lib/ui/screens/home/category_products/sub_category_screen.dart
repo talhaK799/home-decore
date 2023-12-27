@@ -71,10 +71,7 @@ class SubCategoryScreen extends StatelessWidget {
                           children: [
                             SizedBox(height: 10.h),
                             model.subCategory.isEmpty
-                                ? Center(
-                                    child: Text(
-                                        'Subcategory not found'
-                                            ))
+                                ? Center(child: Text('Subcategory not found'))
                                 : Center(
                                     child: Row(
                                       mainAxisAlignment:
@@ -87,13 +84,29 @@ class SubCategoryScreen extends StatelessWidget {
                                                   model.subCategory.length,
                                               shrinkWrap: true,
                                               padding: EdgeInsets.zero,
-                                               gridDelegate:
-                                              SliverGridDelegateWithFixedCrossAxisCount(
-                                             childAspectRatio: Get.height >= 800
-                                                ? MediaQuery.of(context).size.width /
-                                                    (MediaQuery.of(context).size.height / 1.75)
-                                                : MediaQuery.of(context).size.width /
-                                                    (MediaQuery.of(context).size.height / 1.6),
+                                              gridDelegate:
+                                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                                      childAspectRatio: Get
+                                                                  .height >=
+                                                              800
+                                                          ? MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width /
+                                                              (MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height /
+                                                                  1.75)
+                                                          : MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width /
+                                                              (MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height /
+                                                                  1.6),
                                                       crossAxisCount: 2,
                                                       mainAxisSpacing: 4,
                                                       crossAxisSpacing: 4),
@@ -138,6 +151,7 @@ class SubCategoryScreen extends StatelessWidget {
         padding: EdgeInsets.only(right: 8.6.w),
         child: InkWell(
           onTap: () {
+            print('...........${services[index].id!}');
             Get.to(() =>
                 CategProdScreen(services[index].title!, services[index].id!));
           },

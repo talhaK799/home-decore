@@ -78,17 +78,16 @@ class DatabaseService {
   }
 
   updateUser(AppUser appUser, id) async {
-    try{
+    try {
       await _db
-        .collection("app_user")
-        .doc(id)
-        .update(appUser.toJson())
-        .then((value) => debugPrint('user updated successfully'));
-        return true;
-    }catch(e){
-       debugPrint('Exception @DatabaseService/update profile');
+          .collection("app_user")
+          .doc(id)
+          .update(appUser.toJson())
+          .then((value) => debugPrint('user updated successfully'));
+      return true;
+    } catch (e) {
+      debugPrint('Exception @DatabaseService/update profile');
       return false;
-      
     }
   }
 
@@ -440,13 +439,8 @@ class DatabaseService {
   Future<List<SubCategory>> getSubCategories(String categoryId) async {
     print('.......$categoryId');
 
-
-
-
-
-
-    
     debugPrint('@gettingSubCategoryProducts');
+  
     final List<SubCategory> categories = [];
     try {
       final snapshot = await _db
@@ -576,16 +570,14 @@ class DatabaseService {
     }
   }
 
-
   /// Register app user
   addContactUsRecord(ContactUs contactUs) async {
-    
     try {
       await _db
           .collection('contact_us')
           .add(contactUs.toJson())
           .then((value) => debugPrint('contact_us successfully added'));
-          return true;
+      return true;
     } catch (e, s) {
       debugPrint('Exception @DatabaseService/contact_us');
       debugPrint(s.toString());
