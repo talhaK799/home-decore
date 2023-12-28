@@ -75,12 +75,16 @@ class Product {
       //     : 0;
       discountPercentage = 0;
       isDiscountAvailable = false;
-      salePrice = 0;
+      salePrice = double.parse(json['price']?? "0.0");
+       price = double.parse(json['price']?? "0.0");
+       
 
       ///
       /// price
-      if (json['price'] == null || json['price'] == "") {
-        price = 0.0;
+      if (json['price'] == null) {
+        // price = 0.0;
+
+        print("Price is null ===> ${json['price']}");
         // json['prodSizes'] != null
         //     ? json['prodSizes'][0]['price'] != null
         //         ? json['prodSizes'][0]['price'].contains('.')
@@ -89,7 +93,8 @@ class Product {
         //         : 0.0
         //     : 0.0;
       } else {
-        price = double.parse(json['price']);
+        print("Price is ===> ${json['price']}");
+        // price = double.parse(json['price']);
         // json['price'] != null
         //     ? json['price'].contains('.')
         //         ? double.parse(json['price'])
