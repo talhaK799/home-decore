@@ -27,8 +27,9 @@ void main() async {
     // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
     // final _notificationsService = locator<NotificationsService>();
     // await _notificationsService.initConfigure();
-    // final langCode = await locator<SharedPrefsService>().getSelectedLanguage();
-    runApp(MyApp("en"));
+    final langCode = "en";
+    // = await locator<SharedPrefsService>().getSelectedLanguage();
+    runApp(MyApp(langCode));
   } catch (e, s) {
     print("$e");
     print("$s");
