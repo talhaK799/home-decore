@@ -1,6 +1,7 @@
 import 'package:f2_base_project/core/constants/colors.dart';
 import 'package:f2_base_project/core/models/notifications.dart';
 import 'package:f2_base_project/locator.dart';
+import 'package:f2_base_project/ui/language.dart';
 import 'package:f2_base_project/ui/screens/auth_signup/login/login_view_model.dart';
 import 'package:f2_base_project/ui/screens/cart-and-payment-section/cart_view_model.dart';
 import 'package:f2_base_project/ui/screens/home/home_view_model.dart';
@@ -13,7 +14,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 // import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:provider/provider.dart';
-import 'core/others/localization_class.dart';
 import 'rooter.dart';
 import 'firebase_options.dart';
 
@@ -27,7 +27,7 @@ void main() async {
     // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
     // final _notificationsService = locator<NotificationsService>();
     // await _notificationsService.initConfigure();
-    final langCode = "en";
+    final langCode = "en_US";
     // = await locator<SharedPrefsService>().getSelectedLanguage();
     runApp(MyApp(langCode));
   } catch (e, s) {
@@ -90,15 +90,17 @@ class _MyAppState extends State<MyApp> {
           ],
           child: GetMaterialApp(
               title: "Inna Home",
+          
               debugShowCheckedModeBanner: false,
               onGenerateRoute: Rooter.generateRoute,
-              translations: LocalizationClass(),
+              translations: Languages(),
               locale: Locale(widget.langCode),
               theme: ThemeData(
                 primaryColor: primaryColor,
                 primarySwatch: Colors.blue,
               ),
-              home: SplashScreen()),
+              home: SplashScreen(),
+              ),
         ),
       ),
     );
