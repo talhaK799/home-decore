@@ -58,7 +58,7 @@ class _ProductsContainerState extends State<HomeProdContainer> {
                       borderRadius: BorderRadius.circular(9),
                       child: FadeInImage.assetNetwork(
                         placeholder: '$productPlaceHolder',
-                        image: '${widget.product?.images![0] ?? ""}',
+                        image: '${widget.product?.images!.first ?? ""}',
                         fit: BoxFit.contain,
                         width: 125.w,
                         height: 103.h,

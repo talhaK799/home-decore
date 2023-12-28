@@ -70,69 +70,77 @@ class Product {
       name = json['name_en'];
       category = json['category'];
       stock = int.parse(json['stock']);
-      discountPercentage = json['discountPercentage'] != null
-          ? int.parse(json['discountPercentage'])
-          : 0;
+      // discountPercentage = json['discountPercentage'] != null
+      //     ? int.parse(json['discountPercentage'])
+      //     : 0;
+      discountPercentage = 0;
+      isDiscountAvailable = false;
+      salePrice = 0;
 
       ///
       /// price
       if (json['price'] == null || json['price'] == "") {
-        price = json['prodSizes'] != null
-            ? json['prodSizes'][0]['price'] != null
-                ? json['prodSizes'][0]['price'].contains('.')
-                    ? double.parse(json['prodSizes'][0]['price'])
-                    : int.parse(json['prodSizes'][0]['price']).toDouble()
-                : 0.0
-            : 0.0;
+        price = 0.0;
+        // json['prodSizes'] != null
+        //     ? json['prodSizes'][0]['price'] != null
+        //         ? json['prodSizes'][0]['price'].contains('.')
+        //             ? double.parse(json['prodSizes'][0]['price'])
+        //             : int.parse(json['prodSizes'][0]['price']).toDouble()
+        //         : 0.0
+        //     : 0.0;
       } else {
-        price = json['price'] != null
-            ? json['price'].contains('.')
-                ? double.parse(json['price'])
-                : int.parse(json['price']).toDouble()
-            : 0.0;
+        price = double.parse(json['price']);
+        // json['price'] != null
+        //     ? json['price'].contains('.')
+        //         ? double.parse(json['price'])
+        //         : int.parse(json['price']).toDouble()
+        //     : 0.0;
       }
 
       ///
       /// sale price
-      if (json['salePrice'] == null || json['salePrice'] == "") {
-        salePrice = json['prodSizes'] != null
-            ? json['prodSizes'][0]['salePrice'] != null
-                ? json['prodSizes'][0]['salePrice'].contains('.')
-                    ? double.parse(json['prodSizes'][0]['salePrice'])
-                    : int.parse(json['prodSizes'][0]['salePrice']).toDouble()
-                : 0.0
-            : 0.0;
-        cartSalePrice = salePrice;
-      } else {
-        salePrice = json['salePrice'] != null
-            ? json['salePrice'].contains('.')
-                ? double.parse(json['salePrice'])
-                : int.parse(json['salePrice']).toDouble()
-            : 0.0;
-        cartSalePrice = salePrice;
-      }
+      // if (json['salePrice'] == null || json['salePrice'] == "") {
+      //   salePrice = json['prodSizes'] != null
+      //       ? json['prodSizes'][0]['salePrice'] != null
+      //           ? json['prodSizes'][0]['salePrice'].contains('.')
+      //               ? double.parse(json['prodSizes'][0]['salePrice'])
+      //               : int.parse(json['prodSizes'][0]['salePrice']).toDouble()
+      //           : 0.0
+      //       : 0.0;
+      //   cartSalePrice = salePrice;
+      // } else {
+      //   salePrice = json['salePrice'] != null
+      //       ? json['salePrice'].contains('.')
+      //           ? double.parse(json['salePrice'])
+      //           : int.parse(json['salePrice']).toDouble()
+      //       : 0.0;
+      //   cartSalePrice = salePrice;
+      // }
 
       ///
       /// other work
       description = json['description_en'];
       productSizes = [];
-      if (json['prodSizes'] != null) {
-        json['prodSizes'].forEach((e) {
-          productSizes?.add(ProductSizes.formJson(e));
-        });
-      }
-      if (json['discountPercentage'] == null ||
-          json['discountPercentage'] == '0') {
-        isDiscountAvailable = false;
-      } else {
-        isDiscountAvailable = true;
-      }
-      print('.............${json['images']}');
-      if (json['images'] != null) {
+      // if (json['prodSizes'] != null) {
+      //   json['prodSizes'].forEach((e) {
+      //     productSizes?.add(ProductSizes.formJson(e));
+      //   });
+      // }
+      // if (json['discountPercentage'] == null ||
+      //     json['discountPercentage'] == '0') {
+      //   isDiscountAvailable = false;
+      // } else {
+      //   isDiscountAvailable = true;
+      // }
+      // print('.............${json['images']}');
+      if (json['images'].isNotEmpty) {
         images = [];
         json['images'].forEach((e) {
           images!.add(e);
         });
+      }else{
+         images = [];
+        print("Image length ==> ${images!.length}");
       }
       likedUserIds = [];
       if (json['likedUsersIds'] != null) {
@@ -149,7 +157,7 @@ class Product {
       } else {
         isLiked = false;
       }
-      createdAt = json['createdAt'].toDate();
+      // createdAt = json['createdAt'].toDate();
     } catch (e, s) {
       print("@produts.fromJson: $e");
       print(s);

@@ -22,13 +22,18 @@ class HomeViewModel extends BaseViewModel {
 
   HomeViewModel() {
     pageController = PageController(initialPage: currentImage);
-    getAppBanners();
-    getOffers();
-    getCategories();
-    getAllProducts();
-    getLatestProducts();
-    getTopRatedProducts();
+    init();
+    
     // getHelpLine();
+  }
+
+  init()async{
+     getAppBanners();
+    // getOffers();
+    getCategories();
+     getAllProducts();
+     getLatestProducts();
+     getTopRatedProducts();
   }
 
   getHelpLine() async {
@@ -52,7 +57,7 @@ class HomeViewModel extends BaseViewModel {
     setState(ViewState.idle);
   }
 
-  Future getAllProducts() async {
+   getAllProducts() async {
     isShimmer = true;
     
     authService.allProducts = await _dbService.getProducts();
