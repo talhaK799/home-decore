@@ -27,7 +27,7 @@ void main() async {
     // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
     // final _notificationsService = locator<NotificationsService>();
     // await _notificationsService.initConfigure();
-    final langCode = "en_US";
+    final langCode = "fr";
     // = await locator<SharedPrefsService>().getSelectedLanguage();
     runApp(MyApp(langCode));
   } catch (e, s) {

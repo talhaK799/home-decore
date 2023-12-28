@@ -1,13 +1,21 @@
 import 'package:get/get.dart';
 
 class Languages extends Translations {
+
+  static getLocalizedKey(String key) {
+    String currentLanguageCode = Get.locale!.languageCode;
+    print('Localized key is: ${key}_$currentLanguageCode');
+    return '${key}_$currentLanguageCode';
+  }
+
+  
   @override
   Map<String, Map<String, String>> get keys => {
-        'en_US': {
+        'en': {
           ///
           /// intial Screen
           ///
-          'onbordingTitle': 'Find your spouse with \nCalaf',
+          'categoryName': 'Find your spouse with \nCalaf',
           'onbordingDescription':
               'Users are going through a vetting process to ensure that they never \nmatch with bots.',
           'crtAccount': 'Create an account',
