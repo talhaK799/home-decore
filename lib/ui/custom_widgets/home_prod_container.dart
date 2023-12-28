@@ -120,7 +120,7 @@ class _ProductsContainerState extends State<HomeProdContainer> {
                                 : Container(),
                             Flexible(
                               child: Text(
-                                '€ ${widget.product!.salePrice ?? 00.toStringAsFixed(2)}',
+                                '€ ${widget.product!.price!.toStringAsFixed(2) ?? 00.toStringAsFixed(2)}',
                                 overflow: TextOverflow.ellipsis,
                                 style: boldTextStyleHacen.copyWith(
                                     fontSize: 12.sp,
