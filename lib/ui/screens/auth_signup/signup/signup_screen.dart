@@ -268,7 +268,7 @@ class SignUpScreen extends StatelessWidget {
                 ),
 
                 SizedBox(height: 18.h),
-                 CustomTextField(
+                CustomTextField(
                   inputType: TextInputType.number,
                   errorColor: Colors.white,
                   prefixIcon: Icon(
@@ -367,10 +367,9 @@ class SignUpScreen extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    if (model.formKey.currentState!
-                        .validate()) {
-                    model.formKey.currentState!.save();
-                    model.signUpWithEmailAndPassword();
+                    if (model.formKey.currentState!.validate()) {
+                      model.formKey.currentState!.save();
+                      model.signUpWithEmailAndPassword();
                     }
                   },
                   child: Container(
@@ -381,7 +380,7 @@ class SignUpScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: const Color(0xFFFFFFFF),
                         borderRadius: BorderRadius.circular(16.r)),
-                    child: Text("Sign Up", style: buttonTextStyle),
+                    child: Text("sign_up".tr, style: buttonTextStyle),
                   ),
                 ),
                 SizedBox(
@@ -396,13 +395,13 @@ class SignUpScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "Already have an Account? ",
+                        "already_have_an_account".tr,
                         style: bodyTextStyleHacen.copyWith(
                           color: whiteColor,
                           fontSize: 11.sp,
                         ),
                       ),
-                      Text(" Login ",
+                      Text("login".tr,
                           style: bodyTextStyleHacen.copyWith(
                               fontSize: 13.sp,
                               decorationColor: whiteColor,

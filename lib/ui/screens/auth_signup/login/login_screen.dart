@@ -1,4 +1,3 @@
-
 import 'package:f2_base_project/core/constants/colors.dart';
 import 'package:f2_base_project/core/constants/strings.dart';
 import 'package:f2_base_project/core/constants/styles.dart';
@@ -250,7 +249,7 @@ class LoginScreen extends StatelessWidget {
                             decoration: BoxDecoration(
                                 color: const Color(0xFFFFFFFF),
                                 borderRadius: BorderRadius.circular(16.r)),
-                            child: Text("Login", style: buttonTextStyle),
+                            child: Text("login".tr, style: buttonTextStyle),
                           ),
                         ),
                   SizedBox(
@@ -265,13 +264,13 @@ class LoginScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "Don't Have an Account? ",
+                          "dont_have_an_account".tr,
                           style: bodyTextStyleHacen.copyWith(
                             color: whiteColor,
                             fontSize: 11.sp,
                           ),
                         ),
-                        Text(" Register ",
+                        Text("register".tr,
                             style: bodyTextStyleHacen.copyWith(
                                 fontSize: 13.sp,
                                 decorationColor: whiteColor,

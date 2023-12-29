@@ -1,8 +1,9 @@
 import 'package:f2_base_project/core/models/language.dart';
 import 'package:f2_base_project/core/others/base_view_model.dart';
+import 'package:f2_base_project/core/services/shared_prefs_service.dart';
+import 'package:f2_base_project/locator.dart';
 
-class LanguageSettingsViewModel extends BaseViewModel{
-
+class LanguageSettingsViewModel extends BaseViewModel {
   List<Language> languages = [
     Language(
       title: "English",
@@ -24,43 +25,45 @@ class LanguageSettingsViewModel extends BaseViewModel{
     ),
   ];
 
-  String code = 'en';
+  // String code = 'en';
 
-  LanguageSettingsViewModel(){
+  LanguageSettingsViewModel() {
+    getCode();
     init();
   }
 
+  String code = '';
 
-  init(){
-    for (var i = 0; i < languages.length; i++) {
-      if(languages[i].code==code){
-        languages[i].isSelected=true;
-      }else{
-        languages[i].isSelected=false;
-      }
-      notifyListeners();
-      
-    }
+  getCode() async {
 
+    code = await locator<SharedPrefsService>().getSelectedLanguage();
+    
   }
 
 
-  selectLanguage(index){
+  init() {
+    for (var i = 0; i < languages.length; i++) {
+      if (languages[i].code == code) {
+        languages[i].isSelected = true;
+      } else {
+        languages[i].isSelected = false;
+      }
+      notifyListeners();
+    }
+  }
+
+  selectLanguage(index) async {
     print("index ==> $index");
     for (var i = 0; i < languages.length; i++) {
-      if(i==index){
-        languages[i].isSelected=true;
-      }else{
-        languages[i].isSelected=false;
+      if (i == index) {
+        languages[i].isSelected = true;
+        await locator<SharedPrefsService>()
+            .updateSelectedLanguage(languages[i].code!);
+      } else {
+        languages[i].isSelected = false;
       }
       notifyListeners();
-      
     }
     notifyListeners();
-
   }
-
-
-  
-
 }

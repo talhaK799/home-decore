@@ -71,43 +71,43 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         RectangularButton(
                           radius: 9,
                           width: 160.w,
-                          buttonColor:isNmaeEdit ==true||
-   isEmailEdit ==true||
-   isMobileNoEdit ==true||
-   isdobEdit ==true||
-   isDataEdit ==true? primaryColor:Colors.grey,
+                          buttonColor: isNmaeEdit == true ||
+                                  isEmailEdit == true ||
+                                  isMobileNoEdit == true ||
+                                  isdobEdit == true ||
+                                  isDataEdit == true
+                              ? primaryColor
+                              : Colors.grey,
                           textStyle: boldTextStyleLato.copyWith(
                               fontSize: 19.sp,
                               color: Colors.white,
                               fontWeight: FontWeight.bold),
                           title: 'Save'.tr,
                           onTap: () async {
-                            if(isNmaeEdit ==true||
-                              isEmailEdit ==true||
-                              isMobileNoEdit ==true||
-                              isdobEdit ==true||
-                              isDataEdit ==true){
-                                if (_formKey.currentState!.validate()) {
-                              if (model.image != null) {
-                                await model.updateUserAvatar();
-                                if (isDataEdit) {
-                                  await model.saveUserData();
-                                  // Get.back(result: model.userProfileResponse.userProfile);
+                            if (isNmaeEdit == true ||
+                                isEmailEdit == true ||
+                                isMobileNoEdit == true ||
+                                isdobEdit == true ||
+                                isDataEdit == true) {
+                              if (_formKey.currentState!.validate()) {
+                                if (model.image != null) {
+                                  await model.updateUserAvatar();
+                                  if (isDataEdit) {
+                                    await model.saveUserData();
+                                    // Get.back(result: model.userProfileResponse.userProfile);
+                                  } else {
+                                    // Get.back(result: model.userProfileResponse.userProfile);
+                                  }
                                 } else {
-                                  // Get.back(result: model.userProfileResponse.userProfile);
-                                }
-                              } else {
-                                if (isDataEdit) {
-                                  await model.saveUserData();
-                                  // Get.back(result: model.userProfileResponse.userProfile);
+                                  if (isDataEdit) {
+                                    await model.saveUserData();
+                                    // Get.back(result: model.userProfileResponse.userProfile);
+                                  }
                                 }
                               }
+                            } else {
+                              print("Button desible");
                             }
-
-                              }else{
-                                print("Button desible");
-                              }
-                            
                           },
                         ),
                       ],
@@ -405,8 +405,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               size: 15, color: Colors.white),
                           elevation: 0,
                           onChanged: onEditPressed,
-                          items: <String>['Male', 'Female',"Prefer not to disclose"]
-                              .map<DropdownMenuItem<String>>((String value) {
+                          items: <String>[
+                            'Male',
+                            'Female',
+                            "Prefer not to disclose"
+                          ].map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
                               child: Text(

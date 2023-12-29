@@ -48,12 +48,13 @@ class WishListProvider extends BaseViewModel {
       } else {
         product[index].isLiked = product[index].isLiked == false ? true : false;
       }
+       
       if (product[index].isLiked == true) {
-        Get.snackbar('Wishlist added', 'Product successfully added to wishlist',
+        Get.snackbar('whishlist_added'.tr, 'added_to_whishlist'.tr,
             snackPosition: SnackPosition.BOTTOM);
       } else {
         Get.snackbar(
-            'Wishlist removed', 'Product successfully removed from wishlist',
+            'whishlist_removed'.tr, 'removed_from_whislist',
             snackPosition: SnackPosition.BOTTOM);
       }
       // for (var prod in authService.allProducts) {

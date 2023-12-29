@@ -152,7 +152,7 @@ class _CartAddressScreenState extends State<CartAddressScreen> {
                                     fontSize: 19.sp,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
-                                title: 'Checkout',
+                                title: 'checkout'.tr,
                                 onTap: () {
                                   model.checkout();
                                 },

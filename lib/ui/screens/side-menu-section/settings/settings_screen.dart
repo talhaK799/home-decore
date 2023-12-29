@@ -148,7 +148,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'About Horitoki',
+                                'about_inna_home'.tr,
                                 style:
                                     bodyTextStyleLato.copyWith(fontSize: 17.sp),
                               ),

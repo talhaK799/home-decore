@@ -128,23 +128,26 @@ class _AddressScreenState extends State<AddressScreen> {
             ),
             InkWell(
                 onTap: () {
-
-                  Get.dialog(AlertDialog(
-                                      title: Text("Delete"),
-                                      content: Text("Are you sure to delete the address?"),
-                                      actions: [
-                                        ElevatedButton(child: Text("Yes"), onPressed: () {
-                                           model!.deleteAddress(model.addresses[index]);
-                                        },),
-                                        ElevatedButton(child: Text("No"), onPressed: () {
-                                           Get.back();
-                                        },),
-                                      ],
-                                    ),
-                                    );
-
-
-                  
+                  Get.dialog(
+                    AlertDialog(
+                      title: Text("Delete"),
+                      content: Text("Are you sure to delete the address?"),
+                      actions: [
+                        ElevatedButton(
+                          child: Text("Yes"),
+                          onPressed: () {
+                            model!.deleteAddress(model.addresses[index]);
+                          },
+                        ),
+                        ElevatedButton(
+                          child: Text("No"),
+                          onPressed: () {
+                            Get.back();
+                          },
+                        ),
+                      ],
+                    ),
+                  );
                 },
                 child: Icon(Icons.delete, color: primaryColor)),
           ],
@@ -156,7 +159,8 @@ class _AddressScreenState extends State<AddressScreen> {
             children: [
               Text('${userAddress.address} ${userAddress.city}',
                   style: bodyTextStyleLato.copyWith(fontSize: 13)),
-              Text('Mobile: ${userAddress.countryCode} ${userAddress.phone}',
+              Text(
+                  '${'Mobile'.tr}: ${userAddress.countryCode} ${userAddress.phone}',
                   style: bodyTextStyleLato.copyWith(fontSize: 13))
             ],
           ),

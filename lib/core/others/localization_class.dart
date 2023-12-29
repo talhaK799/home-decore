@@ -15,6 +15,7 @@ class LocalizationClass extends Translations {
   // }
   @override
   Map<String, Map<String, String>> get keys {
+
     // final _localizationString = {};
     // List<String> supportedLanguages = ['en', 'ar'];
     // for(final lang in supportedLanguages){
@@ -23,7 +24,9 @@ class LocalizationClass extends Translations {
     // return {
     //   "en": {}
     // };
+
     const Map<String, String> lang_en = {
+      
       "hello": "Hello world!",
       "sportsTalent": "Horitoki",
       "services": "Categories",
@@ -309,6 +312,7 @@ class LocalizationClass extends Translations {
       "code": "Code",
       "country_code_required": "country code required",
       "offer_percentage": "Offer Percentage: ",
+
     };
 
     const Map<String, String> lang_ar = {
