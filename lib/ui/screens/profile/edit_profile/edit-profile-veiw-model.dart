@@ -27,13 +27,14 @@ class EditProfileViewModel extends BaseViewModel {
     // if (image != null) {
     //   await updateUserAvatar();
     // }
-   bool isUpdatd= await _dbService.updateUser(editUserProfile, _authSerivce.appUser.id);
+    bool isUpdatd =
+        await _dbService.updateUser(editUserProfile, _authSerivce.appUser.id);
     Get.back();
     setState(ViewState.idle);
-    if(isUpdatd ==true){
-      Get.snackbar("Success!!", "Profile updated successfully");
-    }else{
-      Get.snackbar("Error!!", "Something went wrong please try again");
+    if (isUpdatd == true) {
+      Get.snackbar("success".tr, "profile_updated_successfully".tr);
+    } else {
+      Get.snackbar("error".tr, "something_went_wrong".tr);
     }
   }
 

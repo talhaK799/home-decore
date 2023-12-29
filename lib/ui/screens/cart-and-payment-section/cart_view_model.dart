@@ -43,9 +43,9 @@ class CartViewModel extends BaseViewModel {
         if (authService.order.products != null) {
           if (authService.order.products!.length > 0) {
             Get.dialog(CheckoutDialog(
-              title: 'Verify before checkout',
+              title: 'verify_before_checkout'.tr,
               errorMessage:
-                  'Total price: € ${double.parse(authService.order.totalPrice!).toStringAsFixed(2)}\nAddress: ${addresses[selectedAddress].address} ${addresses[selectedAddress].city}\nMobile no:  +32 ${addresses[selectedAddress].phone}',
+                  '${'total_price'.tr}: € ${double.parse(authService.order.totalPrice!).toStringAsFixed(2)}\nAddress: ${addresses[selectedAddress].address} ${addresses[selectedAddress].city}\nMobile no:  +32 ${addresses[selectedAddress].phone}',
               onChange: () async {
                 Get.back();
                 isLoading = true;
@@ -55,7 +55,7 @@ class CartViewModel extends BaseViewModel {
                   totalProducts = totalProducts + prod.count!;
                 }
                 authService.order.deliveryCharges =
-                    addresses[selectedAddress].city == 'Dhaka' ? 70 : 130;
+                    addresses[selectedAddress].city == 'Peshawar' ? 70 : 130;
                 authService.order.totalProducts = totalProducts.toString();
                 authService.order.appUser = authService.appUser;
                 authService.order.userAddress = addresses[selectedAddress];
@@ -84,8 +84,7 @@ class CartViewModel extends BaseViewModel {
                 await _dbService.deleteCartToDB(authService.appUser.id!);
                 authService.order = Orders();
                 Get.off(RootScreen());
-                Get.snackbar(
-                    'Order Success', 'Your order is successfully placed',
+                Get.snackbar('order_success'.tr, 'your_order_is_placed'.tr,
                     onTap: (value) {
                   Get.to(() => AllOrdersScreen());
                 });
@@ -96,7 +95,7 @@ class CartViewModel extends BaseViewModel {
           }
         }
       } else {
-        Get.snackbar('Add address', 'Please add address for checkout',
+        Get.snackbar('add_address'.tr, 'add_address_for_check_out'.tr,
             snackPosition: SnackPosition.BOTTOM);
       }
     } else {
@@ -205,8 +204,8 @@ class CartViewModel extends BaseViewModel {
 
   removeFromCart(Product product, Orders ordr) async {
     Get.defaultDialog(
-        title: 'Remove from cart',
-        middleText: 'Do you want to remove this product from cart',
+        title: 'remove_from_cart'.tr,
+        middleText: 'do_you_want_to_remove_this'.tr,
         onCancel: () {},
         buttonColor: primaryColor,
         confirmTextColor: Colors.white,
@@ -231,8 +230,9 @@ class CartViewModel extends BaseViewModel {
 
   deleteProduct() async {
     Get.defaultDialog(
-        title: 'Are you sure?',
-        middleText: 'Do you really want to delete all products from cart?',
+        title: 'are_you_sure'.tr,
+        middleText:
+            'do_you_really_want_to_delete_all_the_products_from_the_cart'.tr,
         buttonColor: primaryColor,
         confirmTextColor: Colors.white,
         cancelTextColor: primaryColor,

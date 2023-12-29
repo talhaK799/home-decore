@@ -134,7 +134,7 @@ class AddCartAddressScreen extends StatelessWidget {
           //   ),
           // ),
           textfield(
-            hintText: 'Phone number with country code',
+            hintText: 'phone_number_with_country_code'.tr,
             label: "phone".tr,
             onChange: (value) {
               model.userAddress.phone = value;
@@ -150,14 +150,14 @@ class AddCartAddressScreen extends StatelessWidget {
                 // Text("country".tr,
                 //     style: bodyTextStyleLato.copyWith(
                 //         color: primaryColor, fontSize: 16.sp)),
-                        textfield(
-            hintText: 'Country name',
-            label: "Country".tr,
-            onChange: (value) {
-              model.userAddress.country = value;
-            },
-            textInputType: TextInputType.number,
-          ),
+                textfield(
+                  hintText: 'country_name'.tr,
+                  label: "Country".tr,
+                  onChange: (value) {
+                    model.userAddress.country = value;
+                  },
+                  textInputType: TextInputType.number,
+                ),
                 // Container(
                 //     height: 40.h,
                 //     alignment: Alignment.centerLeft,

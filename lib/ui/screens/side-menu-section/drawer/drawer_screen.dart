@@ -24,7 +24,6 @@ import 'package:url_launcher/url_launcher.dart';
 import '../faq/FAQ_screen.dart';
 
 class DrawerScreen extends StatelessWidget {
-  
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -41,6 +40,7 @@ class DrawerScreen extends StatelessWidget {
                     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       SizedBox(height: 60.h),
+
                       ///
                       /// Profile data
                       ///
@@ -82,7 +82,7 @@ class DrawerScreen extends StatelessWidget {
                                     child: Text(
                                       model.authService.isLogin
                                           ? '${convertToTitleCase(model.authService.appUser.name ?? ' ')}'
-                                          : 'Please Login',
+                                          : 'please_login'.tr,
                                       style: boldTextStyleLato.copyWith(
                                         fontSize: 14.sp,
                                         color: blackColor,
@@ -123,40 +123,41 @@ class DrawerScreen extends StatelessWidget {
                                 const EdgeInsets.only(right: 15.0, left: 25),
                             child: Divider(color: greyColor),
                           ),
-                           Padding(
-                             padding: const EdgeInsets.only(left: 15),
-                             child: Text('Categories',
-                                           style: normalTextStyleLato.copyWith(
-                                               color: blackColor, fontSize: 15.sp, fontFamily: latoFont)),
-                           ),
-                          
+                          Padding(
+                            padding: const EdgeInsets.only(left: 15),
+                            child: Text('categories'.tr,
+                                style: normalTextStyleLato.copyWith(
+                                    color: blackColor,
+                                    fontSize: 15.sp,
+                                    fontFamily: latoFont)),
+                          ),
                           Container(
-                                  // height: 160.h,
-                                  child: ListView.builder(
-                                    padding: EdgeInsets.only(left: 7),
-                                    shrinkWrap: true,
-                                    primary: false,
+                            // height: 160.h,
+                            child: ListView.builder(
+                              padding: EdgeInsets.only(left: 7),
+                              shrinkWrap: true,
+                              primary: false,
 
-                                    // scrollDirection: Axis.horizontal,
-                                    itemCount:
-                                        model.authService.categories.length,
-                                    itemBuilder: (context, index) {
-                                      return drawerTile(
-                                          // model.authService.categories, index,
-                                          onTap: () {
-                                             Get.to(() =>
-                SubCategoryScreen(model.authService.categories[index].title!, model.authService.categories[index].id!));
-                                          },
-                              
-                              title: '${model.authService.categories[index].title}'.tr,
+                              // scrollDirection: Axis.horizontal,
+                              itemCount: model.authService.categories.length,
+                              itemBuilder: (context, index) {
+                                return drawerTile(
+                                  // model.authService.categories, index,
+                                  onTap: () {
+                                    Get.to(() => SubCategoryScreen(
+                                        model.authService.categories[index]
+                                            .title!,
+                                        model.authService.categories[index]
+                                            .id!));
+                                  },
 
-                                          );
-                                    },
-                                  ),
-                                ),
-                         
-                        
-                         
+                                  title:
+                                      '${model.authService.categories[index].title}'
+                                          .tr,
+                                );
+                              },
+                            ),
+                          ),
                           SizedBox(height: 20.h),
                         ],
                       ),
@@ -169,7 +170,7 @@ class DrawerScreen extends StatelessWidget {
                         child: Row(
                           children: [
                             SizedBox(width: 3.w),
-                            
+
                             SizedBox(width: 15.w),
                             // GestureDetector(
                             //   onTap: onLogout,
@@ -209,34 +210,21 @@ class DrawerScreen extends StatelessWidget {
     );
   }
 
-  Widget drawerTile(
-      {
-      String? title,
-     
-      onTap,
-     }) {
+  Widget drawerTile({
+    String? title,
+    onTap,
+  }) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
       child: ListTile(
         onTap: onTap,
-        
         contentPadding: EdgeInsets.zero,
         minVerticalPadding: 0,
-        
         trailing: Icon(Icons.arrow_forward_ios_rounded),
-        
-        title:  Text('$title',
-              style: normalTextStyleLato.copyWith(
-                  color: blackColor, fontSize: 15.sp, fontFamily: latoFont)),
+        title: Text('$title',
+            style: normalTextStyleLato.copyWith(
+                color: blackColor, fontSize: 15.sp, fontFamily: latoFont)),
       ),
     );
   }
-
-  
-
-  
-
-
-  
 }
-

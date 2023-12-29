@@ -206,9 +206,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 //   ),
                                 // ),
                                 customViewAllRow(
-                                    'Categories',
+                                    'categories'.tr,
                                     () => Get.to(() => AllCategoriesScreen(
-                                        title: 'Categories',
+                                        title: 'categories'.tr,
                                         newInProductsList:
                                             model.authService.categories))),
                                 SizedBox(height: 12.h),
@@ -236,9 +236,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 /// New Arrivals
                                 ///
                                 customViewAllRow(
-                                    'New Arrivals',
+                                    'new_arrivals'.tr,
                                     () => Get.to(() => NewArrivalScreen(
-                                        title: 'New In',
+                                        title: 'new_in'.tr,
                                         newInProductsList:
                                             model.authService.latestProducts))),
                                 SizedBox(height: 8.h),
@@ -281,9 +281,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 /// Top Rated products
                                 ///
                                 customViewAllRow(
-                                    'Top Rated Products',
+                                    'top_rated_products'.tr,
                                     () => Get.to(() => NewArrivalScreen(
-                                        title: 'Top Rated',
+                                        title: 'top_rated'.tr,
                                         newInProductsList: model
                                             .authService.topRatedProducts))),
 
@@ -326,7 +326,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 ///
 
                                 customViewAllRow(
-                                    'All Products',
+                                    'all_products'.tr,
                                     () => Get.offAll(
                                         () => RootScreen(selectedPage: 1))),
 
@@ -349,8 +349,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                                     height: 200.h,
                                                     radius: 10.0);
                                               })
-                                          : newInProductsList(
-                                            model,
+                                          : newInProductsList(model,
                                               model.authService.allProducts),
                                 ),
                                 SizedBox(height: 70.h),
@@ -413,7 +412,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               return InkWell(
                 onTap: () async {
                   model.authService.order.products =
-                  
                       await Get.to(() => ProductDetailScreen(
                                 isFirstTime: true,
                                 product: products[index],
@@ -438,70 +436,69 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   Widget categories(List<Categories> services, int index) {
     return Padding(
-        padding: EdgeInsets.all(5),
-        child: InkWell(
-          onTap: () {
-            Get.to(() =>
-                SubCategoryScreen(services[index].title!, services[index].id!));
-          },
-
-          child: Container(
-            // height: 120.h,
-            width: 135.w,
-            decoration: BoxDecoration(
-                color: whiteColor,
-                borderRadius: BorderRadius.circular(10.r),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.2),
-                    spreadRadius: 2,
-                    blurRadius: 7,
-                    offset: Offset(0, 0),
-                  ),
-                ]),
-            child: Padding(
-              padding: EdgeInsets.only(left: 8, right: 8, top: 8, bottom: 0),
-              child: Column(
-                children: [
-                  services[index].iconUrl != null
-                      ? ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.network(
-                            '${services[index].iconUrl}',
-                            width: 130.w,
-                            height: 100.h,
-                            fit: BoxFit.cover,
-                          ),
-                        )
-                      : Container(
+      padding: EdgeInsets.all(5),
+      child: InkWell(
+        onTap: () {
+          Get.to(() =>
+              SubCategoryScreen(services[index].title!, services[index].id!));
+        },
+        child: Container(
+          // height: 120.h,
+          width: 135.w,
+          decoration: BoxDecoration(
+              color: whiteColor,
+              borderRadius: BorderRadius.circular(10.r),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.2),
+                  spreadRadius: 2,
+                  blurRadius: 7,
+                  offset: Offset(0, 0),
+                ),
+              ]),
+          child: Padding(
+            padding: EdgeInsets.only(left: 8, right: 8, top: 8, bottom: 0),
+            child: Column(
+              children: [
+                services[index].iconUrl != null
+                    ? ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.network(
+                          '${services[index].iconUrl}',
                           width: 130.w,
                           height: 100.h,
-                          decoration: BoxDecoration(
-                            color: greyColor,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
+                          fit: BoxFit.cover,
                         ),
-                  SizedBox(
-                    height: 5.h,
+                      )
+                    : Container(
+                        width: 130.w,
+                        height: 100.h,
+                        decoration: BoxDecoration(
+                          color: greyColor,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                SizedBox(
+                  height: 5.h,
+                ),
+                Flexible(
+                  child: Text(
+                    '${services[index].title ?? ''}',
+                    // maxLines: 2,
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
+                    style: boldTextStyleHacen.copyWith(
+                        fontSize: 14.sp,
+                        color: blackColor,
+                        fontFamily: latoFont,
+                        fontWeight: FontWeight.bold),
                   ),
-                  Flexible(
-                    child: Text(
-                      '${services[index].title ?? ''}',
-                      // maxLines: 2,
-                      textAlign: TextAlign.center,
-                      overflow: TextOverflow.ellipsis,
-                      style: boldTextStyleHacen.copyWith(
-                          fontSize: 14.sp,
-                          color: blackColor,
-                          fontFamily: latoFont,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
-      );
+      ),
+    );
   }
 }

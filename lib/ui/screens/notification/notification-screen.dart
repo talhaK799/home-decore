@@ -34,7 +34,7 @@ class NotificationScreen extends StatelessWidget {
     return Padding(
         padding: EdgeInsets.zero,
         child: model.notificaitons.isEmpty
-            ? Center(child: Text('Notificaitons not found'))
+            ? Center(child: Text('notifications_not_found'.tr))
             : Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.start,

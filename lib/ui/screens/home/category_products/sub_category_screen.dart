@@ -71,7 +71,8 @@ class SubCategoryScreen extends StatelessWidget {
                           children: [
                             SizedBox(height: 10.h),
                             model.subCategory.isEmpty
-                                ? Center(child: Text('Subcategory not found'))
+                                ? Center(
+                                    child: Text('sub_category_not_found'.tr))
                                 : Center(
                                     child: Row(
                                       mainAxisAlignment:

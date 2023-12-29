@@ -52,7 +52,7 @@ class FaqScreen extends StatelessWidget {
                     /// FAQs about sport app
                     ///
                     // SizedBox(height: 24.h),
-                    Text('About Horitoki',
+                    Text('about_inna_home'.tr,
                         style: titleTextStyle.copyWith(
                           color: primaryColor,
                           fontFamily: latoFont,
@@ -60,7 +60,7 @@ class FaqScreen extends StatelessWidget {
                         )),
                     SizedBox(height: 10.h),
                     model.faqs.length == 0
-                        ? Center(child: Text("No Faqs found"))
+                        ? Center(child: Text("no_faqs_found".tr))
                         : ListView.builder(
                             shrinkWrap: true,
                             itemCount: model.faqs.length,

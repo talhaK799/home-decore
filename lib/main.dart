@@ -1,5 +1,6 @@
 import 'package:f2_base_project/core/constants/colors.dart';
 import 'package:f2_base_project/core/models/notifications.dart';
+import 'package:f2_base_project/core/services/shared_prefs_service.dart';
 import 'package:f2_base_project/locator.dart';
 import 'package:f2_base_project/ui/language.dart';
 import 'package:f2_base_project/ui/screens/auth_signup/login/login_view_model.dart';
@@ -27,8 +28,8 @@ void main() async {
     // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
     // final _notificationsService = locator<NotificationsService>();
     // await _notificationsService.initConfigure();
-    final langCode = "fr";
-    // = await locator<SharedPrefsService>().getSelectedLanguage();
+    final langCode = 'en';
+// await locator<SharedPrefsService>().getSelectedLanguage();
     runApp(MyApp(langCode));
   } catch (e, s) {
     print("$e");
@@ -89,18 +90,17 @@ class _MyAppState extends State<MyApp> {
             ChangeNotifierProvider(create: (context) => HomeViewModel()),
           ],
           child: GetMaterialApp(
-              title: "Inna Home",
-          
-              debugShowCheckedModeBanner: false,
-              onGenerateRoute: Rooter.generateRoute,
-              translations: Languages(),
-              locale: Locale(widget.langCode),
-              theme: ThemeData(
-                primaryColor: primaryColor,
-                primarySwatch: Colors.blue,
-              ),
-              home: SplashScreen(),
-              ),
+            title: "Inna Home",
+            debugShowCheckedModeBanner: false,
+            onGenerateRoute: Rooter.generateRoute,
+            translations: Languages(),
+            locale: Locale(widget.langCode),
+            theme: ThemeData(
+              primaryColor: primaryColor,
+              primarySwatch: Colors.blue,
+            ),
+            home: SplashScreen(),
+          ),
         ),
       ),
     );

@@ -240,11 +240,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 model.authSerivce.isLogin
                     ? Get.dialog(
                         AlertDialog(
-                          title: Text("Logout"),
-                          content: Text("Are you sure to logout?"),
+                          title: Text("Logout".tr),
+                          content: Text("to_logout".tr),
                           actions: [
                             ElevatedButton(
-                              child: Text("Yes"),
+                              child: Text("yes".tr),
                               onPressed: () async {
                                 // toggleAnimation();
                                 // animationController!.reverse();
@@ -255,7 +255,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               },
                             ),
                             ElevatedButton(
-                              child: Text("No"),
+                              child: Text("no".tr),
                               onPressed: () {
                                 Get.back();
                               },
@@ -265,17 +265,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       )
                     : Get.dialog(
                         AlertDialog(
-                          title: Text("Login"),
-                          content: Text("Are you sure to login?"),
+                          title: Text("login".tr),
+                          content: Text("are_you_sure_to_login".tr),
                           actions: [
                             ElevatedButton(
-                              child: Text("Yes"),
+                              child: Text("yes".tr),
                               onPressed: () {
                                 Get.to(() => LoginScreen());
                               },
                             ),
                             ElevatedButton(
-                              child: Text("No"),
+                              child: Text("no".tr),
                               onPressed: () {
                                 Get.back();
                               },
