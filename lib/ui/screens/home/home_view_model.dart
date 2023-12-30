@@ -4,6 +4,7 @@ import 'package:f2_base_project/core/models/products.dart';
 import 'package:f2_base_project/core/others/base_view_model.dart';
 import 'package:f2_base_project/core/services/auth_service.dart';
 import 'package:f2_base_project/core/services/database_service.dart';
+import 'package:f2_base_project/core/services/shared_prefs_service.dart';
 import 'package:f2_base_project/ui/dialogs/signup_required_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,27 +14,44 @@ class HomeViewModel extends BaseViewModel {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   AuthService authService = locator<AuthService>();
   final _dbService = locator<DatabaseService>();
+  final localStorage = locator<SharedPrefsService>();
   late PageController pageController;
   int currentImage = 0;
   bool isShimmer = false;
   bool isSearching = false;
   List<String> offersImages = [];
   List<Product> searchedProducts = [];
+  String selectedLang = '';
 
   HomeViewModel() {
     pageController = PageController(initialPage: currentImage);
     init();
-    
+    selectedLang = localStorage.language;
+
     // getHelpLine();
   }
 
-  init()async{
-     getAppBanners();
+  init() async {
+    isShimmer = true;
+    setState(ViewState.idle);
+    await getAppBanners();
     // getOffers();
-    getCategories();
-     getAllProducts();
-     getLatestProducts();
-     getTopRatedProducts();
+    await getCategories();
+    await getAllProducts();
+    await getLatestProducts();
+    await getTopRatedProducts();
+    isShimmer = false;
+    setState(ViewState.idle);
+  }
+
+  List<String> languages = ['en', 'fr', 'ne'];
+
+  selectLang(val) async {
+    selectedLang = val;
+    Get.locale = Locale(selectedLang);
+    await init();
+    localStorage.updateSelectedLanguage(val);
+    notifyListeners();
   }
 
   getHelpLine() async {
@@ -50,18 +68,20 @@ class HomeViewModel extends BaseViewModel {
     setState(ViewState.idle);
   }
 
+  List<String> banner = [];
   Future getAppBanners() async {
     setState(ViewState.busy);
     authService.banners = await _dbService.getAppBanners();
+    banner.add(authService.banners[1]);
     print('appBanners => ${authService.banners.length}');
     setState(ViewState.idle);
   }
 
-   getAllProducts() async {
+  getAllProducts() async {
     isShimmer = true;
-    
+
     authService.allProducts = await _dbService.getProducts();
-       print(authService.allProducts[0].toJson());
+    print(authService.allProducts[0].toJson());
     print('allProductsLength => ${authService.allProducts.length}');
     print(authService.allProducts[0].toJson());
 
@@ -120,13 +140,12 @@ class HomeViewModel extends BaseViewModel {
       } else {
         product[index].isLiked = product[index].isLiked == false ? true : false;
       }
-      
+
       if (product[index].isLiked == true) {
         Get.snackbar('whishlist_added'.tr, 'added_to_whishlist'.tr,
             snackPosition: SnackPosition.BOTTOM);
       } else {
-        Get.snackbar(
-            'whishlist_removed'.tr, 'removed_from_whislist'.tr,
+        Get.snackbar('whishlist_removed'.tr, 'removed_from_whislist'.tr,
             snackPosition: SnackPosition.BOTTOM);
       }
       if (product[index].likedUserIds != null) {

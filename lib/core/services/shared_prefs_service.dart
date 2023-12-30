@@ -4,6 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SharedPrefsService {
   var sharedPrefsRef;
 
+  String language = 'en';
+
   SharedPrefsService() {
     init();
   }
@@ -12,6 +14,7 @@ class SharedPrefsService {
     if (sharedPrefsRef == null) {
       sharedPrefsRef = await SharedPreferences.getInstance();
     }
+    getSelectedLanguage();
   }
 
   ///
@@ -106,14 +109,20 @@ class SharedPrefsService {
     return sharedPrefsRef!.getBool("notification_status") ?? true;
   }
 
+  ///
+  /// Language
+  ///
+
   updateSelectedLanguage(String langCode) async {
-    await init();
+    // await init();
     await sharedPrefsRef!.setString('lang_code', langCode);
+    getSelectedLanguage();
   }
 
-  Future<String> getSelectedLanguage() async {
-    await init();
-    
-    return sharedPrefsRef!.getString("lang_code") ?? 'en';
+  getSelectedLanguage() async {
+    // await init();
+
+    language = await sharedPrefsRef!.getString("lang_code") ?? 'en';
+    print("Languages ======>>>$language");
   }
 }

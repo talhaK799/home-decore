@@ -98,7 +98,7 @@ class SubCategoryScreen extends StatelessWidget {
                                                                           context)
                                                                       .size
                                                                       .height /
-                                                                  1.75)
+                                                                  1.94)
                                                           : MediaQuery.of(
                                                                       context)
                                                                   .size
@@ -107,7 +107,7 @@ class SubCategoryScreen extends StatelessWidget {
                                                                           context)
                                                                       .size
                                                                       .height /
-                                                                  1.6),
+                                                                  1.76),
                                                       crossAxisCount: 2,
                                                       mainAxisSpacing: 4,
                                                       crossAxisSpacing: 4),
@@ -183,8 +183,9 @@ class SubCategoryScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                           child: Image.network(
                             '${services[index].imageUrl}',
+                            fit: BoxFit.cover,
                             width: 150.w,
-                            height: 150.h,
+                            height: 130.h,
                           ),
                         )
                       : Container(
