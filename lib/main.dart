@@ -40,7 +40,7 @@ void main() async {
 class MyApp extends StatefulWidget {
   final langCode;
   MyApp(this.langCode) {
-    print("Selected language code is: $langCode");
+    // print("Selected language code is: $langCode");
   }
 
   @override
@@ -48,10 +48,18 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final localStorage = locator<SharedPrefsService>();
   @override
   void initState() {
     super.initState();
+    // _getLang();
   }
+
+  // _getLang() {
+  //   setState(() {
+  //     localStorage.getSelectedLanguage();
+  //   });
+  // }
 
   _moveToTheRespectiveScreen(Notifications notification) {
     Get.to(() => NotificationScreen());
@@ -94,7 +102,8 @@ class _MyAppState extends State<MyApp> {
             debugShowCheckedModeBanner: false,
             onGenerateRoute: Rooter.generateRoute,
             translations: Languages(),
-            locale: Locale(widget.langCode),
+            locale: Locale(localStorage.language),
+            fallbackLocale: Locale(localStorage.language),
             theme: ThemeData(
               primaryColor: primaryColor,
               primarySwatch: Colors.blue,

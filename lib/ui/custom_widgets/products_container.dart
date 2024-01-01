@@ -59,21 +59,20 @@ class _ProductsContainerState extends State<ProductsContainer> {
                       height: 115.h,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                         borderRadius: BorderRadius.circular(9),
-                         color: Color(0xFFE3E3E3),
+                        borderRadius: BorderRadius.circular(9),
+                        color: Color(0xFFE3E3E3),
                       ),
-                      
                       child: Center(
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(9),
-                            child: FadeInImage.assetNetwork(
-                                                    placeholder: '$productPlaceHolder',
-                                                    image: '${widget.product!.images![0]}',
-                                                    fit: BoxFit.contain,
-                                                    width: 140.w,
-                                                    height: 115.h,
-                                                  ),
-                          )),
+                        borderRadius: BorderRadius.circular(9),
+                        child: FadeInImage.assetNetwork(
+                          placeholder: '$productPlaceHolder',
+                          image: '${widget.product!.images![0]}',
+                          fit: BoxFit.cover,
+                          width: 140.w,
+                          height: 115.h,
+                        ),
+                      )),
                     ),
                   ),
                   SizedBox(height: 7.6.h),
