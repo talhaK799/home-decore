@@ -59,7 +59,7 @@ class _ProductsContainerState extends State<HomeProdContainer> {
                       child: FadeInImage.assetNetwork(
                         placeholder: '$productPlaceHolder',
                         image: '${widget.product?.images!.first ?? ""}',
-                        fit: BoxFit.contain,
+                        fit: BoxFit.cover,
                         width: 125.w,
                         height: 103.h,
                       ),
