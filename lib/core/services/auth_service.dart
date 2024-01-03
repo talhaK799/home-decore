@@ -139,8 +139,12 @@ class AuthService extends ChangeNotifier {
         isLogin = true;
         bool isUserExist = await _dbService.checkUser(appUser);
         if (isUserExist) {
+          final newToken = await FirebaseMessaging.instance.getToken();
+          await _dbService.updateUserFcm(newToken, appUser.id);
           appUser = await _dbService.getAppUser(appUser.id);
         } else {
+          final newToken = await FirebaseMessaging.instance.getToken();
+          appUser.fcmToken = newToken;
           await _dbService.registerAppUser(appUser);
         }
 
@@ -177,6 +181,9 @@ class AuthService extends ChangeNotifier {
         customAuthResult.status = true;
         customAuthResult.user = credentials.user;
         appUser.id = credentials.user!.uid;
+
+        final newToken = await FirebaseMessaging.instance.getToken();
+        appUser.fcmToken = newToken;
         this.appUser = appUser;
 
         await _dbService.registerAppUser(appUser);
@@ -207,7 +214,9 @@ class AuthService extends ChangeNotifier {
       /// If firebase auth is successful:
       ///
       if (credentials.user != null) {
-        appUser = await _dbService.getAppUser(credentials.user!.uid);
+        this.appUser = await _dbService.getAppUser(credentials.user!.uid);
+        final newToken = await FirebaseMessaging.instance.getToken();
+        await _dbService.updateUserFcm(newToken, this.appUser.id);
         customAuthResult.status = true;
         customAuthResult.user = credentials.user;
       }
@@ -284,6 +293,8 @@ class AuthService extends ChangeNotifier {
   }
 
   Future<void> logout({id}) async {
+    this.appUser.fcmToken = null;
+    await _dbService.updateUserFcm(this.appUser.fcmToken, this.appUser.id);
     await _auth.signOut();
     this.appUser = AppUser();
     this.isLogin = false;

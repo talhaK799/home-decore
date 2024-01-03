@@ -77,11 +77,11 @@ class DatabaseService {
         (value) => debugPrint('fcm updated successfully'));
   }
 
-  updateUser(AppUser appUser, id) async {
+  updateUser(AppUser appUser) async {
     try {
       await _db
           .collection("app_user")
-          .doc(id)
+          .doc(appUser.id)
           .update(appUser.toJson())
           .then((value) => debugPrint('user updated successfully'));
       return true;
