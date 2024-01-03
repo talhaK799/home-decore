@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "156442496426",
+    "project_id": "home-decor-11796",
+    "storage_bucket": "home-decor-11796.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:156442496426:android:4bdb17825341222f07afd3",
+        "android_client_info": {
+          "package_name": "com.example.f2_base_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "156442496426-28bdd6nav3rt94o9ecfe1ai7659jln1h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9Vzhw_CglbFCxmBpMyrGtu9ml85yisTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "156442496426-28bdd6nav3rt94o9ecfe1ai7659jln1h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "156442496426-4f6q8ihjheb7jiv09f43bbj9lbs35m0d.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.f2BaseProject"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:156442496426:android:41078314ac4a2b4307afd3",
+        "android_client_info": {
+          "package_name": "com.innahome.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "156442496426-28bdd6nav3rt94o9ecfe1ai7659jln1h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9Vzhw_CglbFCxmBpMyrGtu9ml85yisTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "156442496426-28bdd6nav3rt94o9ecfe1ai7659jln1h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "156442496426-4f6q8ihjheb7jiv09f43bbj9lbs35m0d.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.f2BaseProject"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

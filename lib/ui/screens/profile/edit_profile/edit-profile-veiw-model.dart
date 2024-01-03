@@ -13,7 +13,7 @@ import '../../../../locator.dart';
 class EditProfileViewModel extends BaseViewModel {
   File? image;
   final _dbService = locator<DatabaseService>();
-  final _authSerivce = locator<AuthService>();
+  // final _authSerivce = locator<AuthService>();
   StorageService _storageService = StorageService();
   final picker = ImagePicker();
   AppUser editUserProfile = AppUser();
@@ -27,8 +27,7 @@ class EditProfileViewModel extends BaseViewModel {
     // if (image != null) {
     //   await updateUserAvatar();
     // }
-    bool isUpdatd =
-        await _dbService.updateUser(editUserProfile, _authSerivce.appUser.id);
+    bool isUpdatd = await _dbService.updateUser(editUserProfile);
     Get.back();
     setState(ViewState.idle);
     if (isUpdatd == true) {
