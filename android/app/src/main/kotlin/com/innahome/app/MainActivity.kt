@@ -1,4 +1,4 @@
-package com.example.f2_base_project
+package com.innahome.app
 
 import io.flutter.embedding.android.FlutterActivity
 
