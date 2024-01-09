@@ -493,7 +493,7 @@ class DatabaseService {
     debugPrint('@gettingAppBanners');
     final List<String> categories = [];
     try {
-      QuerySnapshot snapshot = await _db.collection('banner').get();
+      QuerySnapshot snapshot = await _db.collection('banners').get();
       // final snapshot = await _db
       //     .collection("banners")
       //     // .orderBy('createdAt', descending: true)

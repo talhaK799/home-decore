@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:f2_base_project/core/enums/view_state.dart';
 import 'package:f2_base_project/core/models/offers.dart';
 import 'package:f2_base_project/core/models/products.dart';

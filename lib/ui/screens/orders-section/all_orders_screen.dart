@@ -1,9 +1,7 @@
-import 'dart:math';
 import 'package:f2_base_project/core/constants/colors.dart';
 import 'package:f2_base_project/core/constants/strings.dart';
 import 'package:f2_base_project/core/constants/styles.dart';
 import 'package:f2_base_project/core/constants/typedef.dart';
-import 'package:f2_base_project/core/models/my_orders.dart';
 import 'package:f2_base_project/core/models/order.dart';
 import 'package:f2_base_project/core/others/screen_uitls.dart';
 import 'package:f2_base_project/ui/custom_widgets/base_screen.dart';
@@ -37,12 +35,15 @@ class AllOrdersScreen extends StatelessWidget {
                 : Padding(
                     padding: EdgeInsets.fromLTRB(31.w, 30.h, 31.w, 20.h),
                     child: model.allOrders.isEmpty
-                        ? Center(
-                            child: Text(
-                            'no_order_created'.tr,
-                            style:
-                                bodyTextStyleLato.copyWith(color: primaryColor),
-                          ))
+                        ? SizedBox(
+                                 height: MediaQuery.of(context).size.height * 0.86,
+                          child: Center(
+                              child: Text(
+                              'no_order_created'.tr,
+                              style:
+                                  bodyTextStyleLato.copyWith(color: primaryColor),
+                            )),
+                        )
                         : ListView.builder(
                             physics: BouncingScrollPhysics(),
                             itemCount: model.allOrders.length,

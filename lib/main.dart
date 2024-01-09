@@ -1,8 +1,8 @@
 import 'package:f2_base_project/core/constants/colors.dart';
 import 'package:f2_base_project/core/models/notifications.dart';
+import 'package:f2_base_project/core/services/language_service.dart';
 import 'package:f2_base_project/core/services/shared_prefs_service.dart';
 import 'package:f2_base_project/locator.dart';
-import 'package:f2_base_project/ui/language.dart';
 import 'package:f2_base_project/ui/screens/auth_signup/login/login_view_model.dart';
 import 'package:f2_base_project/ui/screens/cart-and-payment-section/cart_view_model.dart';
 import 'package:f2_base_project/ui/screens/home/home_view_model.dart';
