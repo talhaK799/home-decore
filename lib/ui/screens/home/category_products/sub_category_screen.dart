@@ -2,19 +2,12 @@ import 'package:f2_base_project/core/constants/colors.dart';
 import 'package:f2_base_project/core/constants/strings.dart';
 import 'package:f2_base_project/core/constants/styles.dart';
 import 'package:f2_base_project/core/enums/view_state.dart';
-import 'package:f2_base_project/core/models/offers.dart';
 import 'package:f2_base_project/core/models/products.dart';
 import 'package:f2_base_project/core/others/screen_uitls.dart';
 import 'package:f2_base_project/ui/custom_widgets/base_screen.dart';
 import 'package:f2_base_project/ui/custom_widgets/custom_app_bar.dart';
-import 'package:f2_base_project/ui/custom_widgets/products_container.dart';
-import 'package:f2_base_project/ui/custom_widgets/sub_category_container.dart';
-import 'package:f2_base_project/ui/screens/home/category_products/categ_prod_view_model.dart';
 import 'package:f2_base_project/ui/screens/home/category_products/category_product_screen.dart';
 import 'package:f2_base_project/ui/screens/home/category_products/sub_category_viewmodel.dart';
-import 'package:f2_base_project/ui/screens/shop-section/all-product/filter/filter_screen.dart';
-import 'package:f2_base_project/ui/screens/shop-section/all-product/product_detail/product_detail_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -32,8 +25,7 @@ class SubCategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
+
     return ChangeNotifierProvider(
       create: (context) => SubCategoryViewModel(category, categoryId),
       child: Consumer<SubCategoryViewModel>(
@@ -71,8 +63,10 @@ class SubCategoryScreen extends StatelessWidget {
                           children: [
                             SizedBox(height: 10.h),
                             model.subCategory.isEmpty
-                                ? Center(
-                                    child: Text('sub_category_not_found'.tr))
+                                ? SizedBox(
+                                  height: MediaQuery.of(context).size.height * 0.86,
+                                  child: Center(child: Text('sub_category_not_found'.tr)),
+                                )
                                 : Center(
                                     child: Row(
                                       mainAxisAlignment:

@@ -10,7 +10,6 @@ import 'package:f2_base_project/ui/custom_widgets/products_container.dart';
 import 'package:f2_base_project/ui/screens/new_in_products/new_in_products_view_model.dart';
 import 'package:f2_base_project/ui/screens/shop-section/all-product/filter/filter_screen.dart';
 import 'package:f2_base_project/ui/screens/shop-section/all-product/product_detail/product_detail_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -99,8 +98,11 @@ class NewArrivalScreen extends StatelessWidget {
                           // model.getFilteredProd.baseProduct.products.isEmpty
                           //     ?
                           newInProductsList.isEmpty
-                              ? Center(
-                                  child: Text('searched_prod_not_found'.tr))
+                              ? SizedBox(
+                                 height: MediaQuery.of(context).size.height * 0.86,
+                                child: Center(
+                                    child: Text('searched_prod_not_found'.tr)),
+                              )
                               : Center(
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,

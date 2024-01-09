@@ -23,8 +23,7 @@ class WishlistScreen extends StatefulWidget {
 class _WishlistScreenState extends State<WishlistScreen> {
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
+
     return ChangeNotifierProvider(
       create: (context) => WishListProvider(),
       child: Consumer<WishListProvider>(

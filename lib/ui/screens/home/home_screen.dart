@@ -1,7 +1,6 @@
 import 'package:f2_base_project/core/constants/colors.dart';
 import 'package:f2_base_project/core/constants/strings.dart';
 import 'package:f2_base_project/core/constants/styles.dart';
-import 'package:f2_base_project/core/enums/view_state.dart';
 import 'package:f2_base_project/core/models/categories.dart';
 import 'package:f2_base_project/core/models/products.dart';
 import 'package:f2_base_project/ui/custom_widgets/app_banners_slider.dart';
@@ -18,7 +17,6 @@ import 'package:f2_base_project/ui/screens/shop-section/all-product/product_deta
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:get/get.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

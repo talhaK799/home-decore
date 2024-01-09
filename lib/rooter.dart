@@ -34,7 +34,8 @@ class Rooter {
                   body: Center(
                     child: Text("No route available ${sitting.name}"),
                   ),
-                ));
+                ),
+            );
     }
   }
 }

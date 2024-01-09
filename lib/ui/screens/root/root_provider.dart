@@ -7,7 +7,6 @@ import 'package:f2_base_project/core/services/database_service.dart';
 import 'package:f2_base_project/ui/screens/auth_signup/login/login_screen.dart';
 import 'package:f2_base_project/ui/screens/home/home_screen.dart';
 import 'package:f2_base_project/ui/screens/notification/notification-screen.dart';
-import 'package:f2_base_project/ui/screens/offers/offers_screen.dart';
 import 'package:f2_base_project/ui/screens/orders-section/all_orders_screen.dart';
 import 'package:f2_base_project/ui/screens/profile/profile-screen.dart';
 import 'package:f2_base_project/ui/screens/shop-section/all-product/products_screen.dart';
@@ -35,7 +34,6 @@ class RootProvider extends BaseViewModel {
     allScreen = [
       HomeScreen(),
       ProductsScreen(),
-      OfferScreen(),
       ProfileScreen(),
       AllOrdersScreen(),
     ];

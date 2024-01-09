@@ -1,4 +1,3 @@
-import 'package:f2_base_project/core/constants/strings.dart';
 import 'package:f2_base_project/core/enums/view_state.dart';
 import 'package:f2_base_project/core/models/products.dart';
 import 'package:f2_base_project/core/others/base_view_model.dart';
@@ -72,7 +71,7 @@ class HomeViewModel extends BaseViewModel {
   Future getAppBanners() async {
     setState(ViewState.busy);
     authService.banners = await _dbService.getAppBanners();
-    banner.add(authService.banners[1]);
+    banner =  authService.banners;
     print('appBanners => ${authService.banners.length}');
     setState(ViewState.idle);
   }

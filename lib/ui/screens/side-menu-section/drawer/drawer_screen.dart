@@ -9,7 +9,6 @@ import 'package:f2_base_project/ui/dialogs/signup_required_dialog.dart';
 import 'package:f2_base_project/ui/screens/auth_signup/login/login_screen.dart';
 import 'package:f2_base_project/ui/screens/home/category_products/sub_category_screen.dart';
 import 'package:f2_base_project/ui/screens/notification/notification-screen.dart';
-import 'package:f2_base_project/ui/screens/offers/offers_screen.dart';
 import 'package:f2_base_project/ui/screens/profile/profile-screen.dart';
 import 'package:f2_base_project/ui/screens/root/root_screen.dart';
 import 'package:f2_base_project/ui/screens/shop-section/all-product/products_screen.dart';

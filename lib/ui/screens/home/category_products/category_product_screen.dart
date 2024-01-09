@@ -107,10 +107,14 @@ class CategProdScreen extends StatelessWidget {
                             // model.getFilteredProd.baseProduct.products.isEmpty
                             //     ?
                             model.products.isEmpty
-                                ? Center(
+                                ? SizedBox(
+                                  height: MediaQuery.of(context).size.height * 0.78,
+                                  child: Center(
                                     child: Text(
-                                        'Products not found in this category'
-                                            .tr))
+                                        'products_not_found_in_this_category'.tr
+                                            ),
+                                  ),
+                                )
                                 : Center(
                                     child: Row(
                                       mainAxisAlignment:

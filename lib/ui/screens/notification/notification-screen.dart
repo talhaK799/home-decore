@@ -4,7 +4,6 @@ import 'package:f2_base_project/ui/custom_widgets/base_screen.dart';
 import 'package:f2_base_project/ui/custom_widgets/custom_app_bar.dart';
 import 'package:f2_base_project/ui/custom_widgets/notification-tile.dart';
 import 'package:f2_base_project/ui/screens/notification/notification-view-model.dart';
-import 'package:f2_base_project/ui/screens/root/root_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -22,19 +21,24 @@ class NotificationScreen extends StatelessWidget {
                 onLeadingPressed: () {
                   Get.back();
                 },
-                title: 'Notifications'.tr,
+                title: 'notifications'.tr,
               ),
               body: model.isLoading
                   ? Center(child: CircularProgressIndicator())
-                  : Center(child: _categoriesStackView(model)))),
+                  : Center(child: _categoriesStackView(model, context)))),
     );
   }
 
-  _categoriesStackView(NotificationViewModel model) {
+  _categoriesStackView(NotificationViewModel model, BuildContext context) {
     return Padding(
         padding: EdgeInsets.zero,
         child: model.notificaitons.isEmpty
-            ? Center(child: Text('notifications_not_found'.tr))
+            ? SizedBox(
+             height: MediaQuery.of(context).size.height * 0.86,
+              child: Center(
+              child: Text('notifications_not_found'.tr),
+            ),
+            )
             : Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.start,
