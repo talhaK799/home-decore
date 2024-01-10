@@ -72,7 +72,8 @@ class _ProductsContainerState extends State<ProductsContainer> {
                           width: 140.w,
                           height: 115.h,
                         ),
-                      )),
+                      ),
+                      ),
                     ),
                   ),
                   SizedBox(height: 7.6.h),
@@ -80,7 +81,7 @@ class _ProductsContainerState extends State<ProductsContainer> {
                     child: Text(
                       '${widget.product!.name}',
                       overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
+                      maxLines: 1,
                       style: boldTextStyleLato.copyWith(
                           color: blackColor,
                           fontFamily: latoFont,

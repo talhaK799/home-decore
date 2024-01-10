@@ -19,7 +19,7 @@ class BaseScreen extends StatelessWidget {
             alignment: Alignment.center,
             width: double.infinity,
             height: 130.h,
-            padding: EdgeInsets.fromLTRB(16.w, 45.h, 20.w, 50.h),
+            padding: EdgeInsets.fromLTRB(6.w, 45.h, 20.w, 50.h),
             color: primaryColor,
             child: appBarChild,
           ),

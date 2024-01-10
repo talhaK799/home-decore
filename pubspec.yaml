@@ -81,6 +81,10 @@ dependencies:
     git:
       url: https://github.com/hurshi/dio-http-cache
   rename: ^3.0.1
+  
+  
+
+
   flutter_localizations:
     sdk: flutter
   # sign_in_with_apple: ^5.0.0
@@ -88,13 +92,13 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
   flutter_launcher_icons: "^0.9.0"
+  
 
 flutter_icons:
-  image_path: "assets/static_assets/icon_launcher/logo0.png"
-  android: true
+  android: "launcher_icon"
   ios: true
+  image_path: "assets/static_assets/logoo.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
