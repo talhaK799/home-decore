@@ -97,7 +97,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                         ],
                                       ),
                                     ),
-                                  ])))
+                                  ],
+                                ),
+                              ),
+                            )
                     ]),
                   ],
                 ),
@@ -178,7 +181,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           Text(
             '${widget.product!.name}',
             style: boldTextStyleHacen.copyWith(
-                color: Colors.black, fontSize: 32.sp, fontFamily: latoFont),
+                color: Colors.black, fontSize: 20.sp, fontFamily: latoFont),
           ),
           SizedBox(height: 7.5.h),
           // Row(
@@ -394,7 +397,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           children: [
             SizedBox(height: 8.h),
             Text(
-              '${model.relatedProducts[index].name}',
+              '${model.relatedProducts[index].name!.length>10?"${model.relatedProducts[index].name!.substring(0, 9)}...":model.relatedProducts[index].name}',
               style: boldTextStyleLato.copyWith(
                   color: blackColor, fontSize: 13.sp, fontFamily: latoFont),
             ),

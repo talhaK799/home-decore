@@ -81,27 +81,27 @@ class SubCategoryScreen extends StatelessWidget {
                                               padding: EdgeInsets.zero,
                                               gridDelegate:
                                                   SliverGridDelegateWithFixedCrossAxisCount(
-                                                      childAspectRatio: Get
-                                                                  .height >=
-                                                              800
-                                                          ? MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .width /
-                                                              (MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .height /
-                                                                  1.94)
-                                                          : MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .width /
-                                                              (MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .height /
-                                                                  1.76),
+                                                      // childAspectRatio: Get
+                                                      //             .height >=
+                                                      //         800
+                                                      //     ? MediaQuery.of(
+                                                      //                 context)
+                                                      //             .size
+                                                      //             .width /
+                                                      //         (MediaQuery.of(
+                                                      //                     context)
+                                                      //                 .size
+                                                      //                 .height /
+                                                      //             1.86)
+                                                      //     : MediaQuery.of(
+                                                      //                 context)
+                                                      //             .size
+                                                      //             .width /
+                                                      //         (MediaQuery.of(
+                                                      //                     context)
+                                                      //                 .size
+                                                      //                 .height /
+                                                      //             1.76),
                                                       crossAxisCount: 2,
                                                       mainAxisSpacing: 4,
                                                       crossAxisSpacing: 4),

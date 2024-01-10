@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'dart:io' show Platform;
 
 class RootScreen extends StatefulWidget {
   final int selectedDate;
@@ -107,17 +108,21 @@ class _RootScreenState extends State<RootScreen> with TickerProviderStateMixin {
                         topLeft: Radius.circular(24),
                         topRight: Radius.circular(24)),
                     child: Container(
-                      height: 60.h,
+                      height: Platform.isIOS ? 75.h:60.h,
+                      padding: EdgeInsets.only(bottom: Platform.isIOS ? 15:0),
                       decoration: BoxDecoration(
-                          color: model.pageIndex == 3
-                              ? Colors.white
-                              : primaryColor,
+                          color:
+                          //  model.pageIndex == 3
+                          //     ? Colors.white
+                          //     : 
+                              primaryColor,
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(24),
                               topRight: Radius.circular(24))),
                       child: BottomAppBar(
                         color:
-                            model.pageIndex == 3 ? Colors.white : primaryColor,
+                            // model.pageIndex == 3 ? Colors.white : 
+                            primaryColor,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
@@ -127,12 +132,13 @@ class _RootScreenState extends State<RootScreen> with TickerProviderStateMixin {
                                     icon: 'home_icon.png',
                                     onTap: () => model.onTap(0))
                                 : GestureDetector(
+                                  behavior: HitTestBehavior.opaque,
                                     onTap: () => model.onTap(0),
                                     child: Image.asset(
                                       '$staticAssets/home_icon.png',
                                       width: 20.w,
                                       height: 20.h,
-                                      color: model.pageIndex == 3
+                                      color: model.pageIndex == 0
                                           ? primaryColor
                                           : Colors.white,
                                     ),
@@ -143,54 +149,37 @@ class _RootScreenState extends State<RootScreen> with TickerProviderStateMixin {
                                     icon: 'products_icon.png',
                                     onTap: () => model.onTap(1))
                                 : GestureDetector(
+                                         behavior: HitTestBehavior.opaque,
                                     onTap: () => model.onTap(1),
                                     child: Image.asset(
                                       '$staticAssets/products_icon.png',
                                       width: model.pageIndex == 1 ? 26.w : 20.w,
                                       height:
                                           model.pageIndex == 1 ? 26.h : 20.h,
-                                      color: model.pageIndex == 3
+                                      color: model.pageIndex == 1
                                           ? primaryColor
                                           : Colors.white,
                                     ),
                                   ),
-                            ///
-                            /// removed    Offers screen
-                            /// 
-                            
-                            // model.pageIndex == 2
-                            //     ? selectedIcon(
-                            //         icon: 'payment_icon.png',
-                            //         onTap: () => model.onTap(2))
-                            //     : GestureDetector(
-                            //         onTap: () => model.onTap(2),
-                            //         child: Image.asset(
-                            //           '$staticAssets/payment_icon.png',
-                            //           width: model.pageIndex == 2 ? 26.w : 20.w,
-                            //           height:
-                            //               model.pageIndex == 2 ? 26.h : 20.h,
-                            //           color: model.pageIndex == 3
-                            //               ? primaryColor
-                            //               : Colors.white,
-                            //         ),
-                            //       ),
-                            // payment Screen
-                            model.pageIndex == 3
+                           
+                            model.pageIndex == 2
                                 ? selectedIcon(
-                                    isBookingScreen: true,
+                                    
                                     icon: 'profile.png',
+                                    
                                     onTap: () {
                                       if (model.authService.isLogin) {
-                                        model.onTap(3);
+                                        model.onTap(2);
                                       } else {
                                         Get.dialog(
                                             SignupRequiredDialog('rootScreen'));
                                       }
                                     })
                                 : GestureDetector(
+                                         behavior: HitTestBehavior.opaque,
                                     onTap: () {
                                       if (model.authService.isLogin) {
-                                        model.onTap(3);
+                                        model.onTap(2);
                                       } else {
                                         Get.dialog(
                                             SignupRequiredDialog('rootScreen'));
@@ -198,30 +187,31 @@ class _RootScreenState extends State<RootScreen> with TickerProviderStateMixin {
                                     },
                                     child: Image.asset(
                                       '$staticAssets/profile.png',
-                                      width: model.pageIndex == 3 ? 26.w : 20.w,
+                                      width: model.pageIndex == 2 ? 26.w : 20.w,
                                       height:
-                                          model.pageIndex == 3 ? 26.h : 20.h,
-                                      color: model.pageIndex == 3
+                                          model.pageIndex == 2 ? 26.h : 20.h,
+                                      color: model.pageIndex == 2
                                           ? primaryColor
                                           : Colors.white,
                                     ),
                                   ),
 
-                            model.pageIndex == 4
+                            model.pageIndex == 3
                                 ? selectedIcon(
                                     icon: 'order_icon.png',
                                     onTap: () {
                                       if (model.authService.isLogin) {
-                                        model.onTap(4);
+                                        model.onTap(3);
                                       } else {
                                         Get.dialog(
                                             SignupRequiredDialog('rootScreen'));
                                       }
                                     })
                                 : GestureDetector(
+                                         behavior: HitTestBehavior.opaque,
                                     onTap: () {
                                       if (model.authService.isLogin) {
-                                        model.onTap(4);
+                                        model.onTap(3);
                                       } else {
                                         Get.dialog(
                                             SignupRequiredDialog('rootScreen'));

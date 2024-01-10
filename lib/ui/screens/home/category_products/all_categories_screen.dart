@@ -111,11 +111,12 @@ class AllCategoriesScreen extends StatelessWidget {
                                           padding: EdgeInsets.zero,
                                           gridDelegate:
                                               SliverGridDelegateWithFixedCrossAxisCount(
-                                                   childAspectRatio: Get.height >= 800
-                                                ? MediaQuery.of(context).size.width /
-                                                    (MediaQuery.of(context).size.height / 1.94)
-                                                : MediaQuery.of(context).size.width /
-                                                    (MediaQuery.of(context).size.height / 1.76),
+                                                //    childAspectRatio: Get.height >= 800
+                                                // ? MediaQuery.of(context).size.width /
+                                                //     (MediaQuery.of(context).size.height / 1.99)
+                                                // : MediaQuery.of(context).size.width /
+                                                //     (MediaQuery.of(context).size.height / 1.76),
+                                                
                                                   crossAxisCount: 2,
                                                   mainAxisSpacing: 15,
                                                   crossAxisSpacing: 15),

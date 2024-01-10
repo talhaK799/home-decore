@@ -29,36 +29,37 @@ class CustomAppBar extends StatelessWidget {
       children: [
         Row(
           children: [
-            GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onTap: onLeadingPressed ??
-                  () {
-                    Get.back();
-                  },
-              child: Padding(
-                padding:  EdgeInsets.only(left: 3),
-                child: Transform(
-                    alignment: Alignment.center,
-                    transform: Get.locale!.languageCode == 'ar'
-                        ? Matrix4.rotationY(pi)
-                        : Matrix4.rotationY(0),
-                    child: Image.asset('$leadingIcon', height: 18.h, width: 9.w)),
-              ),
-            ),
-
-            // IconButton(
-            //   padding: EdgeInsets.zero,
-            //   icon: Transform(
-            //       alignment: Alignment.center,
-            //       transform: Get.locale!.languageCode == 'ar'
-            //           ? Matrix4.rotationY(pi)
-            //           : Matrix4.rotationY(0),
-            //       child: Image.asset('$leadingIcon', height: 18.h, width: 9.w)),
-            //   onPressed: onLeadingPressed ??
+            // GestureDetector(
+            //   behavior: HitTestBehavior.opaque,
+            //   onTap: onLeadingPressed ??
             //       () {
             //         Get.back();
             //       },
+            //   child: Padding(
+            //     padding:  EdgeInsets.only(left: 6),
+            //     child: Transform(
+            //         alignment: Alignment.center,
+            //         transform: Get.locale!.languageCode == 'ar'
+            //             ? Matrix4.rotationY(pi)
+            //             : Matrix4.rotationY(0),
+            //         child: Image.asset('$leadingIcon', height: 18.h, width: 9.w)),
+            //   ),
             // ),
+
+            IconButton(
+              
+              padding: EdgeInsets.zero,
+              icon: Transform(
+                  alignment: Alignment.center,
+                  transform: Get.locale!.languageCode == 'ar'
+                      ? Matrix4.rotationY(pi)
+                      : Matrix4.rotationY(0),
+                  child: Image.asset('$leadingIcon', height: 18.h, width: 9.w)),
+              onPressed: onLeadingPressed ??
+                  () {
+                    Get.back();
+                  },
+            ),
             SizedBox(width: 12.w),
             Text(
               '$title',

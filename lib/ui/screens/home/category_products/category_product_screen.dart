@@ -132,9 +132,9 @@ class CategProdScreen extends StatelessWidget {
                                                 SliverGridDelegateWithFixedCrossAxisCount(
                                                      childAspectRatio: Get.height >= 800
                                                   ? MediaQuery.of(context).size.width /
-                                                      (MediaQuery.of(context).size.height / 1.78)
+                                                      (MediaQuery.of(context).size.height / 1.82)
                                                   : MediaQuery.of(context).size.width /
-                                                      (MediaQuery.of(context).size.height / 1.6),
+                                                      (MediaQuery.of(context).size.height / 1.67),
                                                         crossAxisCount: 2,
                                                         mainAxisSpacing: 4,
                                                         crossAxisSpacing: 4),
