@@ -87,6 +87,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
+    print(screenSize);
+  
     return MediaQuery(
       data: MediaQueryData(size: Size(screenSize.width, screenSize.height)),
       child: ScreenUtilInit(
