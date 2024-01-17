@@ -106,24 +106,107 @@ class AllCategoriesScreen extends StatelessWidget {
                                       Expanded(
                                         child: GridView.builder(
                                           primary: false,
-                                          itemCount: newInProductsList.length,
+                                          itemCount:model.authService.categories.length,
                                           shrinkWrap: true,
                                           padding: EdgeInsets.zero,
                                           gridDelegate:
                                               SliverGridDelegateWithFixedCrossAxisCount(
-                                                //    childAspectRatio: Get.height >= 800
+                                                //    childAspectRatio:  MediaQuery.of(context).size.height >= 1000
                                                 // ? MediaQuery.of(context).size.width /
                                                 //     (MediaQuery.of(context).size.height / 1.99)
                                                 // : MediaQuery.of(context).size.width /
-                                                //     (MediaQuery.of(context).size.height / 1.76),
+                                                //     (MediaQuery.of(context).size.height / 1.72),
                                                 
                                                   crossAxisCount: 2,
                                                   mainAxisSpacing: 15,
-                                                  crossAxisSpacing: 15),
+                                                  crossAxisSpacing: 15,
+                                                  ),
                                           itemBuilder: (context, index) {
-                                            return categorie(
-                                                model.authService.categories,
-                                                index);
+                                            return GridTile(child:  InkWell(
+                                                  onTap: () {
+                                                    Get.to(() =>
+                                                        SubCategoryScreen(model.authService.categories[index].title!, model.authService.categories[index].id!));
+                                                  },
+
+                                                  child: Container(
+                                                    padding: EdgeInsets.symmetric(horizontal: 10),
+                                                    decoration: BoxDecoration(
+                                                      
+                                                        color: whiteColor,
+                                                        borderRadius: BorderRadius.circular(10.r),
+                                                        boxShadow: [
+                                                          BoxShadow(
+                                                            color: Colors.grey.withOpacity(0.2),
+                                                            spreadRadius: 2,
+                                                            blurRadius: 7,
+                                                            offset: Offset(0, 0),
+                                                          ),
+                                                        ]),
+                                                    child: Padding(
+                                                      padding: EdgeInsets.only( top: 10, bottom: 0),
+                                                      child: Column(
+                                                        children: [
+                                                          model.authService.categories[index].iconUrl != null
+                                                              ? ClipRRect(
+                                                                  borderRadius: BorderRadius.circular(10),
+                                                                  child: Image.network(
+                                                                    '${model.authService.categories[index].iconUrl}',
+                                                                    width: double.infinity,
+                                                                    height:MediaQuery.of(context).size.height >= 1000 ? MediaQuery.of(context).size.height * 0.26 : MediaQuery.of(context).size.height* 0.15,
+                                                                    
+                                                                    // width: 140.w,
+                                                                    // height: 130.h,
+                                                                    fit: BoxFit.cover,
+                                                                  ),
+                                                                )
+                                                              : Container(
+                                                                    // width: 140.w,
+                                                                    // height: 130.h,
+                                                                  decoration: BoxDecoration(
+                                                                    color: greyColor,
+                                                                    borderRadius: BorderRadius.circular(10),
+                                                                  ),
+                                                                ),
+                                                          SizedBox(
+                                                            height: MediaQuery.of(context).size.height >= 1000? 10.h:5.h,
+                                                          ),
+                                                         Flexible(
+                                                           child: Text(
+                                                             '${model.authService.categories[index].title ?? ''}',
+                                                             overflow: TextOverflow.ellipsis,
+                                                             textAlign: TextAlign.center,
+                                                             style: boldTextStyleHacen.copyWith(
+                                                                 fontSize: 14.sp,
+                                                                 color: blackColor,
+                                                                 fontFamily: latoFont,
+                                                                 fontWeight: FontWeight.bold),
+                                                           ),
+                                                         ),
+                                                          SizedBox(
+                                                            height: 5.h,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                // footer:  Padding(
+                                                //   padding: const EdgeInsets.only(bottom: 5),
+                                                //   child: Text(
+                                                //     '${model.authService.categories[index].title ?? ''}',
+                                                //     overflow: TextOverflow.ellipsis,
+                                                //     textAlign: TextAlign.center,
+                                                //     style: boldTextStyleHacen.copyWith(
+                                                //         fontSize: 14.sp,
+                                                //         color: blackColor,
+                                                //         fontFamily: latoFont,
+                                                //         fontWeight: FontWeight.bold),
+                                                //   ),
+                                                // ),
+                                                );
+                                            // return categorie(
+                                            //     model.authService.categories,
+                                            //     index);
                                           },
                                         ),
                                       ),
@@ -162,7 +245,7 @@ class AllCategoriesScreen extends StatelessWidget {
               ),
             ]),
         child: Padding(
-          padding: EdgeInsets.only(left: 8, right: 8, top: 10, bottom: 10),
+          padding: EdgeInsets.only( top: 10, bottom: 10),
           child: Column(
             children: [
               services[index].iconUrl != null
@@ -170,6 +253,8 @@ class AllCategoriesScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                       child: Image.network(
                         '${services[index].iconUrl}',
+                        
+                        
                         width: 140.w,
                         height: 130.h,
                         fit: BoxFit.cover,
