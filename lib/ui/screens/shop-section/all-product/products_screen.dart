@@ -2,6 +2,7 @@ import 'package:f2_base_project/core/constants/colors.dart';
 import 'package:f2_base_project/core/constants/strings.dart';
 import 'package:f2_base_project/core/constants/styles.dart';
 import 'package:f2_base_project/core/others/screen_uitls.dart';
+import 'package:f2_base_project/responsive.dart';
 import 'package:f2_base_project/ui/custom_widgets/base_screen.dart';
 import 'package:f2_base_project/ui/custom_widgets/circular_progress_indicator.dart';
 import 'package:f2_base_project/ui/custom_widgets/custom_app_bar.dart';
@@ -22,7 +23,6 @@ class ProductsScreen extends StatefulWidget {
 class _ProductsScreenState extends State<ProductsScreen> {
   @override
   Widget build(BuildContext context) {
-    
     return ChangeNotifierProvider(
       create: (context) => ProductsViewModel(),
       child: Consumer<ProductsViewModel>(
@@ -105,13 +105,16 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                       model.authService.allProducts.length,
                                   shrinkWrap: true,
                                   gridDelegate:
-                                              SliverGridDelegateWithFixedCrossAxisCount(
-                                                  childAspectRatio: Get.height >= 800
-                                                ? MediaQuery.of(context).size.width /
-                                                    (MediaQuery.of(context).size.height / 1.78)
-                                                : MediaQuery.of(context).size.width /
-                                                    (MediaQuery.of(context).size.height / 1.6),
-                                          crossAxisCount: 2,
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                          //   childAspectRatio: Get.height >= 800
+                                          // ? MediaQuery.of(context).size.width /
+                                          //     (MediaQuery.of(context).size.height / 1.78)
+                                          // : MediaQuery.of(context).size.width /
+                                          //     (MediaQuery.of(context).size.height / 1.6),
+                                          crossAxisCount:
+                                              Responsive.isMobile(context)
+                                                  ? 2
+                                                  : 3,
                                           mainAxisSpacing: 15,
                                           crossAxisSpacing: 15),
                                   itemBuilder: (context, index) {

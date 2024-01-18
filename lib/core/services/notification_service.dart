@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:dio/dio.dart';
+// import 'package:dio/dio.dart';
 import 'package:f2_base_project/core/constants/colors.dart';
 import 'package:f2_base_project/core/models/notifications.dart';
 import 'package:f2_base_project/ui/screens/notification/notification-screen.dart';
@@ -257,41 +257,41 @@ class NotificationsService {
     });
   }
 
-  sendNotification({
-    hostFCMtoken,
-    userName,
-    hostUserId,
-    carName,
-  }) async {
-    final fcmToken = hostFCMtoken;
-    // 'ef-KxIlWRcaQs4QSoYhCjk:APA91bGAoiPUOh-39DAhpoiPBZi9V7lJXhGXpikJnnbWzqIM_Lm4nKY_H2gdpV4EaEiMh_B5xnbEQQ07Fev-B5IA9hGiBPuliPv3qjcJVjYuTLKlRG4z_UCrnCkkjQPrG08jJQVKElKl';
-    //fcmServerKey will remain same
-    final fcmServerKey = '<YOUR_FCM_SERVER_KEY>';
-    final dio = Dio();
-    dio.options.headers['Content-Type'] = 'application/json';
-    dio.options.headers["Authorization"] = 'key=$fcmServerKey';
-    final sendFcmApi = 'https://fcm.googleapis.com/fcm/send';
-    final response = await dio.post(
-      '$sendFcmApi',
-      data: {
-        'notification': {
-          'body': 'Has Booked your $carName car',
-          'title': '$userName '
-        },
-        'priority': 'high',
-        'data': {
-          'click_action': 'FLUTTER_NOTIFICATION_CLICK',
-          // 'type': '$callType', // audio_call, video_call,
-          // 'patient_id': '$patientId',
-          // 'conversation_id': '$conversationId',
-          'hostUserId': '$hostUserId'
-        },
-        'to': '$fcmToken',
-      },
-    );
+  // sendNotification({
+  //   hostFCMtoken,
+  //   userName,
+  //   hostUserId,
+  //   carName,
+  // }) async {
+  //   final fcmToken = hostFCMtoken;
+  //   // 'ef-KxIlWRcaQs4QSoYhCjk:APA91bGAoiPUOh-39DAhpoiPBZi9V7lJXhGXpikJnnbWzqIM_Lm4nKY_H2gdpV4EaEiMh_B5xnbEQQ07Fev-B5IA9hGiBPuliPv3qjcJVjYuTLKlRG4z_UCrnCkkjQPrG08jJQVKElKl';
+  //   //fcmServerKey will remain same
+  //   final fcmServerKey = '<YOUR_FCM_SERVER_KEY>';
+  //   final dio = Dio();
+  //   dio.options.headers['Content-Type'] = 'application/json';
+  //   dio.options.headers["Authorization"] = 'key=$fcmServerKey';
+  //   final sendFcmApi = 'https://fcm.googleapis.com/fcm/send';
+  //   final response = await dio.post(
+  //     '$sendFcmApi',
+  //     data: {
+  //       'notification': {
+  //         'body': 'Has Booked your $carName car',
+  //         'title': '$userName '
+  //       },
+  //       'priority': 'high',
+  //       'data': {
+  //         'click_action': 'FLUTTER_NOTIFICATION_CLICK',
+  //         // 'type': '$callType', // audio_call, video_call,
+  //         // 'patient_id': '$patientId',
+  //         // 'conversation_id': '$conversationId',
+  //         'hostUserId': '$hostUserId'
+  //       },
+  //       'to': '$fcmToken',
+  //     },
+  //   );
 
-    print('@sendNotification: Response: $response');
-  }
+  //   print('@sendNotification: Response: $response');
+  // }
 
   initFlutterLocalNotificationPlugin() async {
     if (!kIsWeb) {

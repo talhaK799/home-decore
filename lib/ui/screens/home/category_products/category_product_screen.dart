@@ -4,6 +4,7 @@ import 'package:f2_base_project/core/constants/styles.dart';
 import 'package:f2_base_project/core/enums/view_state.dart';
 import 'package:f2_base_project/core/models/offers.dart';
 import 'package:f2_base_project/core/others/screen_uitls.dart';
+import 'package:f2_base_project/responsive.dart';
 import 'package:f2_base_project/ui/custom_widgets/base_screen.dart';
 import 'package:f2_base_project/ui/custom_widgets/custom_app_bar.dart';
 import 'package:f2_base_project/ui/custom_widgets/products_container.dart';
@@ -26,7 +27,6 @@ class CategProdScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return ChangeNotifierProvider(
       create: (context) => CategProdViewModel(
           subCategory, isFromOffers, offer ?? null, subCategoryId!),
@@ -108,13 +108,14 @@ class CategProdScreen extends StatelessWidget {
                             //     ?
                             model.products.isEmpty
                                 ? SizedBox(
-                                  height: MediaQuery.of(context).size.height * 0.78,
-                                  child: Center(
-                                    child: Text(
-                                        'products_not_found_in_this_category'.tr
-                                            ),
-                                  ),
-                                )
+                                    height: MediaQuery.of(context).size.height *
+                                        0.78,
+                                    child: Center(
+                                      child: Text(
+                                          'products_not_found_in_this_category'
+                                              .tr),
+                                    ),
+                                  )
                                 : Center(
                                     child: Row(
                                       mainAxisAlignment:
@@ -122,22 +123,28 @@ class CategProdScreen extends StatelessWidget {
                                       children: [
                                         Expanded(
                                           child: Padding(
-                                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 20),
                                             child: GridView.builder(
                                                 primary: false,
-                                                itemCount: model.products.length,
+                                                itemCount:
+                                                    model.products.length,
                                                 shrinkWrap: true,
                                                 padding: EdgeInsets.zero,
-                                                 gridDelegate:
-                                                SliverGridDelegateWithFixedCrossAxisCount(
-                                                     childAspectRatio: Get.height >= 800
-                                                  ? MediaQuery.of(context).size.width /
-                                                      (MediaQuery.of(context).size.height / 1.82)
-                                                  : MediaQuery.of(context).size.width /
-                                                      (MediaQuery.of(context).size.height / 1.67),
-                                                        crossAxisCount: 2,
-                                                        mainAxisSpacing: 4,
-                                                        crossAxisSpacing: 4),
+                                                gridDelegate:
+                                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                                        //    childAspectRatio: Get.height >= 800
+                                                        // ? MediaQuery.of(context).size.width /
+                                                        //     (MediaQuery.of(context).size.height / 1.82)
+                                                        // : MediaQuery.of(context).size.width /
+                                                        //     (MediaQuery.of(context).size.height / 1.67),
+                                                        crossAxisCount:
+                                                            Responsive.isMobile(
+                                                                    context)
+                                                                ? 2
+                                                                : 3,
+                                                        mainAxisSpacing: 15,
+                                                        crossAxisSpacing: 15),
                                                 itemBuilder: (context, index) {
                                                   return Padding(
                                                     padding:
@@ -147,24 +154,25 @@ class CategProdScreen extends StatelessWidget {
                                                             right: 3),
                                                     child: GestureDetector(
                                                       onTap: () {
-                                                        Get.to(
-                                                            ProductDetailScreen(
-                                                                isFirstTime: true,
-                                                                isFromOffer:
-                                                                    isFromOffers,
-                                                                offer: offer,
-                                                                product: model
-                                                                        .products[
+                                                        Get.to(ProductDetailScreen(
+                                                            isFirstTime: true,
+                                                            isFromOffer:
+                                                                isFromOffers,
+                                                            offer: offer,
+                                                            product:
+                                                                model.products[
                                                                     index]));
                                                       },
                                                       child: ProductsContainer(
                                                         onChange: () {
-                                                          model.toggleProductLike(
-                                                              model.products,
-                                                              index);
+                                                          model
+                                                              .toggleProductLike(
+                                                                  model
+                                                                      .products,
+                                                                  index);
                                                         },
-                                                        product:
-                                                            model.products[index],
+                                                        product: model
+                                                            .products[index],
                                                       ),
                                                     ),
                                                   );

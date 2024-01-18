@@ -4,6 +4,7 @@ import 'package:f2_base_project/core/constants/styles.dart';
 import 'package:f2_base_project/core/enums/view_state.dart';
 import 'package:f2_base_project/core/models/products.dart';
 import 'package:f2_base_project/core/others/screen_uitls.dart';
+import 'package:f2_base_project/responsive.dart';
 import 'package:f2_base_project/ui/custom_widgets/base_screen.dart';
 import 'package:f2_base_project/ui/custom_widgets/custom_app_bar.dart';
 import 'package:f2_base_project/ui/custom_widgets/products_container.dart';
@@ -22,7 +23,6 @@ class NewArrivalScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return ChangeNotifierProvider(
       create: (context) => NewInProductsViewModel(),
       child: Consumer<NewInProductsViewModel>(
@@ -99,10 +99,12 @@ class NewArrivalScreen extends StatelessWidget {
                           //     ?
                           newInProductsList.isEmpty
                               ? SizedBox(
-                                 height: MediaQuery.of(context).size.height * 0.86,
-                                child: Center(
-                                    child: Text('searched_prod_not_found'.tr)),
-                              )
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.86,
+                                  child: Center(
+                                      child:
+                                          Text('searched_prod_not_found'.tr)),
+                                )
                               : Center(
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -113,45 +115,57 @@ class NewArrivalScreen extends StatelessWidget {
                                             itemCount: newInProductsList.length,
                                             shrinkWrap: true,
                                             padding: EdgeInsets.zero,
-                                             gridDelegate:
-                                              SliverGridDelegateWithFixedCrossAxisCount(
-                                                   childAspectRatio: Get.height >= 800
-                                                ? MediaQuery.of(context).size.width /
-                                                    (MediaQuery.of(context).size.height / 1.78)
-                                                : MediaQuery.of(context).size.width /
-                                                    (MediaQuery.of(context).size.height / 1.6),
-                                                    crossAxisCount: 2,
+                                            gridDelegate:
+                                                SliverGridDelegateWithFixedCrossAxisCount(
+                                                    //    childAspectRatio: Get.height >= 800
+                                                    // ? MediaQuery.of(context).size.width /
+                                                    //     (MediaQuery.of(context).size.height / 1.78)
+                                                    // : MediaQuery.of(context).size.width /
+                                                    //     (MediaQuery.of(context).size.height / 1.6),
+                                                    crossAxisCount:
+                                                        Responsive.isMobile(
+                                                                context)
+                                                            ? 2
+                                                            : 3,
+                                                    // childAspectRatio:
+                                                    //     Responsive.isMobile(
+                                                    //             context)
+                                                    //         ? 0.8 / 1
+                                                    //         : 1.2,
                                                     mainAxisSpacing: 15,
                                                     crossAxisSpacing: 15),
                                             itemBuilder: (context, index) {
-                                              return Padding(
-                                                padding: const EdgeInsets.only(
-                                                    bottom: 8.0,
-                                                    left: 3,
-                                                    right: 3),
-                                                child: GestureDetector(
-                                                  onTap: () async {
-                                                    newInProductsList[
-                                                        index] = await Get.to(() =>
-                                                            ProductDetailScreen(
-                                                              isFirstTime: true,
-                                                              product:
-                                                                  newInProductsList[
-                                                                      index],
-                                                            )) ??
-                                                        newInProductsList[
-                                                            index];
-                                                    model.setState(
-                                                        ViewState.idle);
-                                                  },
-                                                  child: ProductsContainer(
-                                                    onChange: () {
-                                                      model.toggleProductLike(
-                                                          newInProductsList,
-                                                          index);
+                                              return GridTile(
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 3, right: 3),
+                                                  child: GestureDetector(
+                                                    onTap: () async {
+                                                      newInProductsList[index] =
+                                                          await Get.to(() =>
+                                                                  ProductDetailScreen(
+                                                                    isFirstTime:
+                                                                        true,
+                                                                    product:
+                                                                        newInProductsList[
+                                                                            index],
+                                                                  )) ??
+                                                              newInProductsList[
+                                                                  index];
+                                                      model.setState(
+                                                          ViewState.idle);
                                                     },
-                                                    product: newInProductsList[
-                                                        index],
+                                                    child: ProductsContainer(
+                                                      onChange: () {
+                                                        model.toggleProductLike(
+                                                            newInProductsList,
+                                                            index);
+                                                      },
+                                                      product:
+                                                          newInProductsList[
+                                                              index],
+                                                    ),
                                                   ),
                                                 ),
                                               );

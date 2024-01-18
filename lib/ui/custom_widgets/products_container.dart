@@ -35,7 +35,6 @@ class _ProductsContainerState extends State<ProductsContainer> {
             child: Container(
               alignment: Alignment.center,
               padding: EdgeInsets.symmetric(horizontal: 8.h, vertical: 11.h),
-              // width: 153.w,
               // height: 225.h,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -55,24 +54,24 @@ class _ProductsContainerState extends State<ProductsContainer> {
                   Align(
                     alignment: Alignment.center,
                     child: Container(
-                      width: 140.w,
-                      height: 115.h,
+                      // width: double.infinity,
+                      // height: 0.15.sh,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(9),
                         color: Color(0xFFE3E3E3),
                       ),
                       child: Center(
-                          child: ClipRRect(
-                        borderRadius: BorderRadius.circular(9),
-                        child: FadeInImage.assetNetwork(
-                          placeholder: '$productPlaceHolder',
-                          image: '${widget.product!.images![0]}',
-                          fit: BoxFit.cover,
-                          width: 140.w,
-                          height: 115.h,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(9),
+                          child: FadeInImage.assetNetwork(
+                            placeholder: '$productPlaceHolder',
+                            image: '${widget.product!.images![0]}',
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                            height: 0.12.sh,
+                          ),
                         ),
-                      ),
                       ),
                     ),
                   ),

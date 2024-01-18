@@ -4,6 +4,7 @@ import 'package:f2_base_project/core/constants/styles.dart';
 import 'package:f2_base_project/core/enums/view_state.dart';
 import 'package:f2_base_project/core/models/products.dart';
 import 'package:f2_base_project/core/others/screen_uitls.dart';
+import 'package:f2_base_project/responsive.dart';
 import 'package:f2_base_project/ui/custom_widgets/base_screen.dart';
 import 'package:f2_base_project/ui/custom_widgets/custom_app_bar.dart';
 import 'package:f2_base_project/ui/screens/home/category_products/category_product_screen.dart';
@@ -25,7 +26,6 @@ class SubCategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return ChangeNotifierProvider(
       create: (context) => SubCategoryViewModel(category, categoryId),
       child: Consumer<SubCategoryViewModel>(
@@ -64,9 +64,12 @@ class SubCategoryScreen extends StatelessWidget {
                             SizedBox(height: 10.h),
                             model.subCategory.isEmpty
                                 ? SizedBox(
-                                  height: MediaQuery.of(context).size.height * 0.86,
-                                  child: Center(child: Text('sub_category_not_found'.tr)),
-                                )
+                                    height: MediaQuery.of(context).size.height *
+                                        0.86,
+                                    child: Center(
+                                        child:
+                                            Text('sub_category_not_found'.tr)),
+                                  )
                                 : Center(
                                     child: Row(
                                       mainAxisAlignment:
@@ -102,7 +105,11 @@ class SubCategoryScreen extends StatelessWidget {
                                                       //                 .size
                                                       //                 .height /
                                                       //             1.76),
-                                                      crossAxisCount: 2,
+                                                      crossAxisCount:
+                                                          Responsive.isMobile(
+                                                                  context)
+                                                              ? 2
+                                                              : 3,
                                                       mainAxisSpacing: 4,
                                                       crossAxisSpacing: 4),
                                               itemBuilder: (context, index) {
@@ -119,7 +126,8 @@ class SubCategoryScreen extends StatelessWidget {
                                                     child: SubCategoryy(
                                                         services:
                                                             model.subCategory,
-                                                        index: index),
+                                                        index: index,
+                                                        context: context),
                                                   ),
                                                 );
                                               }),
@@ -141,7 +149,7 @@ class SubCategoryScreen extends StatelessWidget {
   }
 
   Widget SubCategoryy(
-      {required List<SubCategory> services, required int index}) {
+      {required List<SubCategory> services, required int index, context}) {
     return Padding(
         padding: EdgeInsets.only(right: 8.6.w),
         child: InkWell(
@@ -178,8 +186,8 @@ class SubCategoryScreen extends StatelessWidget {
                           child: Image.network(
                             '${services[index].imageUrl}',
                             fit: BoxFit.cover,
-                            width: 150.w,
-                            height: 130.h,
+                            width: double.infinity,
+                            height: 0.15.sh,
                           ),
                         )
                       : Container(
@@ -197,7 +205,10 @@ class SubCategoryScreen extends StatelessWidget {
                     child: Text('${services[index].title ?? ''}',
                         overflow: TextOverflow.ellipsis,
                         style: bodyTextStyleLato.copyWith(
-                            color: Colors.black, fontSize: 15.sp)),
+                          color: Colors.black,
+                          fontSize:
+                              Responsive.isMobile(context) ? 15.sp : 20.sp,
+                        )),
                   )
                 ],
               ),

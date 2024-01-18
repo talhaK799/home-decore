@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../responsive.dart';
+
 // ignore: must_be_immutable
 class AllCategoriesScreen extends StatelessWidget {
   List<Categories> newInProductsList;
@@ -19,7 +21,6 @@ class AllCategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return ChangeNotifierProvider(
       create: (context) => NewInProductsViewModel(),
       child: Consumer<NewInProductsViewModel>(
@@ -96,9 +97,12 @@ class AllCategoriesScreen extends StatelessWidget {
                           //     ?
                           newInProductsList.isEmpty
                               ? SizedBox(
-                                  height: MediaQuery.of(context).size.height * 0.86,
-                                  child: Center(child: Text('searched_prod_not_found'.tr)),
-                                  )
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.86,
+                                  child: Center(
+                                      child:
+                                          Text('searched_prod_not_found'.tr)),
+                                )
                               : Center(
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -106,104 +110,176 @@ class AllCategoriesScreen extends StatelessWidget {
                                       Expanded(
                                         child: GridView.builder(
                                           primary: false,
-                                          itemCount:model.authService.categories.length,
+                                          itemCount: model
+                                              .authService.categories.length,
                                           shrinkWrap: true,
                                           padding: EdgeInsets.zero,
                                           gridDelegate:
                                               SliverGridDelegateWithFixedCrossAxisCount(
-                                                //    childAspectRatio:  MediaQuery.of(context).size.height >= 1000
-                                                // ? MediaQuery.of(context).size.width /
-                                                //     (MediaQuery.of(context).size.height / 1.99)
-                                                // : MediaQuery.of(context).size.width /
-                                                //     (MediaQuery.of(context).size.height / 1.72),
-                                                
-                                                  crossAxisCount: 2,
-                                                  mainAxisSpacing: 15,
-                                                  crossAxisSpacing: 15,
-                                                  ),
-                                          itemBuilder: (context, index) {
-                                            return GridTile(child:  InkWell(
-                                                  onTap: () {
-                                                    Get.to(() =>
-                                                        SubCategoryScreen(model.authService.categories[index].title!, model.authService.categories[index].id!));
-                                                  },
+                                            //    childAspectRatio:  MediaQuery.of(context).size.height >= 1000
+                                            // ? MediaQuery.of(context).size.width /
+                                            //     (MediaQuery.of(context).size.height / 1.99)
+                                            // : MediaQuery.of(context).size.width /
+                                            //     (MediaQuery.of(context).size.height / 1.72),
 
-                                                  child: Container(
-                                                    padding: EdgeInsets.symmetric(horizontal: 10),
-                                                    decoration: BoxDecoration(
-                                                      
-                                                        color: whiteColor,
-                                                        borderRadius: BorderRadius.circular(10.r),
-                                                        boxShadow: [
-                                                          BoxShadow(
-                                                            color: Colors.grey.withOpacity(0.2),
-                                                            spreadRadius: 2,
-                                                            blurRadius: 7,
-                                                            offset: Offset(0, 0),
-                                                          ),
-                                                        ]),
-                                                    child: Padding(
-                                                      padding: EdgeInsets.only( top: 10, bottom: 0),
-                                                      child: Column(
-                                                        children: [
-                                                          model.authService.categories[index].iconUrl != null
-                                                              ? ClipRRect(
-                                                                  borderRadius: BorderRadius.circular(10),
-                                                                  child: Image.network(
-                                                                    '${model.authService.categories[index].iconUrl}',
-                                                                    width: double.infinity,
-                                                                    height:MediaQuery.of(context).size.height >= 1000 ? MediaQuery.of(context).size.height * 0.26 : MediaQuery.of(context).size.height* 0.15,
-                                                                    
-                                                                    // width: 140.w,
-                                                                    // height: 130.h,
-                                                                    fit: BoxFit.cover,
-                                                                  ),
-                                                                )
-                                                              : Container(
-                                                                    // width: 140.w,
-                                                                    // height: 130.h,
-                                                                  decoration: BoxDecoration(
-                                                                    color: greyColor,
-                                                                    borderRadius: BorderRadius.circular(10),
-                                                                  ),
+                                            crossAxisCount:
+                                                Responsive.isMobile(context)
+                                                    ? 2
+                                                    : 3,
+                                            childAspectRatio:
+                                                Responsive.isMobile(context)
+                                                    ? 1.sw / 0.55.sh
+                                                    : 1,
+                                            mainAxisSpacing: 15,
+                                            crossAxisSpacing: 15,
+                                          ),
+                                          itemBuilder: (context, index) {
+                                            return GridTile(
+                                              child: InkWell(
+                                                onTap: () {
+                                                  Get.to(() =>
+                                                      SubCategoryScreen(
+                                                          model
+                                                              .authService
+                                                              .categories[index]
+                                                              .title!,
+                                                          model
+                                                              .authService
+                                                              .categories[index]
+                                                              .id!));
+                                                },
+                                                child: Container(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 10),
+                                                  decoration: BoxDecoration(
+                                                      color: whiteColor,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.r),
+                                                      boxShadow: [
+                                                        BoxShadow(
+                                                          color: Colors.grey
+                                                              .withOpacity(0.2),
+                                                          spreadRadius: 2,
+                                                          blurRadius: 7,
+                                                          offset: Offset(0, 0),
+                                                        ),
+                                                      ]),
+                                                  child: Padding(
+                                                    padding: EdgeInsets.only(
+                                                        top: 10, bottom: 0),
+                                                    child: Column(
+                                                      children: [
+                                                        model
+                                                                    .authService
+                                                                    .categories[
+                                                                        index]
+                                                                    .iconUrl !=
+                                                                null
+                                                            ? ClipRRect(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            10),
+                                                                child: Image
+                                                                    .network(
+                                                                  '${model.authService.categories[index].iconUrl}',
+                                                                  width: double
+                                                                      .infinity,
+                                                                  height: Responsive
+                                                                          .isTablet(
+                                                                              context)
+                                                                      ? MediaQuery.of(context)
+                                                                              .size
+                                                                              .height *
+                                                                          0.15
+                                                                      : MediaQuery.of(context)
+                                                                              .size
+                                                                              .height *
+                                                                          0.17,
+
+                                                                  // width: 140.w,
+                                                                  // height: 130.h,
+                                                                  fit: BoxFit
+                                                                      .cover,
                                                                 ),
-                                                          SizedBox(
-                                                            height: MediaQuery.of(context).size.height >= 1000? 10.h:5.h,
+                                                              )
+                                                            : Container(
+                                                                // width: 140.w,
+                                                                // height: 130.h,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color:
+                                                                      greyColor,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              10),
+                                                                ),
+                                                              ),
+                                                        SizedBox(
+                                                          height: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height >=
+                                                                  1000
+                                                              ? 10.h
+                                                              : 5.h,
+                                                        ),
+                                                        Flexible(
+                                                          child: Text(
+                                                            '${model.authService.categories[index].title ?? ''}',
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            style: Responsive.isMobile(
+                                                                    context)
+                                                                ? boldTextStyleHacen.copyWith(
+                                                                    fontSize: 14
+                                                                        .sp,
+                                                                    color:
+                                                                        blackColor,
+                                                                    fontFamily:
+                                                                        latoFont,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold)
+                                                                : boldTextStyleHacen.copyWith(
+                                                                    fontSize:
+                                                                        20.sp,
+                                                                    color:
+                                                                        blackColor,
+                                                                    fontFamily:
+                                                                        latoFont,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold),
                                                           ),
-                                                         Flexible(
-                                                           child: Text(
-                                                             '${model.authService.categories[index].title ?? ''}',
-                                                             overflow: TextOverflow.ellipsis,
-                                                             textAlign: TextAlign.center,
-                                                             style: boldTextStyleHacen.copyWith(
-                                                                 fontSize: 14.sp,
-                                                                 color: blackColor,
-                                                                 fontFamily: latoFont,
-                                                                 fontWeight: FontWeight.bold),
-                                                           ),
-                                                         ),
-                                                          SizedBox(
-                                                            height: 5.h,
-                                                          ),
-                                                        ],
-                                                      ),
+                                                        ),
+                                                        SizedBox(
+                                                          height: 5.h,
+                                                        ),
+                                                      ],
                                                     ),
                                                   ),
                                                 ),
-                                                // footer:  Padding(
-                                                //   padding: const EdgeInsets.only(bottom: 5),
-                                                //   child: Text(
-                                                //     '${model.authService.categories[index].title ?? ''}',
-                                                //     overflow: TextOverflow.ellipsis,
-                                                //     textAlign: TextAlign.center,
-                                                //     style: boldTextStyleHacen.copyWith(
-                                                //         fontSize: 14.sp,
-                                                //         color: blackColor,
-                                                //         fontFamily: latoFont,
-                                                //         fontWeight: FontWeight.bold),
-                                                //   ),
-                                                // ),
-                                                );
+                                              ),
+                                              // footer:  Padding(
+                                              //   padding: const EdgeInsets.only(bottom: 5),
+                                              //   child: Text(
+                                              //     '${model.authService.categories[index].title ?? ''}',
+                                              //     overflow: TextOverflow.ellipsis,
+                                              //     textAlign: TextAlign.center,
+                                              //     style: boldTextStyleHacen.copyWith(
+                                              //         fontSize: 14.sp,
+                                              //         color: blackColor,
+                                              //         fontFamily: latoFont,
+                                              //         fontWeight: FontWeight.bold),
+                                              //   ),
+                                              // ),
+                                            );
                                             // return categorie(
                                             //     model.authService.categories,
                                             //     index);
@@ -231,7 +307,6 @@ class AllCategoriesScreen extends StatelessWidget {
         Get.to(() =>
             SubCategoryScreen(services[index].title!, services[index].id!));
       },
-
       child: Container(
         decoration: BoxDecoration(
             color: whiteColor,
@@ -245,7 +320,7 @@ class AllCategoriesScreen extends StatelessWidget {
               ),
             ]),
         child: Padding(
-          padding: EdgeInsets.only( top: 10, bottom: 10),
+          padding: EdgeInsets.only(top: 10, bottom: 10),
           child: Column(
             children: [
               services[index].iconUrl != null
@@ -253,16 +328,14 @@ class AllCategoriesScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                       child: Image.network(
                         '${services[index].iconUrl}',
-                        
-                        
                         width: 140.w,
                         height: 130.h,
                         fit: BoxFit.cover,
                       ),
                     )
                   : Container(
-                        width: 140.w,
-                        height: 130.h,
+                      width: 140.w,
+                      height: 130.h,
                       decoration: BoxDecoration(
                         color: greyColor,
                         borderRadius: BorderRadius.circular(10),
@@ -286,6 +359,6 @@ class AllCategoriesScreen extends StatelessWidget {
           ),
         ),
       ),
-     );
+    );
   }
 }
