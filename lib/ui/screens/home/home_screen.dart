@@ -3,6 +3,7 @@ import 'package:f2_base_project/core/constants/strings.dart';
 import 'package:f2_base_project/core/constants/styles.dart';
 import 'package:f2_base_project/core/models/categories.dart';
 import 'package:f2_base_project/core/models/products.dart';
+import 'package:f2_base_project/responsive.dart';
 import 'package:f2_base_project/ui/custom_widgets/app_banners_slider.dart';
 import 'package:f2_base_project/ui/custom_widgets/home_prod_container.dart';
 import 'package:f2_base_project/ui/custom_widgets/prod_shimmer.dart';
@@ -92,7 +93,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             SizedBox(width: 7.w),
                             Text(
                               'Inna Home'.tr,
-                              style: normalTextStyleLato,
+                              style: normalTextStyleLato.copyWith(
+                                fontSize: Responsive.isMobile(context)
+                                    ? 20.sp
+                                    : 26.sp,
+                              ),
                             )
                           ],
                         ),
@@ -154,13 +159,17 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         // ),
                         DropdownButton<String>(
                           underline: Container(),
-                          style: buttonTextStyle.copyWith(color: whiteColor),
+                          style: buttonTextStyle.copyWith(
+                            color: whiteColor,
+                            fontSize:
+                                Responsive.isMobile(context) ? 17.sp : 22.sp,
+                          ),
                           dropdownColor: primaryColor,
                           value: model.selectedLang,
                           icon: Icon(
                             Icons.language,
                             color: whiteColor,
-                            size: 18,
+                            size: Responsive.isMobile(context) ? 18 : 28,
                           ),
                           onChanged: (val) {
                             model.selectLang(val);
@@ -189,13 +198,21 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           icon: model.authService.order.products == null
                               ? Image.asset(
                                   '$staticAssets/no-item-cart.png',
-                                  width: 21.06.w,
-                                  height: 21.16.h,
+                                  width: Responsive.isMobile(context)
+                                      ? 21.06.w
+                                      : 30,
+                                  height: Responsive.isMobile(context)
+                                      ? 21.16.h
+                                      : 30,
                                 )
                               : Image.asset(
                                   '$staticAssets/cart-with-items1.png',
-                                  width: 21.06.w,
-                                  height: 21.16.h,
+                                  width: Responsive.isMobile(context)
+                                      ? 21.06.w
+                                      : 30,
+                                  height: Responsive.isMobile(context)
+                                      ? 21.16.h
+                                      : 30,
                                 ),
                         )
                       ],
@@ -213,13 +230,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     AppBannersSlider(
                       image: model.banner,
                       // model.authService.banners,
-                      height: 250.h,
+                      height: 0.3.sh,
                       isCover: true,
                     ),
                     Column(
                       children: [
-                        SizedBox(height: 220.h),
+                        SizedBox(height: 0.27.sh),
                         Container(
+                          // height: 1.sh,
                           padding: EdgeInsetsDirectional.only(start: 20.w),
                           decoration: topRoundedDecoration,
                           child: Column(
@@ -487,7 +505,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         },
         child: Container(
           // height: 120.h,
-          width: 135.w,
+          // width: 135.w,
           decoration: BoxDecoration(
               color: whiteColor,
               borderRadius: BorderRadius.circular(10.r),
@@ -508,7 +526,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         borderRadius: BorderRadius.circular(10),
                         child: Image.network(
                           '${services[index].iconUrl}',
-                          width: 130.w,
+                          width: Responsive.isMobile(context) ? 130 : 0.2.sw,
                           height: 100.h,
                           fit: BoxFit.cover,
                         ),

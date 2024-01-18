@@ -10,9 +10,11 @@ import 'package:f2_base_project/ui/screens/notification/notification-screen.dart
 import 'package:f2_base_project/ui/screens/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:device_preview/device_preview.dart';
 // import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:provider/provider.dart';
 import 'rooter.dart';
@@ -30,7 +32,10 @@ void main() async {
     // await _notificationsService.initConfigure();
     final langCode = 'en';
 // await locator<SharedPrefsService>().getSelectedLanguage();
-    runApp(MyApp(langCode));
+    runApp(DevicePreview(
+    enabled: !kReleaseMode,
+    builder: (context) => MyApp(langCode), // Wrap your app
+  ),);
   } catch (e, s) {
     print("$e");
     print("$s");
@@ -100,6 +105,8 @@ class _MyAppState extends State<MyApp> {
             ChangeNotifierProvider(create: (context) => HomeViewModel()),
           ],
           child: GetMaterialApp(
+            useInheritedMediaQuery: true,
+            builder: DevicePreview.appBuilder,
             title: "Inna Home",
             debugShowCheckedModeBanner: false,
             onGenerateRoute: Rooter.generateRoute,

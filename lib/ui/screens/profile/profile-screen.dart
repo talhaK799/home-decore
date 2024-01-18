@@ -4,6 +4,7 @@ import 'package:f2_base_project/core/constants/strings.dart';
 import 'package:f2_base_project/core/constants/styles.dart';
 import 'package:f2_base_project/core/others/screen_uitls.dart';
 import 'package:f2_base_project/core/services/string_formate_service.dart';
+import 'package:f2_base_project/responsive.dart';
 import 'package:f2_base_project/ui/custom_widgets/image-container.dart';
 import 'package:f2_base_project/ui/custom_widgets/rectangle_button.dart';
 import 'package:f2_base_project/ui/custom_widgets/rounded-raised-button.dart';
@@ -102,7 +103,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 SizedBox(width: 24.w),
                 Text("profile".tr,
                     style: headingTextStyleLato.copyWith(
-                        color: primaryColor, fontWeight: FontWeight.normal))
+                      color: primaryColor,
+                      fontWeight: FontWeight.normal,
+                      fontSize: Responsive.isMobile(context) ? 20.sp : 26.sp,
+                    ))
               ],
             ),
           ),
@@ -132,7 +136,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: [
             model.authSerivce.appUser.imageUrl == null
                 ? CircleAvatar(
-                    radius: 50.r,
+                    radius: Responsive.isMobile(context) ? 50.r : 70.r,
                     backgroundColor: primaryColor,
                     child: Icon(
                       Icons.person,
@@ -140,7 +144,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       color: whiteColor,
                     ))
                 : CircleAvatar(
-                    radius: 50.r,
+                    radius: Responsive.isMobile(context) ? 50.r : 70.r,
                     backgroundColor: Colors.transparent,
                     backgroundImage:
                         NetworkImage('${model.authSerivce.appUser.imageUrl}'),
@@ -149,7 +153,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               padding: const EdgeInsets.only(top: 16.4, bottom: 5.3),
               child: Text(
                 '${convertToTitleCase(model.authSerivce.appUser.name ?? "John Kellis")}',
-                style: headingTextStyleLato.copyWith(fontSize: 14),
+                style: headingTextStyleLato.copyWith(
+                    fontSize: Responsive.isMobile(context) ? 14 : 20),
               ),
             ),
             Row(
@@ -321,7 +326,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Text(
                     "$title",
                     style: bodyTextStyleLato.copyWith(
-                        fontSize: 14.sp, color: Colors.white),
+                        fontSize: Responsive.isMobile(context) ? 14.sp : 20.sp,
+                        color: Colors.white),
                   ),
                   Transform(
                     alignment: Alignment.center,
@@ -330,8 +336,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         : Matrix4.rotationY(0),
                     child: ImageContainer(
                       assetImage: "$assets/forward.png",
-                      height: 9.14.h,
-                      width: 5.85.w,
+                      height: Responsive.isMobile(context) ? 9.14.h : 15,
+                      width: Responsive.isMobile(context) ? 5.85.w : 15,
                     ),
                   ),
                 ],

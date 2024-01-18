@@ -3,6 +3,7 @@ import 'package:f2_base_project/core/constants/strings.dart';
 import 'package:f2_base_project/core/constants/styles.dart';
 import 'package:f2_base_project/core/enums/view_state.dart';
 import 'package:f2_base_project/core/others/screen_uitls.dart';
+import 'package:f2_base_project/responsive.dart';
 import 'package:f2_base_project/ui/custom_widgets/image-container.dart';
 import 'package:f2_base_project/ui/dialogs/signup_required_dialog.dart';
 import 'package:f2_base_project/ui/screens/auth_signup/login/login_screen.dart';
@@ -44,10 +45,9 @@ class _RootScreenState extends State<RootScreen> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    if( isDrawerOpened == true){
-          toggleAnimation();
+    if (isDrawerOpened == true) {
+      toggleAnimation();
     }
-
 
     animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 300));
@@ -66,11 +66,8 @@ class _RootScreenState extends State<RootScreen> with TickerProviderStateMixin {
           widget.selectedPage, widget.selectedMonth,
           selectedDate: widget.selectedDate),
       child: Consumer<RootProvider>(
-
         builder: (context, model, child) {
-          
           return WillPopScope(
-
             onWillPop: () async {
               return model.onWillPop();
             },
@@ -82,9 +79,7 @@ class _RootScreenState extends State<RootScreen> with TickerProviderStateMixin {
               animationDuration: const Duration(milliseconds: 300),
               animateChildDecoration: true,
               disabledGestures: false,
-              drawer: DrawerScreen(
-               
-              ),
+              drawer: DrawerScreen(),
               child: GestureDetector(
                 onTap: () {
                   if (isDrawerOpened) {
@@ -108,20 +103,24 @@ class _RootScreenState extends State<RootScreen> with TickerProviderStateMixin {
                         topLeft: Radius.circular(24),
                         topRight: Radius.circular(24)),
                     child: Container(
-                      height: Platform.isIOS ? 75.h:60.h,
-                      padding: EdgeInsets.only(bottom: Platform.isIOS ? 15:0),
+                      height: Responsive.isMobile(context)
+                          ? Platform.isIOS
+                              ? 75.h
+                              : 60.h
+                          : 120.h,
+                      padding: EdgeInsets.only(bottom: Platform.isIOS ? 15 : 0),
                       decoration: BoxDecoration(
                           color:
-                          //  model.pageIndex == 3
-                          //     ? Colors.white
-                          //     : 
+                              //  model.pageIndex == 3
+                              //     ? Colors.white
+                              //     :
                               primaryColor,
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(24),
                               topRight: Radius.circular(24))),
                       child: BottomAppBar(
                         color:
-                            // model.pageIndex == 3 ? Colors.white : 
+                            // model.pageIndex == 3 ? Colors.white :
                             primaryColor,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -132,12 +131,16 @@ class _RootScreenState extends State<RootScreen> with TickerProviderStateMixin {
                                     icon: 'home_icon.png',
                                     onTap: () => model.onTap(0))
                                 : GestureDetector(
-                                  behavior: HitTestBehavior.opaque,
+                                    behavior: HitTestBehavior.opaque,
                                     onTap: () => model.onTap(0),
                                     child: Image.asset(
                                       '$staticAssets/home_icon.png',
-                                      width: 20.w,
-                                      height: 20.h,
+                                      width: Responsive.isMobile(context)
+                                          ? 20.w
+                                          : 30.w,
+                                      height: Responsive.isMobile(context)
+                                          ? 20.h
+                                          : 30.h,
                                       color: model.pageIndex == 0
                                           ? primaryColor
                                           : Colors.white,
@@ -149,24 +152,25 @@ class _RootScreenState extends State<RootScreen> with TickerProviderStateMixin {
                                     icon: 'products_icon.png',
                                     onTap: () => model.onTap(1))
                                 : GestureDetector(
-                                         behavior: HitTestBehavior.opaque,
+                                    behavior: HitTestBehavior.opaque,
                                     onTap: () => model.onTap(1),
                                     child: Image.asset(
                                       '$staticAssets/products_icon.png',
-                                      width: model.pageIndex == 1 ? 26.w : 20.w,
-                                      height:
-                                          model.pageIndex == 1 ? 26.h : 20.h,
+                                      width: Responsive.isMobile(context)
+                                          ? 20
+                                          : 30,
+                                      height: Responsive.isMobile(context)
+                                          ? 20
+                                          : 30,
                                       color: model.pageIndex == 1
                                           ? primaryColor
                                           : Colors.white,
                                     ),
                                   ),
-                           
+
                             model.pageIndex == 2
                                 ? selectedIcon(
-                                    
                                     icon: 'profile.png',
-                                    
                                     onTap: () {
                                       if (model.authService.isLogin) {
                                         model.onTap(2);
@@ -176,7 +180,7 @@ class _RootScreenState extends State<RootScreen> with TickerProviderStateMixin {
                                       }
                                     })
                                 : GestureDetector(
-                                         behavior: HitTestBehavior.opaque,
+                                    behavior: HitTestBehavior.opaque,
                                     onTap: () {
                                       if (model.authService.isLogin) {
                                         model.onTap(2);
@@ -187,9 +191,12 @@ class _RootScreenState extends State<RootScreen> with TickerProviderStateMixin {
                                     },
                                     child: Image.asset(
                                       '$staticAssets/profile.png',
-                                      width: model.pageIndex == 2 ? 26.w : 20.w,
-                                      height:
-                                          model.pageIndex == 2 ? 26.h : 20.h,
+                                      width: Responsive.isMobile(context)
+                                          ? 20
+                                          : 30,
+                                      height: Responsive.isMobile(context)
+                                          ? 20
+                                          : 30,
                                       color: model.pageIndex == 2
                                           ? primaryColor
                                           : Colors.white,
@@ -208,7 +215,7 @@ class _RootScreenState extends State<RootScreen> with TickerProviderStateMixin {
                                       }
                                     })
                                 : GestureDetector(
-                                         behavior: HitTestBehavior.opaque,
+                                    behavior: HitTestBehavior.opaque,
                                     onTap: () {
                                       if (model.authService.isLogin) {
                                         model.onTap(3);
@@ -219,9 +226,12 @@ class _RootScreenState extends State<RootScreen> with TickerProviderStateMixin {
                                     },
                                     child: Image.asset(
                                       '$staticAssets/order_icon.png',
-                                      width: model.pageIndex == 3 ? 26.w : 20.w,
-                                      height:
-                                          model.pageIndex == 3 ? 26.h : 20.h,
+                                      width: Responsive.isMobile(context)
+                                          ? 20
+                                          : 30,
+                                      height: Responsive.isMobile(context)
+                                          ? 20
+                                          : 30,
                                       color: model.pageIndex == 3
                                           ? primaryColor
                                           : Colors.white,
@@ -250,14 +260,14 @@ class _RootScreenState extends State<RootScreen> with TickerProviderStateMixin {
         children: [
           Image.asset(
             '$staticAssets/$icon',
-            width: 26.w,
-            height: 26.h,
+            width: Responsive.isMobile(context) ? 26.w : 35.w,
+            height: Responsive.isMobile(context) ? 26.w : 35.w,
             color: isBookingScreen ? primaryColor : Colors.white,
           ),
           SizedBox(height: 5.h),
           Container(
-            height: 4.h,
-            width: 4.w,
+            height: Responsive.isMobile(context) ? 4.w : 8.w,
+            width: Responsive.isMobile(context) ? 4.w : 8.w,
             decoration: BoxDecoration(
                 color: isBookingScreen == true ? primaryColor : Colors.white,
                 shape: BoxShape.circle),
@@ -272,7 +282,7 @@ class _RootScreenState extends State<RootScreen> with TickerProviderStateMixin {
       builder: (context, model, child) {
         return Container(
           color: primaryColor,
-          height: 84.h,
+          height: Responsive.isMobile(context) ? 84.h : 130.h,
           child: Padding(
             padding: EdgeInsets.fromLTRB(12.w, 30.h, 12.w, 0.h),
             child: Row(
@@ -362,12 +372,10 @@ class _RootScreenState extends State<RootScreen> with TickerProviderStateMixin {
   }
 }
 
-
 // IconButton(
-                //   constraints: BoxConstraints(maxHeight: 23),
-                //   padding: EdgeInsets.zero,
-                //   onPressed: () => Get.to(() => SearchScreen()),
-                //   icon: Image.asset('$staticAssets/search_white.png',
-                //       width: 21.06.w, height: 21.16.h),
-                // ),
-                
+//   constraints: BoxConstraints(maxHeight: 23),
+//   padding: EdgeInsets.zero,
+//   onPressed: () => Get.to(() => SearchScreen()),
+//   icon: Image.asset('$staticAssets/search_white.png',
+//       width: 21.06.w, height: 21.16.h),
+// ),

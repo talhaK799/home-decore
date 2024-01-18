@@ -51,6 +51,7 @@ dependencies:
   flutter_html: ^3.0.0-beta.2
   file_picker: ^6.1.1
   cached_network_image: ^3.2.0
+  device_preview: ^1.1.0
 
   share_plus: ^7.2.1
 
@@ -77,9 +78,9 @@ dependencies:
   # heic_to_jpg: ^0.2.0
   pinput: ^3.0.1
 
-  dio_http_cache:
-    git:
-      url: https://github.com/hurshi/dio-http-cache
+  # dio_http_cache:
+  #   git:
+  #     url: https://github.com/hurshi/dio-http-cache
   rename: ^3.0.1
   
   
