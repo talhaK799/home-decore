@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:f2_base_project/core/models/app_user.dart';
 import 'package:f2_base_project/core/models/categories.dart';
 import 'package:f2_base_project/core/models/contsct_us.dart';
+import 'package:f2_base_project/core/models/delievry.dart';
 import 'package:f2_base_project/core/models/faqs.dart';
 import 'package:f2_base_project/core/models/helpline.dart';
 import 'package:f2_base_project/core/models/notifications.dart';
@@ -145,6 +146,28 @@ class DatabaseService {
       debugPrint(s.toString());
       return false;
     }
+  }
+
+  //////
+  /// Deleiveries
+  getAllDelieveries() async {
+    debugPrint('@getAllDelieveries');
+    final List<Delievry> categories = [];
+    try {
+      final snapshot = await _db
+          .collection("Delieveries")
+          .orderBy('createdAt', descending: true)
+          .get();
+      debugPrint('Delieveries=> ${snapshot.docs.length}');
+      if (snapshot.docs.isNotEmpty) {
+        for (var doc in snapshot.docs) {
+          categories.add(Delievry.formJson(doc, doc.id));
+        }
+      }
+    } catch (e) {
+      debugPrint('Exception @DatabaseService/Delieveries $e');
+    }
+    return categories;
   }
 
   Future<List<Orders>> getOrders(String id) async {
@@ -440,7 +463,7 @@ class DatabaseService {
     print('.......$categoryId');
 
     debugPrint('@gettingSubCategoryProducts');
-  
+
     final List<SubCategory> categories = [];
     try {
       final snapshot = await _db

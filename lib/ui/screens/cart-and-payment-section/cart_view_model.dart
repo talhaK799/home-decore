@@ -1,6 +1,7 @@
 import 'package:f2_base_project/core/constants/colors.dart';
 import 'package:f2_base_project/core/constants/strings.dart';
 import 'package:f2_base_project/core/enums/view_state.dart';
+import 'package:f2_base_project/core/models/delievry.dart';
 import 'package:f2_base_project/core/models/notifications.dart';
 import 'package:f2_base_project/core/models/order.dart';
 import 'package:f2_base_project/core/models/products.dart';
@@ -27,17 +28,28 @@ class CartViewModel extends BaseViewModel {
   bool isLoading = false;
   int pageIndex = 0;
   int selectedAddress = 0;
+  int selectedValue = 1;
   TabController? tabController;
   List<UserAddress> addresses = [];
+  List<Delievry> delieveries = [];
   Notifications notification = Notifications();
   NotificationsService notificationsService = NotificationsService();
 
   CartViewModel(var obj) {
     tabController = TabController(length: 2, vsync: obj, initialIndex: 0);
+    getDelieveries();
     getUserAddress();
   }
 
+  getDelieveries() async {
+    setState(ViewState.busy);
+    delieveries = await _dbService.getAllDelieveries();
+    debugPrint('deleiveris => ${delieveries.length}');
+    setState(ViewState.idle);
+  }
+
   checkout() async {
+    print('what is this man');
     if (authService.isLogin) {
       if (addresses.isNotEmpty) {
         if (authService.order.products != null) {

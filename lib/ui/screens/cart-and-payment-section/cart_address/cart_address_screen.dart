@@ -130,6 +130,87 @@ class _CartAddressScreenState extends State<CartAddressScreen> {
                                       fontSize: 12.sp, fontFamily: latoFont)),
                             ],
                           ),
+                          SizedBox(height: 10.h),
+                          InkWell(
+                            onTap: () async {
+                              showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) {
+                                    return Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 25, vertical: 30),
+                                      width: 1.sw,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                'shipping types',
+                                                style: headingTextStyleLato,
+                                              ),
+                                              IconButton(
+                                                  onPressed: () {
+                                                    Get.back();
+                                                  },
+                                                  icon: Icon(Icons.close))
+                                            ],
+                                          ),
+                                          10.verticalSpace,
+                                          ListView.separated(
+                                            padding: EdgeInsets.zero,
+                                            shrinkWrap: true,
+                                            itemBuilder: (context, index) {
+                                              return RadioListTile(
+                                                  title: Text(
+                                                    model.delieveries[index]
+                                                            .title ??
+                                                        " ",
+                                                    style: bodyTextStyleHacen,
+                                                  ),
+                                                  contentPadding:
+                                                      EdgeInsets.zero,
+                                                  value: index,
+                                                  groupValue:
+                                                      model.selectedValue,
+                                                  onChanged: (val) {
+                                                    model.selectedValue =
+                                                        val as int;
+                                                  });
+                                            },
+                                            separatorBuilder: (context, index) {
+                                              return SizedBox(
+                                                height: 20,
+                                              );
+                                            },
+                                            itemCount: model.delieveries.length,
+                                          )
+                                        ],
+                                      ),
+                                    );
+                                  });
+                            },
+                            child: Container(
+                              margin: EdgeInsets.symmetric(horizontal: 60),
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 15,
+                                vertical: 10,
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20.r),
+                                border: Border.all(color: primaryColor),
+                                color: whiteColor,
+                              ),
+                              child: Center(
+                                child: Text('Select shiping type',
+                                    style: TextStyle(
+                                        fontSize: 13.sp, fontFamily: latoFont)),
+                              ),
+                            ),
+                          ),
                           SizedBox(height: 30.h),
                           Center(
                               child: Text(
