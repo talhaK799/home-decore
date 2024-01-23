@@ -6,8 +6,6 @@ import 'package:f2_base_project/core/others/screen_uitls.dart';
 import 'package:f2_base_project/core/services/string_formate_service.dart';
 import 'package:f2_base_project/responsive.dart';
 import 'package:f2_base_project/ui/custom_widgets/image-container.dart';
-import 'package:f2_base_project/ui/custom_widgets/rectangle_button.dart';
-import 'package:f2_base_project/ui/custom_widgets/rounded-raised-button.dart';
 import 'package:f2_base_project/ui/screens/auth_signup/login/login_screen.dart';
 import 'package:f2_base_project/ui/screens/contact_us/contact_us_screen.dart';
 import 'package:f2_base_project/ui/screens/notification/notification-screen.dart';
